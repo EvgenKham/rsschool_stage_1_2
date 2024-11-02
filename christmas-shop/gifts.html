@@ -5,21 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="assets/icons/icon-christmas-ball-48.png">
   <title>Christmas-shop</title>
+  <link rel="stylesheet" href="node_modules/modern-normalize/modern-normalize.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <body>
 
     <header class="header">
-      <a href="index.html" class="logo">Logo</a>
-      <nav class="header__navigation">
-        <ul class="navigation">
-          <li>GIFTS</li>
-          <li>ABOUT</li>
-          <li>BEST</li>
-          <li>CONTACTS</li>
-        </ul>
-      </nav>
+      <div class="header__container">
+        <a href="index.html" class="logo">
+          <img class="logo__image" src="assets/icons/snowflake.svg" alt="logo-img">
+          <h2 class="logo__text">the gifts</h2>
+        </a>
+        <nav class="header__nav">
+          <ul class="nav-menu">
+            <li class="nav-menu__item"><a class="nav-menu__link" href="#">gifts</a></li>
+            <li class="nav-menu__item"><a class="nav-menu__link" href="#">about</a></li>
+            <li class="nav-menu__item"><a class="nav-menu__link" href="#">best</a></li>
+            <li class="nav-menu__item"><a class="nav-menu__link" href="#">contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+
     </header>
 
     <section class="gifts"></section>
