@@ -36,73 +36,74 @@ $tag-green: #06A44F
 $tag-purple: #4361FF
 $tag-pink: #FF43F7
 $content-background: #ECF3F8
+$text-upper: uppercase
 
-@mixin header-1
+%header-1
   font-family: Montserrat
   font-size: 32px
   font-weight: 600
   line-height: 150%
   letter-spacing: 0.18em
-  text-transform: uppercase
+  text-transform: $text-upper
 
-@mixin header-2
+%header-2
   font-family: Montserrat
   font-size: 24px
   font-weight: 600
   line-height: 152%
   letter-spacing: 0.16em
-  text-transform: uppercase
+  text-transform: $text-upper
 
-@mixin header-3
+%header-3
   font-family: Montserrat
   font-size: 16px
   font-weight: 600
   line-height: 152%
   letter-spacing: 0.08em
-  text-transform: uppercase
+  text-transform: $text-upper
 
-@mixin header-4
+%header-4
   font-family: Montserrat
   font-size: 12px
   font-weight: 600
   line-height: 130%
   letter-spacing: 0.05em
-  text-transform: uppercase
+  text-transform: $text-upper
 
-@mixin paragraph
+%paragraph
   font-family: Montserrat
   font-size: 16px
   font-weight: 400
   line-height: 148%
 
-@mixin action-large
+%action-large
   font-family: Montserrat
   font-size: 24px
   font-weight: 600
   line-height: 152%
   letter-spacing: 0.16em
-  text-transform: uppercase
+  text-transform: $text-upper
 
-@mixin action-small
+%action-small
   font-family: Montserrat
   font-size: 12px
   font-weight: 600
   line-height: 130%
   letter-spacing: 0.05em
-  text-transform: uppercase
+  text-transform: $text-upper
 
-@mixin caption
+%caption
   font-family: Allura
   font-size: 24px
   font-weight: 400
   line-height: 100%
   letter-spacing: 0.05em
 
-@mixin slider-text
+%slider-text
   font-family: Montserrat
   font-size: 80px
   font-weight: 600
-  text-transform: uppercase
+  text-transform: $text-upper
 
 .header
   display: flex
@@ -129,7 +130,7 @@ $content-background: #ECF3F8
   &__image
     margin-right: 8px
   &__text
-    @include action-small
+    @extend %action-small
     color: $dark
     display: flex
     align-items: center
@@ -154,7 +155,7 @@ $content-background: #ECF3F8
     &:last-child
       margin-right: 0px
   &__link
-    @include action-small
+    @extend %action-small
     color: $dark
     text-decoration: none
     // border-radius: 12px
@@ -190,10 +191,10 @@ $content-background: #ECF3F8
     color: $static-white
 
 .caption
-  @include caption
+  @extend %caption
 
 .header-1
-  @include header-1
+  @extend %header-1
 
 .button
   display: flex
@@ -209,7 +210,7 @@ $content-background: #ECF3F8
   width: 235px
   height: 56px
   background-color: $dark
-  @include action-small
+  @extend %action-small
   text-align: center
   white-space: nowrap
   color: $static-white
@@ -252,7 +253,78 @@ $content-background: #ECF3F8
   border-radius: 20px
 
 .header-2
-  @include header-2
+  @extend %header-2
 
 .paragraph
-  @include paragraph
+  @extend %paragraph
+
+.slider
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  overflow: hidden
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+  &__text-container
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    width: 426px
+    height: 72px
+    color: $static-white
+    margin-bottom: 20px
+  &__row
+    display: flex
+    align-items: center
+    width: 1276px
+    height: 200px
+    margin-bottom: 20px
+  &__buttons
+    display: flex
+    justify-content: flex-end
+    width: 1276px
+    height: 56px
+
+.item-text
+  @extend %slider-text
+  color: $static-white
+  margin-right: 20px
+
+.item-image
+  border-radius: 20px
+  width: 200px
+  height: 200px
+  margin-right: 20px
+  &:last-child
+    margin-right: 0px
+
+.btn-arrow
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px solid $static-white
+  border-radius: 20px
+  width: 56px
+  height: 56px
+  transition: all 0.2s
+  stroke: $static-white
+  &:first-child
+    margin-right: 20px
+  &:hover
+    cursor: pointer
+    background: $static-white
+    stroke: $primary
+
+.btn-disable
+  border: 1px solid $static-white-40
+  stroke-opacity: 0.4
+  pointer-events: none
