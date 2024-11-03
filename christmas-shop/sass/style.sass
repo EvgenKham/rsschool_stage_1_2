@@ -214,3 +214,45 @@ $content-background: #ECF3F8
   white-space: nowrap
   color: $static-white
   text-decoration: none
+
+.about
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  width: 1440px
+  height: 648px
+  background-image: url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  &__container
+    display: flex
+    border-radius: 20px
+    width: 1276px
+    height: 528px
+    max-width: 1276px
+    background: $static-white
+  &__text-container
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding-left: 60px
+    padding-top: 22px
+    width: 638px
+    height: 528px
+  &__text
+    max-width: 426px
+    margin-bottom: 20px
+  &__image-container
+    width: 638px
+    height: 528px
+
+.about__image
+  border-radius: 20px
+
+.header-2
+  @include header-2
+
+.paragraph
+  @include paragraph
