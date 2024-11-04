@@ -1,4 +1,4 @@
-h1,h2, h3,h4,h5,h6
+h1, h2, h3, h4, h5, h6
   margin: 0
 
 *
@@ -105,12 +105,21 @@ $text-upper: uppercase
   font-weight: 600
   text-transform: $text-upper
 
+%text-container
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  width: 426px
+  height: 72px
+  color: $static-white
+  margin-bottom: 20px
+
 .header
   display: flex
   justify-content: center
   padding: 0px 8px
-  width: 1440px
-  height: 64px
+  max-width: 1440px
   background: $static-white
   &__container
     display: flex
@@ -148,7 +157,7 @@ $text-upper: uppercase
     height: 40px
     list-style: none
     margin-right: 8px
-    transition: all 0.2s
+    transition: all 0.3s
     &:hover
       background: $primary-10
       cursor: pointer
@@ -160,7 +169,7 @@ $text-upper: uppercase
     text-decoration: none
     // border-radius: 12px
     padding: 12px 20px
-    transition: all 0.2s
+    transition: all 0.3s
     &:hover
       color: $primary
 
@@ -170,8 +179,7 @@ $text-upper: uppercase
   align-items: center
   border-radius: 20px 20px 0 0
   padding: 60px 8px
-  width: 1440px
-  height: 524px
+  max-width: 1440px
   background-image: url('../assets/images/bg-ball.png'), url('../assets/images/bg-snow.png')
   background-position: center
   background-size: cover
@@ -192,9 +200,11 @@ $text-upper: uppercase
 
 .caption
   @extend %caption
+  cursor: default
 
 .header-1
   @extend %header-1
+  cursor: default
 
 .button
   display: flex
@@ -215,14 +225,17 @@ $text-upper: uppercase
   white-space: nowrap
   color: $static-white
   text-decoration: none
+  transition: all 0.3s
+  &:hover
+    background-color: $static-white
+    color: $dark
 
 .about
   display: flex
   justify-content: center
   align-items: center
   padding: 60px 8px
-  width: 1440px
-  height: 648px
+  max-width: 1440px
   background-image: url('../assets/images/bg-snow.png')
   background-position: center
   background-size: cover
@@ -254,9 +267,11 @@ $text-upper: uppercase
 
 .header-2
   @extend %header-2
+  cursor: default
 
 .paragraph
   @extend %paragraph
+  cursor: default
 
 .slider
   display: flex
@@ -274,14 +289,7 @@ $text-upper: uppercase
     flex-direction: column
     align-items: center
   &__text-container
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    align-items: center
-    width: 426px
-    height: 72px
-    color: $static-white
-    margin-bottom: 20px
+    @extend %text-container
   &__row
     display: flex
     align-items: center
@@ -298,6 +306,7 @@ $text-upper: uppercase
   @extend %slider-text
   color: $static-white
   margin-right: 20px
+  cursor: default
 
 .item-image
   border-radius: 20px
@@ -315,7 +324,7 @@ $text-upper: uppercase
   border-radius: 20px
   width: 56px
   height: 56px
-  transition: all 0.2s
+  transition: all 0.3s
   stroke: $static-white
   &:first-child
     margin-right: 20px
@@ -328,3 +337,122 @@ $text-upper: uppercase
   border: 1px solid $static-white-40
   stroke-opacity: 0.4
   pointer-events: none
+
+.best-gifts
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  &__container
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+  &__text-container
+    @extend %text-container
+  &__card-container
+    display: flex
+    justify-content: space-between
+    width: 1276px
+
+.card
+  border-radius: 20px
+  width: 310px
+  // height: 342px
+  background: $content-background
+  &:hover
+    cursor: pointer
+    .card__second-text
+      transition: all 0.3s
+      color: $primary
+  &__image
+    width: 310px
+    height: 227px
+  &__text
+    border-radius: 20px
+    padding: 20px
+    width: 310px
+    height: 112px
+    background: $static-white
+  &__first-text
+    margin-bottom: 8px
+  &__second-text
+    transition: all 0.3s
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden
+    max-height: 3.2em
+
+
+.header-4
+  @extend %header-4
+
+.header-3
+  @extend %header-3
+
+.christmas-is-coming
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 120px 8px
+  max-width: 1440px
+  border-radius: 0 0 20px 20px
+  background-image: url('../assets/images/bg-snow.png'), url('../assets/images/bg-forest.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  // &__container
+  //   display: flex
+  //   flex-direction: column
+  //   justify-content: center
+  //   align-items: center
+  &__content
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    padding: 60px 0px
+    height: 428px
+    max-width: 426px
+  &__header
+    text-align: center
+    color: $static-white
+  &__caption
+    text-align: center
+    color: $static-white
+    margin-bottom: 8px
+
+.timer
+  &__section
+    display: flex
+    flex-direction: column
+  &__container
+    display: flex
+    justify-content: center
+    border-radius: 20px
+    padding: 8px 12px 12px 12px
+    width: 344px
+    height: 72px
+    background-color: $static-white-40
+  &__cell
+    width: 80px
+    height: 52px
+    border-right: 1px solid $static-white-40
+    // border-right-width: 20px
+
+
+.number
+  display: flex
+  justify-content: center
+  color: $static-white
+
+.string
+  display: flex
+  justify-content: center
+  color: $static-white
