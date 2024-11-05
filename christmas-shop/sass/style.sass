@@ -441,10 +441,21 @@ $text-upper: uppercase
     height: 72px
     background-color: $static-white-40
   &__cell
+    position: relative
     width: 80px
     height: 52px
-    border-right: 1px solid $static-white-40
-    // border-right-width: 20px
+    margin: 0
+    &:after
+      position: absolute
+      content: ""
+      height: 1px
+      width: 20px
+      top: 25px
+      right: -10px
+      background: $static-white-40
+      transform: rotate(90deg)
+    &:last-child:after
+      height: 0px
 
 
 .number
@@ -456,3 +467,11 @@ $text-upper: uppercase
   display: flex
   justify-content: center
   color: $static-white
+
+.separator
+  display: inline-block
+  height: 1px
+  margin-top: 24px
+  width: 20px
+  background: $static-white-40
+  transform: rotate(90deg)
