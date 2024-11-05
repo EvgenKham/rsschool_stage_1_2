@@ -1,3 +1,6 @@
+html
+  scroll-behavior: smooth
+
 h1, h2, h3, h4, h5, h6
   margin: 0
 
@@ -457,7 +460,6 @@ $text-upper: uppercase
     &:last-child:after
       height: 0px
 
-
 .number
   display: flex
   justify-content: center
@@ -468,10 +470,82 @@ $text-upper: uppercase
   justify-content: center
   color: $static-white
 
-.separator
-  display: inline-block
-  height: 1px
-  margin-top: 24px
-  width: 20px
-  background: $static-white-40
-  transform: rotate(90deg)
+.footer
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  max-width: 1440px
+  background: $static-white
+  &__container
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    height: 376px
+
+.contacts
+  display: flex
+  justify-content: space-between
+  width: 1276px
+  height: 204px
+  &__item
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    border-radius: 20px
+    padding: 20px
+    width: 417px
+    height: 204px
+    background: $content-background
+    &:hover
+      cursor: pointer
+      .contacts__title
+        transition: all 0.3s
+        color: $primary
+      .contacts__subtitle
+        transition: all 0.3s
+        color: $primary
+  &__title
+    @extend %action-large
+    transition: all 0.3s
+  &__subtitle
+    @extend %header-3
+    transition: all 0.3s
+
+.extra-info
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  width: 100%
+  height: 112px
+
+.socials
+  display: flex
+  justify-content: space-between
+  width: 196px
+  height: 40px
+  &__item
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 40px
+    height: 40px
+    &:hover
+      cursor: pointer
+      .socials__link
+        transition: all 0.3s
+        stroke: $primary
+  &__link
+    transition: all 0.3s
+    stroke: #181C29
+
+.school__link
+  cursor: pointer
+  text-decoration: none
+  transition: all 0.3s
+  color: $dark
+  &:hover
+    color: $primary
