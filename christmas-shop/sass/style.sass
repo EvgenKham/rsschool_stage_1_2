@@ -1,7 +1,12 @@
 html
   scroll-behavior: smooth
 
-h1, h2, h3, h4, h5, h6
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
   margin: 0
 
 *
@@ -29,16 +34,16 @@ p
   font-weight: 600
   font-style: normal
 
-$primary: #FF4646
+$primary: #ff4646
 $primary-10: rgba(255, 70, 70, 0.1)
-$dark: #181C29
+$dark: #181c29
 $static-white: rgba(255, 255, 255, 1)
 $static-white-20: rgba(255, 255, 255, 0.2)
 $static-white-40: rgba(255, 255, 255, 0.4)
-$tag-green: #06A44F
-$tag-purple: #4361FF
-$tag-pink: #FF43F7
-$content-background: #ECF3F8
+$tag-green: #06a44f
+$tag-purple: #4361ff
+$tag-pink: #ff43f7
+$content-background: #ecf3f8
 $text-upper: uppercase
 
 %header-1
@@ -118,6 +123,10 @@ $text-upper: uppercase
   color: $static-white
   margin-bottom: 20px
 
+.wrapper
+  max-width: 1440px
+  margin: 0 auto
+
 .header
   display: flex
   justify-content: center
@@ -175,6 +184,11 @@ $text-upper: uppercase
     transition: all 0.3s
     &:hover
       color: $primary
+
+.active-nav-link
+  background: $primary-10
+  .nav-menu__link
+    color: $primary
 
 .hero
   display: flex
@@ -366,11 +380,10 @@ $text-upper: uppercase
 .card
   border-radius: 20px
   width: 310px
-  // height: 342px
   background: $content-background
   &:hover
     cursor: pointer
-    .card__second-text
+    .card__name
       transition: all 0.3s
       color: $primary
   &__image
@@ -382,16 +395,23 @@ $text-upper: uppercase
     width: 310px
     height: 112px
     background: $static-white
-  &__first-text
-    margin-bottom: 8px
-  &__second-text
+  &__category
+    &_work
+      margin-bottom: 8px
+      color: $tag-purple
+    &_health
+      margin-bottom: 8px
+      color: $tag-green
+    &_harmony
+      margin-bottom: 8px
+      color: $tag-pink
+  &__name
     transition: all 0.3s
     display: -webkit-box
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
     overflow: hidden
     max-height: 3.2em
-
 
 .header-4
   @extend %header-4
@@ -499,8 +519,9 @@ $text-upper: uppercase
     width: 417px
     height: 204px
     background: $content-background
+    text-decoration: none
+    color: $dark
     &:hover
-      cursor: pointer
       .contacts__title
         transition: all 0.3s
         color: $primary
@@ -540,7 +561,7 @@ $text-upper: uppercase
         stroke: $primary
   &__link
     transition: all 0.3s
-    stroke: #181C29
+    stroke: $dark
 
 .school__link
   cursor: pointer
@@ -549,3 +570,56 @@ $text-upper: uppercase
   color: $dark
   &:hover
     color: $primary
+
+.gifts
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  border-radius: 20px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-garland.png')
+  background-position: top
+  background-size: contain
+  background-repeat: no-repeat
+  background-color: $primary
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    height: 1274px
+    max-width: 1276px
+  &__title
+    max-width: 426px
+    color: $static-white
+    text-align: center
+  &__tabs
+    display: flex
+    justify-content: space-between
+    width: 474px
+    height: 40px
+  &__card-container
+    display: grid
+    grid-template-rows: repeat(4, 1fr)
+    grid-template-columns: repeat(4, 1fr)
+    grid-gap: 12px
+    width: 1276px
+    height: 1050px
+
+.tab-item
+  display: flex
+  justify-content: center
+  border-radius: 12px
+  padding: 12px 20px
+  transition: all 0.3s
+  @extend %action-small
+  color: $static-white
+  &:hover
+    background: $static-white-20
+    cursor: pointer
+  &:last-child
+    margin-right: 0px
+
+.active-tab
+  background: $static-white-20
