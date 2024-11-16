@@ -118,7 +118,7 @@ $text-upper: uppercase
   flex-direction: column
   justify-content: space-between
   align-items: center
-  width: 426px
+  max-width: 426px
   height: 72px
   color: $static-white
   margin-bottom: 20px
@@ -165,8 +165,6 @@ $text-upper: uppercase
     display: flex
     justify-content: center
     border-radius: 12px
-    // padding: 12px 20px
-    // width: 78px
     height: 40px
     list-style: none
     margin-right: 8px
@@ -180,7 +178,6 @@ $text-upper: uppercase
     @extend %action-small
     color: $dark
     text-decoration: none
-    // border-radius: 12px
     padding: 12px 20px
     transition: all 0.3s
     &:hover
@@ -411,7 +408,6 @@ $text-upper: uppercase
   &__text
     border-radius: 20px
     padding: 20px
-    // width: 310px
     height: 112px
     background: $static-white
   &__category
@@ -449,11 +445,6 @@ $text-upper: uppercase
   background-position: center
   background-size: cover
   background-color: $primary
-  // &__container
-  //   display: flex
-  //   flex-direction: column
-  //   justify-content: center
-  //   align-items: center
   &__content
     display: flex
     flex-direction: column
@@ -676,7 +667,7 @@ $text-upper: uppercase
     opacity: 1
     transition: 0.3s all
     cursor: pointer
-    span
+    &__line
       display: block
       height: 2px
       width: 22px
@@ -700,5 +691,21 @@ $text-upper: uppercase
     max-width: 768px
     &__container
       max-width: 752px
-    &__image-container
-      max-width: 376px
+
+@media (max-width: 600px)
+
+  .about
+    &__container
+      flex-direction: column
+      height: 880px
+    &__text-container
+      padding: 22px 20px 0 20px
+      height: 352px
+
+@media (max-width: 420px)
+
+  .christmas-is-coming__content
+    height: 464px
+
+  .hero__container
+    height: 452px
