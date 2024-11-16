@@ -136,7 +136,8 @@ $text-upper: uppercase
   &__container
     display: flex
     justify-content: space-between
-    min-width: 1276px
+    width: 100%
+    max-width: 1276px
     padding: 12px 0px
   &__nav
     display: flex
@@ -189,6 +190,9 @@ $text-upper: uppercase
   background: $primary-10
   .nav-menu__link
     color: $primary
+
+.burger
+  display: none
 
 .hero
   display: flex
@@ -259,8 +263,9 @@ $text-upper: uppercase
   background-color: $primary
   &__container
     display: flex
+    justify-content: space-between
     border-radius: 20px
-    width: 1276px
+    width: 100%
     height: 528px
     max-width: 1276px
     background: $static-white
@@ -269,18 +274,23 @@ $text-upper: uppercase
     flex-direction: column
     justify-content: center
     padding-left: 60px
+    padding-right: 60px
     padding-top: 22px
-    width: 638px
+    max-width: 638px
     height: 528px
   &__text
     max-width: 426px
     margin-bottom: 20px
   &__image-container
-    width: 638px
+    display: flex
+    justify-content: center
+    overflow: hidden
+    border-radius: 20px
+    max-width: 638px
     height: 528px
 
 .about__image
-  border-radius: 20px
+  align-self: center
 
 .header-2
   @extend %header-2
@@ -295,6 +305,7 @@ $text-upper: uppercase
   justify-content: center
   align-items: center
   padding: 60px 8px
+  width: 100%
   max-width: 1440px
   background-image: url('../assets/images/bg-snow.png')
   background-position: center
@@ -305,18 +316,22 @@ $text-upper: uppercase
     display: flex
     flex-direction: column
     align-items: center
+    width: 100%
+    max-width: 1276px
   &__text-container
     @extend %text-container
   &__row
     display: flex
     align-items: center
-    width: 1276px
+    width: 100%
+    max-width: 1276px
     height: 200px
     margin-bottom: 20px
   &__buttons
     display: flex
     justify-content: flex-end
-    width: 1276px
+    width: 100%
+    max-width: 1276px
     height: 56px
 
 .item-text
@@ -374,12 +389,16 @@ $text-upper: uppercase
     @extend %text-container
   &__card-container
     display: flex
-    justify-content: space-between
-    width: 1276px
+    justify-content: center
+    flex-wrap: wrap
+    gap: 12px
+    width: 100%
+    max-width: 1276px
 
 .card
   border-radius: 20px
   width: 310px
+  height: 342px
   background: $content-background
   &:hover
     cursor: pointer
@@ -502,13 +521,15 @@ $text-upper: uppercase
     flex-direction: column
     justify-content: space-between
     align-items: center
-    height: 376px
+    width: 100%
+    max-width: 1276px
 
 .contacts
   display: flex
   justify-content: space-between
-  width: 1276px
-  height: 204px
+  gap: 12px
+  width: 100%
+  max-width: 1276px
   &__item
     display: flex
     flex-direction: column
@@ -516,7 +537,7 @@ $text-upper: uppercase
     align-items: center
     border-radius: 20px
     padding: 20px
-    width: 417px
+    width: 100%
     height: 204px
     background: $content-background
     text-decoration: none
@@ -530,6 +551,7 @@ $text-upper: uppercase
         color: $primary
   &__title
     @extend %action-large
+    white-space: nowrap
     transition: all 0.3s
   &__subtitle
     @extend %header-3
@@ -623,3 +645,60 @@ $text-upper: uppercase
 
 .active-tab
   background: $static-white-20
+
+@media (max-width: 1000px)
+
+  .contacts
+    flex-direction: column
+    align-items: center
+    margin-bottom: 60px
+    &__item
+      min-width: 360px
+
+@media (max-width: 768px)
+
+  .header
+    max-width: 768px
+    &__container
+      max-width: 752px
+
+  .nav-menu
+    display: none
+
+  .burger
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    border-radius: 4px
+    width: 40px
+    height: 40px
+    opacity: 1
+    transition: 0.3s all
+    cursor: pointer
+    span
+      display: block
+      height: 2px
+      width: 22px
+      background: $dark
+      margin-bottom: 6px
+      transition: 0.3s all
+      &:last-child
+        margin-bottom: 0px
+
+  .burger_active
+    transition: 0.3s all
+    span:nth-child(1)
+      width: 20px
+      margin-bottom: -2px
+      transform: rotate(-45deg)
+    span:nth-child(2)
+      width: 20px
+      transform: rotate(45deg)
+
+  .about
+    max-width: 768px
+    &__container
+      max-width: 752px
+    &__image-container
+      max-width: 376px
