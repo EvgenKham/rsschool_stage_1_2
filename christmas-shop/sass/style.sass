@@ -170,9 +170,6 @@ $text-upper: uppercase
     list-style: none
     margin-right: 8px
     transition: all 0.3s
-    &:hover
-      background: $primary-10
-      cursor: pointer
     &:last-child
       margin-right: 0px
   &__link
@@ -181,8 +178,6 @@ $text-upper: uppercase
     text-decoration: none
     padding: 12px 20px
     transition: all 0.3s
-    &:hover
-      color: $primary
 
 .active-nav-link
   background: $primary-10
@@ -245,9 +240,6 @@ $text-upper: uppercase
   color: $static-white
   text-decoration: none
   transition: all 0.3s
-  &:hover
-    background-color: $static-white
-    color: $dark
 
 .about
   display: flex
@@ -358,10 +350,6 @@ $text-upper: uppercase
   stroke: $static-white
   &:first-child
     margin-right: 20px
-  &:hover
-    cursor: pointer
-    background: $static-white
-    stroke: $primary
 
 .btn-disable
   border: 1px solid $static-white-40
@@ -398,11 +386,6 @@ $text-upper: uppercase
   width: 310px
   height: 342px
   background: $content-background
-  &:hover
-    cursor: pointer
-    .card__name
-      transition: all 0.3s
-      color: $primary
   &__image
     width: 310px
     height: 227px
@@ -535,13 +518,6 @@ $text-upper: uppercase
     background: $content-background
     text-decoration: none
     color: $dark
-    &:hover
-      .contacts__title
-        transition: all 0.3s
-        color: $primary
-      .contacts__subtitle
-        transition: all 0.3s
-        color: $primary
   &__title
     @extend %action-large
     white-space: nowrap
@@ -569,11 +545,6 @@ $text-upper: uppercase
     align-items: center
     width: 40px
     height: 40px
-    &:hover
-      cursor: pointer
-      .socials__link
-        transition: all 0.3s
-        stroke: $primary
   &__link
     transition: all 0.3s
     stroke: $dark
@@ -583,8 +554,6 @@ $text-upper: uppercase
   text-decoration: none
   transition: all 0.3s
   color: $dark
-  &:hover
-    color: $primary
 
 .gifts
   display: flex
@@ -628,9 +597,6 @@ $text-upper: uppercase
   transition: all 0.3s
   @extend %action-small
   color: $static-white
-  &:hover
-    background: $static-white-20
-    cursor: pointer
   &:last-child
     margin-right: 0px
 
@@ -654,6 +620,50 @@ $text-upper: uppercase
 .btn-to-up
   display: none
 
+@media (hover: hover)
+
+  .nav-menu__item:hover
+    background: $primary-10
+    cursor: pointer
+
+  .nav-menu__link:hover
+    color: $primary
+
+  .btn:hover
+    background-color: $static-white
+    color: $dark
+
+  .btn-arrow:hover
+    cursor: pointer
+    background: $static-white
+    stroke: $primary
+
+  .card:hover
+    cursor: pointer
+    .card__name
+      transition: all 0.3s
+      color: $primary
+
+  .contacts__item:hover
+    .contacts__title
+      transition: all 0.3s
+      color: $primary
+    .contacts__subtitle
+      transition: all 0.3s
+      color: $primary
+
+  .socials__item:hover
+    cursor: pointer
+    .socials__link
+      transition: all 0.3s
+      stroke: $primary
+
+  .school__link:hover
+    color: $primary
+
+  .tab-item:hover
+    background: $static-white-20
+    cursor: pointer
 
 @media (max-width: 1000px)
 
