@@ -623,6 +623,81 @@ $text-upper: uppercase
 .btn-to-up
   display: none
 
+@media (max-width: 1000px)
+
+  .contacts
+    flex-direction: column
+    align-items: center
+    &__item
+      min-width: 360px
+
+@media (max-width: 768px)
+
+  .header
+    max-width: 768px
+    &__container
+      max-width: 752px
+
+  .nav-menu
+    display: none
+
+  .burger
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    border-radius: 4px
+    width: 40px
+    height: 40px
+    opacity: 1
+    transition: 0.3s all
+    &__line
+      display: block
+      height: 2px
+      width: 22px
+      background: $dark
+      margin-bottom: 6px
+      transition: 0.3s all
+      &:last-child
+        margin-bottom: 0px
+
+  .burger_active
+    transition: 0.3s all
+    span:nth-child(1)
+      width: 20px
+      margin-bottom: -2px
+      transform: rotate(-45deg)
+    span:nth-child(2)
+      width: 20px
+      transform: rotate(45deg)
+
+  .about
+    max-width: 768px
+    &__container
+      max-width: 752px
+
+@media (max-width: 600px)
+
+  .about
+    &__container
+      flex-direction: column
+      height: 880px
+    &__text-container
+      padding: 22px 20px 0 20px
+      height: 352px
+
+  .tab-item
+    padding: 12px 8px
+    margin-right: 0px
+
+@media (max-width: 420px)
+
+  .christmas-is-coming__content
+    height: 464px
+
+  .hero__container
+    height: 452px
+
 @media (hover: hover)
 
   .nav-menu__item:hover
@@ -671,78 +746,5 @@ $text-upper: uppercase
   .active-tab:hover
     cursor: default
 
-@media (max-width: 1000px)
-
-  .contacts
-    flex-direction: column
-    align-items: center
-    &__item
-      min-width: 360px
-
-@media (max-width: 768px)
-
-  .header
-    max-width: 768px
-    &__container
-      max-width: 752px
-
-  .nav-menu
-    display: none
-
   .burger
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    border-radius: 4px
-    width: 40px
-    height: 40px
-    opacity: 1
-    transition: 0.3s all
     cursor: pointer
-    &__line
-      display: block
-      height: 2px
-      width: 22px
-      background: $dark
-      margin-bottom: 6px
-      transition: 0.3s all
-      &:last-child
-        margin-bottom: 0px
-
-  .burger_active
-    transition: 0.3s all
-    span:nth-child(1)
-      width: 20px
-      margin-bottom: -2px
-      transform: rotate(-45deg)
-    span:nth-child(2)
-      width: 20px
-      transform: rotate(45deg)
-
-  .about
-    max-width: 768px
-    &__container
-      max-width: 752px
-
-@media (max-width: 600px)
-
-  .about
-    &__container
-      flex-direction: column
-      height: 880px
-    &__text-container
-      padding: 22px 20px 0 20px
-      height: 352px
-
-  .tab-item
-    padding: 12px 8px
-    margin-right: 0px
-
-@media (max-width: 420px)
-
-  .christmas-is-coming__content
-    height: 464px
-
-  .hero__container
-    height: 452px
