@@ -123,10 +123,14 @@ $text-upper: uppercase
   color: $static-white
   margin-bottom: 20px
 
+.stop-scroll
+  overflow: hidden
+
 .wrapper
   position: relative
   max-width: 1440px
   margin: 0 auto
+  overflow: hidden
 
 .header
   display: flex
@@ -621,9 +625,6 @@ $text-upper: uppercase
     &__container
       max-width: 752px
 
-  .nav-menu
-    display: none
-
   .burger
     display: flex
     flex-direction: column
@@ -654,6 +655,42 @@ $text-upper: uppercase
     span:nth-child(2)
       width: 20px
       transform: rotate(45deg)
+
+  .header__nav
+    position: fixed
+    margin-top: 52px
+    margin-left: -8px
+    width: 100%
+    right: 0
+    transform: translateX(100%)
+    height: 100lvh
+    padding-top: 120px
+    z-index: 10
+    justify-content: center
+    align-items: center
+    background-color: $static-white
+    transition: 0.5s ease-in-out
+
+  .header__nav_active
+    transform: translateX(0)
+    transition: 0.5s ease-in-out
+
+  .nav-menu
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 246px
+    &__link
+      font-size: 24px
+      line-height: 152%
+      letter-spacing: 0.16em
+    &__item
+      margin: 0px
+
+  .active-nav-link
+    background: $static-white
+    .nav-menu__link
+      color: $dark
 
   .about
     max-width: 768px
