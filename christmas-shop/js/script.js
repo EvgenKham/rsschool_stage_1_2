@@ -71,4 +71,22 @@ document.addEventListener("DOMContentLoaded", function () {
     second.innerHTML = seconds;
   },1000)
 
+  const slider = document.querySelector('.slider__row');
+  const btnLeft = document.querySelector('.left');
+  const btnRight = document.querySelector('.right');
+
+  let widthMove = 0;
+
+  btnRight.addEventListener('click', () => {
+    console.log(slider);
+    btnLeft.classList.remove('btn-disable');
+    slider.style.transform = `translateX(-${widthMove += 25}%)`;
+  });
+
+  btnLeft.addEventListener('click', () => {
+    console.log(slider);
+    btnLeft.classList.remove('btn-disable');
+    slider.style.transform = `translateX(-${widthMove -= 25}%)`;
+  });
+  
 });
