@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Open/close navigation menu when click link of them
   menuItem.forEach(item => {
-      item.addEventListener('click', () => {
-          burger.classList.toggle('burger_active');
-          menu.classList.toggle('header__nav_active');
-          //Allow/forbid scroll while nav menu is close
-          body.classList.toggle('stop-scroll');
-      })
+    item.addEventListener('click', () => {
+      burger.classList.toggle('burger_active');
+      menu.classList.toggle('header__nav_active');
+      //Allow/forbid scroll while nav menu is close
+      body.classList.toggle('stop-scroll');
+    })
   });
 
   //Checking for work only on gifts.html page
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-
+  const timer = document.querySelector('.timer__container');
+  
 
 });
