@@ -606,72 +606,7 @@ $text-upper: uppercase
 .active-tab
   background: $static-white-20
 
-.btn-to-up
-  display: flex
-  justify-content: center
-  align-items: center
-  position: fixed
-  bottom: 8px
-  right: 8px
-  border: 1px solid $primary
-  border-radius: 100px
-  width: 56px
-  height: 56px
-  background-color: $static-white
-  cursor: pointer
-
-.btn-to-up
-  display: none
-
-@media (hover: hover)
-
-  .nav-menu__item:hover
-    background: $primary-10
-    cursor: pointer
-
-  .nav-menu__link:hover
-    color: $primary
-
-  .btn:hover
-    background-color: $static-white
-    color: $dark
-
-  .btn-arrow:hover
-    cursor: pointer
-    background: $static-white
-    stroke: $primary
-
-  .card:hover
-    cursor: pointer
-    .card__name
-      transition: all 0.3s
-      color: $primary
-
-  .contacts__item:hover
-    .contacts__title
-      transition: all 0.3s
-      color: $primary
-    .contacts__subtitle
-      transition: all 0.3s
-      color: $primary
-
-  .socials__item:hover
-    cursor: pointer
-    .socials__link
-      transition: all 0.3s
-      stroke: $primary
-
-  .school__link:hover
-    color: $primary
-
-  .tab-item:hover
-    background: $static-white-20
-    cursor: pointer
-
-  .active-tab:hover
-    cursor: default
-
-@media (max-width: 1000px)
+@media (max-width: 1060px)
 
   .contacts
     flex-direction: column
@@ -725,6 +660,23 @@ $text-upper: uppercase
     &__container
       max-width: 752px
 
+  .btn-to-up
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    bottom: 8px
+    right: 8px
+    border: 1px solid $primary
+    border-radius: 100px
+    width: 56px
+    height: 56px
+    background-color: $static-white
+    cursor: pointer
+
+  .btn-to-up
+    display: none
+
 @media (max-width: 600px)
 
   .about
@@ -746,3 +698,51 @@ $text-upper: uppercase
 
   .hero__container
     height: 452px
+
+@media (hover: hover)
+
+  .nav-menu__item:hover
+    background: $primary-10
+    cursor: pointer
+
+  .nav-menu__link:hover
+    color: $primary
+
+  .btn:hover
+    background-color: $static-white
+    color: $dark
+
+  .btn-arrow:hover
+    cursor: pointer
+    background: $static-white
+    stroke: $primary
+
+  .card:hover
+    cursor: pointer
+    .card__name
+      transition: all 0.3s
+      color: $primary
+
+  .contacts__item:hover
+    .contacts__title
+      transition: all 0.3s
+      color: $primary
+    .contacts__subtitle
+      transition: all 0.3s
+      color: $primary
+
+  .socials__item:hover
+    cursor: pointer
+    .socials__link
+      transition: all 0.3s
+      stroke: $primary
+
+  .school__link:hover
+    color: $primary
+
+  .tab-item:hover
+    background: $static-white-20
+    cursor: pointer
+
+  .active-tab:hover
+    cursor: default
