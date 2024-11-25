@@ -46,7 +46,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const timer = document.querySelector('.timer__container');
-  
+  const day = document.querySelector('#days');
+  const hour = document.querySelector('#hours');
+  const minute = document.querySelector('#minutes');
+  const second = document.querySelector('#seconds');
+
+  //Set the date of new year to UTC+0
+  const newYear = 'January 01 2025 00:00:00 GMT+00:00';
+
+  function getTime(end){
+    let total = Date.parse(end) - Date.parse(new Date());
+    let seconds = Math.floor( (total / 1000) % 60 );
+    let minutes = Math.floor( (total / 1000 / 60) % 60 );
+    let hours = Math.floor( (total / (1000 * 60 * 60)) % 24 );
+    let days = Math.floor( total / (1000 * 60 * 60 * 24) );
+    return [days, hours, minutes, seconds];
+  }
+
+  setInterval(() => {
+    const [days, hours, minutes, seconds] = getTime(newYear);
+    day.innerHTML = days;
+    hour.innerHTML = hours;
+    minute.innerHTML = minutes;
+    second.innerHTML = seconds;
+  },1000)
 
 });
