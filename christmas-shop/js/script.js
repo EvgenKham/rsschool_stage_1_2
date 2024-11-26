@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Checking for work only on gifts.html page
   const currentUrl = window.location.href;
-  const regexp = '.*gifts\.html.*';
-  if (currentUrl.match(regexp)) {
+  const regexpGifts = '.*gifts\.html.*';
+  if (currentUrl.match(regexpGifts)) {
     const pageUp = document.querySelector('.btn-to-up');
 
     //Show/hide button when scrolling
@@ -69,50 +69,53 @@ document.addEventListener("DOMContentLoaded", function () {
     return [days, hours, minutes, seconds];
   }
 
-  setInterval(() => {
-    const [days, hours, minutes, seconds] = getTime(newYear);
-    day.innerHTML = days;
-    hour.innerHTML = hours;
-    minute.innerHTML = minutes;
-    second.innerHTML = seconds;
-  },1000)
+  //Checking for work only on index.html page
+  const regexpHome = '.*index\.html.*';
+  if (currentUrl.match(regexpHome)) {
 
-  const slider = document.querySelector('.slider__row');
-  const btnLeft = document.querySelector('.left');
-  const btnRight = document.querySelector('.right');
+    setInterval(() => {
+      const [days, hours, minutes, seconds] = getTime(newYear);
+      day.innerHTML = days;
+      hour.innerHTML = hours;
+      minute.innerHTML = minutes;
+      second.innerHTML = seconds;
+    },1000)
 
-  let click = 0;
-  // console.log(widthClick, countClick);
+    const slider = document.querySelector('.slider__row');
+    const btnLeft = document.querySelector('.left');
+    const btnRight = document.querySelector('.right');
 
-  //Action when click the right arrow button
-  btnRight.addEventListener('click', (event) => {
-    if (event.target === btnRight) {
-      console.log(event.target);
-      click++;
-      if (click > 0 && click <= countClick ){
-        btnLeft.classList.remove('btn-disable');
-        slider.style.transform = `translateX(-${widthClick * click}px)`;
-      }
-      if (click === countClick) {
-        btnRight.classList.add('btn-disable');
-      }
-    }
-  });
+    let click = 0;
 
-  //Action when click the left arrow button
-  btnLeft.addEventListener('click', (event) => {
-    if (event.target === btnLeft) {
-      console.log(event.target);
-      click--;
-      if (click => 0 && click < countClick ){
-        btnRight.classList.remove('btn-disable');
-        slider.style.transform = `translateX(-${widthClick * click}px)`;
+    //Action when click the right arrow button
+    btnRight.addEventListener('click', (event) => {
+      if (event.target === btnRight) {
+        click++;
+        if (click > 0 && click <= countClick ){
+          btnLeft.classList.remove('btn-disable');
+          slider.style.transform = `translateX(-${widthClick * click}px)`;
+        }
+        if (click === countClick) {
+          btnRight.classList.add('btn-disable');
+        }
       }
-      if (click === 0) {
-        btnLeft.classList.add('btn-disable');
+    });
+
+    //Action when click the left arrow button
+    btnLeft.addEventListener('click', (event) => {
+      if (event.target === btnLeft) {
+        click--;
+        if (click => 0 && click < countClick ){
+          btnRight.classList.remove('btn-disable');
+          slider.style.transform = `translateX(-${widthClick * click}px)`;
+        }
+        if (click === 0) {
+          btnLeft.classList.add('btn-disable');
+        }
       }
-    }
-  });
+    });
+
+  }
 
   //Calculate the width of one click depends on width of window
   function calculateWidthClick (widthWindow, visibleSlider) {
@@ -126,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
       width = Math.floor((WIDTH_SLIDER - visibleSlider) / 6);
       count = 6;
     }
-    console.log(widthWindow, visibleSlider, width, count);
     return [width, count];
   }
 
