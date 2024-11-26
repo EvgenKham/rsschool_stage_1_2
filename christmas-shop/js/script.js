@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  const WIDTH_SLIDER = 1993;
+  const WIDTH_PADDINGS = 16;
+  let widthWindow = window.innerWidth;
+  let visibleSlider = widthWindow - WIDTH_PADDINGS;
+  let [widthClick, countClick] = calculateWidthClick(widthWindow, visibleSlider);
+
   const menu = document.querySelector('.header__nav');
   const menuItem = document.querySelectorAll('.nav-menu__item');
   const burger = document.querySelector('.burger');
@@ -75,18 +81,64 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnLeft = document.querySelector('.left');
   const btnRight = document.querySelector('.right');
 
-  let widthMove = 0;
+  let click = 0;
+  // console.log(widthClick, countClick);
 
-  btnRight.addEventListener('click', () => {
-    console.log(slider);
-    btnLeft.classList.remove('btn-disable');
-    slider.style.transform = `translateX(-${widthMove += 25}%)`;
+  //Action when click the right arrow button
+  btnRight.addEventListener('click', (event) => {
+    if (event.target === btnRight) {
+      console.log(event.target);
+      click++;
+      if (click > 0 && click <= countClick ){
+        btnLeft.classList.remove('btn-disable');
+        slider.style.transform = `translateX(-${widthClick * click}px)`;
+      }
+      if (click === countClick) {
+        btnRight.classList.add('btn-disable');
+      }
+    }
   });
 
-  btnLeft.addEventListener('click', () => {
-    console.log(slider);
-    btnLeft.classList.remove('btn-disable');
-    slider.style.transform = `translateX(-${widthMove -= 25}%)`;
+  //Action when click the left arrow button
+  btnLeft.addEventListener('click', (event) => {
+    if (event.target === btnLeft) {
+      console.log(event.target);
+      click--;
+      if (click => 0 && click < countClick ){
+        btnRight.classList.remove('btn-disable');
+        slider.style.transform = `translateX(-${widthClick * click}px)`;
+      }
+      if (click === 0) {
+        btnLeft.classList.add('btn-disable');
+      }
+    }
   });
-  
+
+  //Calculate the width of one click depends on width of window
+  function calculateWidthClick (widthWindow, visibleSlider) {
+    let width = 0;
+    let count = 0;
+
+    if (widthWindow > 768) {
+      width = Math.floor((WIDTH_SLIDER - visibleSlider) / 3);
+      count = 3;
+    } else {
+      width = Math.floor((WIDTH_SLIDER - visibleSlider) / 6);
+      count = 6;
+    }
+    console.log(widthWindow, visibleSlider, width, count);
+    return [width, count];
+  }
+
+  //Reset slider when change width of window
+  window.addEventListener('resize', () => {
+    widthWindow = window.innerWidth;
+    visibleSlider = widthWindow - WIDTH_PADDINGS;
+    [widthClick, countClick] = calculateWidthClick(widthWindow, visibleSlider);
+    slider.style.transform = `translateX(0px)`;
+    btnLeft.classList.add('btn-disable');
+    btnRight.classList.remove('btn-disable');
+    click = 0;
+  })
+
 });
