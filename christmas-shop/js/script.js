@@ -1,3 +1,7 @@
+import gifts from './gifts.json' with { type: "json" };
+
+console.log(gifts);
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const WIDTH_SLIDER = 1993;
@@ -145,5 +149,22 @@ document.addEventListener("DOMContentLoaded", function () {
     btnRight.classList.remove('btn-disable');
     click = 0;
   })
+
+  const cards = document.querySelectorAll('.card');
+  const popup = document.querySelector('.popup__overlay');
+  const closePopup = document.querySelector('.popup__close');
+
+  cards.forEach(item => item.addEventListener('click', () => {
+    console.log(popup);
+    popup.classList.toggle('popup__active');
+    //Allow/forbid scroll while nav menu is open
+    body.classList.toggle('stop-scroll');
+  }));
+
+  closePopup.addEventListener('click', (e) => {
+    popup.classList.toggle('popup__active');
+    //Allow/forbid scroll while nav menu is open
+    body.classList.toggle('stop-scroll');
+  });
 
 });
