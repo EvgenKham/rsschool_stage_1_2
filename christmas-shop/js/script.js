@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //Checking for work only on index.html page
   const regexpHome = '.*index\.html.*';
   if (currentUrl.match(regexpHome)) {
-
     setInterval(() => {
       const [days, hours, minutes, seconds] = getTime(newYear);
       day.innerHTML = days;
@@ -81,41 +80,41 @@ document.addEventListener("DOMContentLoaded", function () {
       second.innerHTML = seconds;
     },1000)
 
-    const slider = document.querySelector('.slider__row');
-    const btnLeft = document.querySelector('.left');
-    const btnRight = document.querySelector('.right');
-
-    let click = 0;
-
-    //Action when click the right arrow button
-    btnRight.addEventListener('click', (event) => {
-      if (event.target === btnRight) {
-        click++;
-        if (click > 0 && click <= countClick ){
-          btnLeft.classList.remove('btn-disable');
-          slider.style.transform = `translateX(-${widthClick * click}px)`;
-        }
-        if (click === countClick) {
-          btnRight.classList.add('btn-disable');
-        }
-      }
-    });
-
-    //Action when click the left arrow button
-    btnLeft.addEventListener('click', (event) => {
-      if (event.target === btnLeft) {
-        click--;
-        if (click => 0 && click < countClick ){
-          btnRight.classList.remove('btn-disable');
-          slider.style.transform = `translateX(-${widthClick * click}px)`;
-        }
-        if (click === 0) {
-          btnLeft.classList.add('btn-disable');
-        }
-      }
-    });
-
   }
+
+  const slider = document.querySelector('.slider__row');
+  const btnLeft = document.querySelector('.left');
+  const btnRight = document.querySelector('.right');
+
+  let click = 0;
+
+  //Action when click the right arrow button
+  btnRight.addEventListener('click', (event) => {
+    if (event.target === btnRight) {
+      click++;
+      if (click > 0 && click <= countClick ){
+        btnLeft.classList.remove('btn-disable');
+        slider.style.transform = `translateX(-${widthClick * click}px)`;
+      }
+      if (click === countClick) {
+        btnRight.classList.add('btn-disable');
+      }
+    }
+  });
+
+  //Action when click the left arrow button
+  btnLeft.addEventListener('click', (event) => {
+    if (event.target === btnLeft) {
+      click--;
+      if (click => 0 && click < countClick ){
+        btnRight.classList.remove('btn-disable');
+        slider.style.transform = `translateX(-${widthClick * click}px)`;
+      }
+      if (click === 0) {
+        btnLeft.classList.add('btn-disable');
+      }
+    }
+  });
 
   //Calculate the width of one click depends on width of window
   function calculateWidthClick (widthWindow, visibleSlider) {
@@ -123,6 +122,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let count = 0;
 
     if (widthWindow > 768) {
+      if (widthWindow > 1292) {
+        widthWindow = 1292;
+        visibleSlider = widthWindow - WIDTH_PADDINGS;
+      }
       width = Math.floor((WIDTH_SLIDER - visibleSlider) / 3);
       count = 3;
     } else {
