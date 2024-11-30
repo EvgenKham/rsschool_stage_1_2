@@ -430,10 +430,13 @@ $text-upper: uppercase
   width: 100vw
   height: 100vh
   background-color: $overlay
-  display: none
+  transition: 0.3s all
+  visibility: hidden
+  opacity: 0
 
 .popup__active
-  display: block
+  visibility: visible
+  opacity: 1
 
 .popup
   display: flex
@@ -485,7 +488,6 @@ $text-upper: uppercase
     color: $tag-green
   &__category_harmony
     color: $tag-pink
-
   &__superpower__text
     margin-bottom: 8px
 
