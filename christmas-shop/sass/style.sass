@@ -708,6 +708,23 @@ $text-upper: uppercase
 .active-tab
   background: $static-white-20
 
+.btn-to-up
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  bottom: 8px
+  right: 8px
+  border: 1px solid $primary
+  border-radius: 100px
+  width: 56px
+  height: 56px
+  background-color: $static-white
+  cursor: pointer
+
+.btn-to-up
+  display: none
+
 @media (max-width: 1060px)
 
   .contacts
@@ -733,7 +750,6 @@ $text-upper: uppercase
     height: 40px
     opacity: 1
     transition: 0.3s all
-    cursor: pointer
     &__line
       display: block
       height: 2px
@@ -895,3 +911,6 @@ $text-upper: uppercase
       cursor: pointer
     &__text-conatainer
       width: 324px
+
+  .burger
+    cursor: pointer
