@@ -37,6 +37,7 @@ p
 $primary: #ff4646
 $primary-10: rgba(255, 70, 70, 0.1)
 $dark: #181c29
+$overlay: rgba(24, 28, 41, 0.8)
 $static-white: rgba(255, 255, 255, 1)
 $static-white-20: rgba(255, 255, 255, 0.2)
 $static-white-40: rgba(255, 255, 255, 0.4)
@@ -123,10 +124,14 @@ $text-upper: uppercase
   color: $static-white
   margin-bottom: 20px
 
+.stop-scroll
+  overflow: hidden
+
 .wrapper
   position: relative
   max-width: 1440px
   margin: 0 auto
+  overflow: hidden
 
 .header
   display: flex
@@ -320,6 +325,8 @@ $text-upper: uppercase
     max-width: 1276px
     height: 200px
     margin-bottom: 20px
+    transform: translateX(0px)
+    transition: 0.3s ease-in-out
   &__buttons
     display: flex
     justify-content: flex-end
@@ -414,6 +421,101 @@ $text-upper: uppercase
     -webkit-box-orient: vertical
     overflow: hidden
     max-height: 3.2em
+
+
+.popup__overlay
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  background-color: $overlay
+  display: none
+
+.popup__active
+  display: block
+
+.popup
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  border-radius: 20px
+  height: 514px
+  max-width: 400px
+  background: $content-background
+  &__close
+    position: absolute
+    width: 40px
+    height: 40px
+    top: 12px
+    right: 12px
+    &:hover
+      cursor: pointer
+  &__img
+    object-fit: cover
+    max-width: 400px
+    height: 230px
+  &__text-conatainer
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    border-radius: 20px
+    padding: 20px
+    max-width: 400px
+    min-width: 364px
+    height: 284px
+    background: $static-white
+  &__description
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-content: space-between
+    max-width: 360px
+    &:nth-child(1)
+      height: 104px
+    &:nth-child(2)
+      height: 120px
+  &__category_work
+    color: $tag-purple
+  &__category_health
+    color: $tag-green
+  &__category_harmony
+    color: $tag-pink
+
+  &__superpower__text
+    margin-bottom: 8px
+
+.superpowers
+  &__text
+  &__container
+  &__row
+    display: flex
+    justify-content: space-between
+    max-width: 360px
+  &__name
+    flex-grow: 1
+    max-width: 184px
+    margin-right: 12px
+  &__amount
+    width: 40px
+    margin-right: 12px
+  &__snowflakes-container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 112px
+
+.snowflake
+  transition: all 0.3s
+  &_no-active
+    cursor: pointer
+    text-decoration: none
+    transition: all 0.3s
+    opacity: 0.1
 
 .header-4
   @extend %header-4
@@ -638,9 +740,6 @@ $text-upper: uppercase
     &__container
       max-width: 752px
 
-  .nav-menu
-    display: none
-
   .burger
     display: flex
     flex-direction: column
@@ -671,10 +770,64 @@ $text-upper: uppercase
       width: 20px
       transform: rotate(45deg)
 
+  .header__nav
+    position: fixed
+    margin-top: 52px
+    margin-left: -8px
+    width: 100%
+    right: 0
+    transform: translateX(100%)
+    height: 100lvh
+    padding-top: 120px
+    z-index: 10
+    justify-content: center
+    align-items: center
+    background-color: $static-white
+    transition: 0.5s ease-in-out
+
+  .header__nav_active
+    transform: translateX(0)
+    transition: 0.5s ease-in-out
+
+  .nav-menu
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 246px
+    &__link
+      font-size: 24px
+      line-height: 152%
+      letter-spacing: 0.16em
+    &__item
+      margin: 0px
+      align-items: center
+
+  // .active-nav-link
+  //   background: $static-white
+  //   .nav-menu__link
+  //     color: $dark
+
   .about
     max-width: 768px
     &__container
       max-width: 752px
+
+  .btn-to-up
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    bottom: 8px
+    right: 8px
+    border: 1px solid $primary
+    border-radius: 100px
+    width: 56px
+    height: 56px
+    background-color: $static-white
+    cursor: pointer
+
+  .btn-to-up
+    display: none
 
 @media (max-width: 600px)
 
@@ -692,11 +845,18 @@ $text-upper: uppercase
 
 @media (max-width: 420px)
 
+  .header__nav
+    padding-top: 0px
+    padding-bottom: 92px
+
   .christmas-is-coming__content
     height: 464px
 
   .hero__container
     height: 452px
+
+  .popup
+    max-width: 364px
 
 @media (hover: hover)
 
@@ -745,6 +905,12 @@ $text-upper: uppercase
 
   .active-tab:hover
     cursor: default
+
+  .popup
+    &__close:hover
+      cursor: pointer
+    &__text-conatainer
+      width: 324px
 
   .burger
     cursor: pointer
