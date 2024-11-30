@@ -154,17 +154,38 @@ document.addEventListener("DOMContentLoaded", function () {
   const popup = document.querySelector('.popup__overlay');
   const closePopup = document.querySelector('.popup__close');
 
+  //Open popup if click on card with extra info
   cards.forEach(item => item.addEventListener('click', () => {
-    console.log(popup);
-    popup.classList.toggle('popup__active');
+    const cardImg = item.firstElementChild;
+    const cardName = item.lastElementChild.lastElementChild.textContent;
+    createPopup(cardImg, cardName);
+
+    popup.classList.add('popup__active');
     //Allow/forbid scroll while nav menu is open
-    body.classList.toggle('stop-scroll');
+    body.classList.add('stop-scroll');
   }));
 
-  closePopup.addEventListener('click', (e) => {
-    popup.classList.toggle('popup__active');
+  //Close popup if click on cross button
+  closePopup.addEventListener('click', () => {
+    popup.classList.remove('popup__active');
     //Allow/forbid scroll while nav menu is open
-    body.classList.toggle('stop-scroll');
+    body.classList.remove('stop-scroll');
   });
 
+  //Close popup if click on overlay
+  body.addEventListener('click', (event) => {
+    if (event.target.classList.contains('popup__overlay')){
+      popup.classList.remove('popup__active');
+      body.classList.remove('stop-scroll');
+    }
+  });
+
+  function createPopup(image, name) {
+
+    gifts.forEach(item=> {
+      if ((item.name).toLocaleLowerCase() == name.toLocaleLowerCase()) {
+        console.log(item.description);
+      }
+    })
+  }
 });
