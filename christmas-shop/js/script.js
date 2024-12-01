@@ -14,6 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuItem = document.querySelectorAll('.nav-menu__item');
   const burger = document.querySelector('.burger');
   const body = document.body;
+  const bestGiftsContainer = document.querySelector('.best-gifts__card-container');
+  const giftsContainer = document.querySelector('.gifts__card-container');
+
+  if (bestGiftsContainer) {
+    bestGiftsContainer.append(generateCars(4));
+  }
+
+  if (giftsContainer) {
+    giftsContainer.append(generateCars(36));
+  }
 
   //Open/close navigation menu
   body.addEventListener('click', (e) => {
@@ -245,6 +255,71 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     });
+  }
+
+  function createCard(category, name) {
+    let cat = category.split(' ')[1].toLocaleLowerCase();
+
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const image = document.createElement('img');
+    image.classList.add('card__image');
+    image.src = `assets/images/gift-for-${cat}.png`;
+    image.alt = `gift-for-${cat}`;
+    card.appendChild(image);
+
+    const cardText = document.createElement('div');
+    cardText.classList.add('card__text');
+
+    const header4 = document.createElement('h4');
+    header4.classList.add('header-4', 'card__category', cat);
+    header4.textContent = category;
+    cardText.appendChild(header4);
+
+    const header3 = document.createElement('h3');
+    header3.classList.add('header-3', 'card__name');
+    header3.textContent = name;
+    cardText.appendChild(header3);
+
+    card.appendChild(cardText);
+
+    return card;
+  }
+
+  function getRandomNumbers(count) {
+    let randomNumbers = [];
+
+    for (let i = 0; randomNumbers.length < count; i++){
+      let number = Math.floor(Math.random() * (gifts.length));
+      if (randomNumbers.includes(number)){
+          continue;
+      }
+      randomNumbers.push(number);
+    }
+    return randomNumbers;
+  }
+
+  function generateCars (count) {
+    let numbers = [];
+
+    if (count === 4) {
+      numbers = getRandomNumbers(count);
+    } else {
+      numbers = [...Array(count).keys() ].map( i => i++);
+    }
+
+    let fragment = new DocumentFragment();
+
+    numbers.forEach(item => {
+      // console.log(item);
+      const category = gifts[item].category;
+      const name = gifts[item].name;
+      const card = createCard(category, name);
+      fragment.append(card);
+    });
+
+    return fragment;
   }
 
 });
