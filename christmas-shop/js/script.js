@@ -92,33 +92,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let click = 0;
 
-  //Action when click the right arrow button
-  btnRight.addEventListener('click', (event) => {
-    if (event.target === btnRight) {
-      click++;
-      if (click > 0 && click <= countClick ){
-        btnLeft.classList.remove('btn-disable');
-        slider.style.transform = `translateX(-${widthClick * click}px)`;
-      }
-      if (click === countClick) {
-        btnRight.classList.add('btn-disable');
-      }
-    }
-  });
+  //Checking for work only on Home page
+  if (btnLeft && btnRight) {
 
-  //Action when click the left arrow button
-  btnLeft.addEventListener('click', (event) => {
-    if (event.target === btnLeft) {
-      click--;
-      if (click => 0 && click < countClick ){
-        btnRight.classList.remove('btn-disable');
-        slider.style.transform = `translateX(-${widthClick * click}px)`;
+      //Action when click the right arrow button
+    btnRight.addEventListener('click', (event) => {
+      if (event.target === btnRight) {
+        click++;
+        if (click > 0 && click <= countClick ){
+          btnLeft.classList.remove('btn-disable');
+          slider.style.transform = `translateX(-${widthClick * click}px)`;
+        }
+        if (click === countClick) {
+          btnRight.classList.add('btn-disable');
+        }
       }
-      if (click === 0) {
-        btnLeft.classList.add('btn-disable');
+    });
+
+    //Action when click the left arrow button
+    btnLeft.addEventListener('click', (event) => {
+      if (event.target === btnLeft) {
+        click--;
+        if (click => 0 && click < countClick ){
+          btnRight.classList.remove('btn-disable');
+          slider.style.transform = `translateX(-${widthClick * click}px)`;
+        }
+        if (click === 0) {
+          btnLeft.classList.add('btn-disable');
+        }
       }
-    }
-  });
+    });
+  }
 
   //Calculate the width of one click depends on width of window
   function calculateWidthClick (widthWindow, visibleSlider) {
@@ -151,23 +155,24 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   const cards = document.querySelectorAll('.card');
-  const popup = document.querySelector('.popup__overlay');
+  const popup = document.querySelector('.popup');
+  const popupOverlay = document.querySelector('.popup__overlay');
   const closePopup = document.querySelector('.popup__close');
 
   //Open popup if click on card with extra info
   cards.forEach(item => item.addEventListener('click', () => {
-    const cardImg = item.firstElementChild;
+    const cardImg = item.firstElementChild.src;
     const cardName = item.lastElementChild.lastElementChild.textContent;
     createPopup(cardImg, cardName);
 
-    popup.classList.add('popup__active');
+    popupOverlay.classList.add('popup__active');
     //Allow/forbid scroll while nav menu is open
     body.classList.add('stop-scroll');
   }));
 
   //Close popup if click on cross button
   closePopup.addEventListener('click', () => {
-    popup.classList.remove('popup__active');
+    popupOverlay.classList.remove('popup__active');
     //Allow/forbid scroll while nav menu is open
     body.classList.remove('stop-scroll');
   });
@@ -175,17 +180,71 @@ document.addEventListener("DOMContentLoaded", function () {
   //Close popup if click on overlay
   body.addEventListener('click', (event) => {
     if (event.target.classList.contains('popup__overlay')){
-      popup.classList.remove('popup__active');
+      popupOverlay.classList.remove('popup__active');
       body.classList.remove('stop-scroll');
     }
   });
 
+  //Create popup
   function createPopup(image, name) {
+    const popupImg = document.querySelector('.popup__img');
+    const popupCategory = document.querySelector('.popup__category');
+    const popupName = document.querySelector('.popup__name');
+    const popupSub = document.querySelector('.popup__subscription');
+    const superpowersName = document.querySelectorAll('.superpowers__name');
 
-    gifts.forEach(item=> {
-      if ((item.name).toLocaleLowerCase() == name.toLocaleLowerCase()) {
-        console.log(item.description);
+    //Checking
+    gifts.forEach(gift => {
+      if ((gift.name).toLocaleLowerCase() == name.toLocaleLowerCase()) {
+        popupImg.src = image;
+        popupCategory.textContent = gift.category;
+        //Take the second word from category in order to dye category word
+        let category = gift.category.split(' ')[1].toLocaleLowerCase();
+
+        //Reset and dye category
+        if ( category === 'work'){
+          popupCategory.classList.add(category);
+          popupCategory.classList.remove('health');
+          popupCategory.classList.remove('harmony');
+        }
+        if ( category === 'health'){
+          popupCategory.classList.add(category);
+          popupCategory.classList.remove('work');
+          popupCategory.classList.remove('harmony');
+        }
+        if ( category === 'harmony'){
+          popupCategory.classList.add(category);
+          popupCategory.classList.remove('work');
+          popupCategory.classList.remove('health');
+        }
+
+        popupName.textContent = name;
+        popupSub.textContent = gift.description;
+
+        //Add amount of power & dye snowflake depend on values from gifts
+        superpowersName.forEach(name => {
+          for (let key in gift.superpowers){
+            if (name.textContent.toLocaleLowerCase() === key) {
+
+              const amount = name.nextElementSibling;
+              amount.textContent = gift.superpowers[key];
+              const activeSnowflake = gift.superpowers[key].slice(1, 2);
+
+              //Change snowflakes depend on amount before
+              const snowflakes = amount.nextElementSibling;
+              [...snowflakes.children].forEach(flake => flake.classList.remove('snowflake', 'snowflake_no-active'));
+              [...snowflakes.children].forEach((flake, index) => {
+                if ((index + 1) <= activeSnowflake){
+                  flake.classList.add('snowflake');
+                } else {
+                  flake.classList.add('snowflake_no-active');
+                }
+              })
+            }
+          }
+        });
       }
-    })
+    });
   }
+
 });
