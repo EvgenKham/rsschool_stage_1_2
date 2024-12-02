@@ -16,13 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const body = document.body;
   const bestGiftsContainer = document.querySelector('.best-gifts__card-container');
   const giftsContainer = document.querySelector('.gifts__card-container');
+  const tabsContainer = document.querySelector('.gifts__tabs');
 
   if (bestGiftsContainer) {
-    bestGiftsContainer.append(generateCars(4));
+    bestGiftsContainer.append(generateCards(4));
   }
 
   if (giftsContainer) {
-    giftsContainer.append(generateCars(36));
+    giftsContainer.append(generateCards(36));
   }
 
   //Open/close navigation menu
@@ -257,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  //Create one card depend on name and category
   function createCard(category, name) {
     let cat = category.split(' ')[1].toLocaleLowerCase();
 
@@ -287,6 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return card;
   }
 
+  //Get unique random numbers from 0 to length of gifts
   function getRandomNumbers(count) {
     let randomNumbers = [];
 
@@ -300,7 +303,8 @@ document.addEventListener("DOMContentLoaded", function () {
     return randomNumbers;
   }
 
-  function generateCars (count) {
+  //Generate card container depend on count
+  function generateCards (count) {
     let numbers = [];
 
     if (count === 4) {
@@ -312,7 +316,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let fragment = new DocumentFragment();
 
     numbers.forEach(item => {
-      // console.log(item);
       const category = gifts[item].category;
       const name = gifts[item].name;
       const card = createCard(category, name);
@@ -320,6 +323,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     return fragment;
+  }
+
+  //Show cards depend on chosen category
+  if (tabsContainer) {
+    tabsContainer.addEventListener('click', (event) => {
+
+      //Get chosen catagory
+      const tabCategory = event.target.textContent.toLowerCase();
+
+      //Delete active status all tabs and add active status chosen tab
+      // const tabs = document.querySelectorAll('.tab-item');
+      [...tabsContainer.children].forEach(tab => tab.classList.remove('active-tab'));
+      event.target.classList.add('active-tab');
+
+      const cardsCategory = document.querySelectorAll('.card__category');
+      const cards = document.querySelectorAll('.card');
+
+      //Before activate chosen category reset old action
+      cards.forEach(item => item.style.display = 'block');
+
+      //Activate cards
+      if (tabCategory === 'all') {
+          [...giftsContainer.children].forEach(item => item.style.display = 'block');
+      } else {
+        [...cardsCategory].forEach(category => {
+          if (category.textContent.toLowerCase() !== tabCategory) {
+            const card = category.closest('.card');
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
   }
 
 });
