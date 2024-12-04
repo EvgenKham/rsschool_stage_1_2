@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const menu = document.querySelector('.header__nav');
   const menuItem = document.querySelectorAll('.nav-menu__item');
   const burger = document.querySelector('.burger');
+  const burgerLines = document.querySelectorAll('.burger__line');
   const body = document.body;
   const bestGiftsContainer = document.querySelector('.best-gifts__card-container');
   const giftsContainer = document.querySelector('.gifts__card-container');
@@ -27,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //Open/close navigation menu
-  body.addEventListener('click', (e) => {
-    if (e.target === burger) {
+  burger.addEventListener('click', (e) => {
+    if (e.target === burger || e.target.closest('.burger')){
       burger.classList.toggle('burger_active');
       menu.classList.toggle('header__nav_active');
       //Allow/forbid scroll while nav menu is open
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //Action when click the right arrow button
     btnRight.addEventListener('click', (event) => {
-      if (event.target === btnRight) {
+      if (event.target === btnRight || event.target.closest('.right')) {
         click++;
         if (click > 0 && click <= countClick ){
           btnLeft.classList.remove('btn-disable');
@@ -122,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Action when click the left arrow button
     btnLeft.addEventListener('click', (event) => {
-      if (event.target === btnLeft) {
+      if (event.target === btnLeft || event.target.closest('.left')) {
         click--;
         if (click => 0 && click < countClick ){
           btnRight.classList.remove('btn-disable');
