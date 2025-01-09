@@ -1,13 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simon says</title>
-  <link href="https://cdn.jsdelivr.net/npm/modern-normalize@3.0.1/modern-normalize.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles/css/style.css">
-</head>
-<body>
-  <script type="module" src="src/index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simon says</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@3.0.1/modern-normalize.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/css/style.css" />
+  </head>
+  <body>
+    <div class="popup" id="popup-id">
+      <div class="popup__container">
+        <div class="popup__content">
+          <p>Choose level</p>
+          <div class="level">
+            <div class="level__btn">
+              <input type="radio" id="level-easy" name="radio" value="easy" checked />
+              <label for="level-easy">Easy</label>
+            </div>
+            <div class="level__btn">
+              <input type="radio" id="level-medium" name="radio" value="medium" />
+              <label for="level-middle">Medium</label>
+            </div>
+            <div class="level__btn">
+              <input type="radio" id="level-hard" name="radio" value="hard" />
+              <label for="level-hard">Hard</label>
+            </div>
+          </div>
+          <button class="btn_start">Start</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="settings-container">
+        <div class="btn btn_new-game">New game</div>
+        <div class="btn btn_level">Level:</div>
+        <div class="btn btn_repeat">Repeat the sequence</div>
+      </div>
+      <div class="display"></div>
+      <div class="keyboard-container">
+        <div class="numbers">
+          <div class="btn btn_number">1</div>
+          <div class="btn btn_number">2</div>
+          <div class="btn btn_number">3</div>
+          <div class="btn btn_number">4</div>
+          <div class="btn btn_number">5</div>
+          <div class="btn btn_number">6</div>
+          <div class="btn btn_number">7</div>
+          <div class="btn btn_number">8</div>
+          <div class="btn btn_number">9</div>
+          <div class="btn btn_number">0</div>
+        </div>
+        <div class="letters">
+          <div class="btn btn_letter">Q</div>
+          <div class="btn btn_letter">W</div>
+          <div class="btn btn_letter">R</div>
+          <div class="btn btn_letter">T</div>
+          <div class="btn btn_letter">Y</div>
+          <div class="btn btn_letter">U</div>
+          <div class="btn btn_letter">I</div>
+          <div class="btn btn_letter">O</div>
+          <div class="btn btn_letter">P</div>
+          <div class="btn btn_letter">A</div>
+          <div class="btn btn_letter">S</div>
+          <div class="btn btn_letter">D</div>
+          <div class="btn btn_letter">F</div>
+          <div class="btn btn_letter">G</div>
+          <div class="btn btn_letter">H</div>
+          <div class="btn btn_letter">J</div>
+          <div class="btn btn_letter">K</div>
+          <div class="btn btn_letter">L</div>
+          <div class="btn btn_letter">Z</div>
+          <div class="btn btn_letter">X</div>
+          <div class="btn btn_letter">C</div>
+          <div class="btn btn_letter">V</div>
+          <div class="btn btn_letter">B</div>
+          <div class="btn btn_letter">N</div>
+          <div class="btn btn_letter">M</div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/index.js"></script>
+  </body>
 </html>
