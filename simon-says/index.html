@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="styles/css/style.css" />
   </head>
   <body>
-    <div class="popup" id="popup-id">
+    <div class="popup popup-unvisible" id="popup-id">
       <div class="popup__container">
         <div class="popup__content">
-          <p>Choose level</p>
+          <p class="headline">Choose level</p>
           <div class="level">
             <div class="level__btn">
               <input type="radio" id="level-easy" name="radio" value="easy" checked />
@@ -22,24 +22,31 @@
             </div>
             <div class="level__btn">
               <input type="radio" id="level-medium" name="radio" value="medium" />
-              <label for="level-middle">Medium</label>
+              <label for="level-medium">Medium</label>
             </div>
             <div class="level__btn">
               <input type="radio" id="level-hard" name="radio" value="hard" />
               <label for="level-hard">Hard</label>
             </div>
           </div>
-          <button class="btn_start">Start</button>
+          <button class="btn btn_start">Start</button>
         </div>
       </div>
     </div>
     <div class="wrapper">
-      <div class="settings-container">
-        <div class="btn btn_new-game">New game</div>
-        <div class="btn btn_level">Level:</div>
-        <div class="btn btn_repeat">Repeat the sequence</div>
+      <h1 claas="header">Simon says</h1>
+      <div class="settings">
+        <div class="settings__available">
+          <div class="btn btn_new-game">New game</div>
+          <div class="btn btn_repeat">Repeat the sequence</div>
+        </div>
+        <div class="settings__unavailable">
+          <div class="chosen-level">Level: Easy</div>
+          <div class="raund">Raund: 1 / 5</div>
+          <div class=""></div>
+        </div>
       </div>
-      <div class="display"></div>
+      <div class="display">HGUKKJ7DAP</div>
       <div class="keyboard-container">
         <div class="numbers">
           <div class="btn btn_number">1</div>
