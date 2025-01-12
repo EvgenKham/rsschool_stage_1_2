@@ -64,7 +64,7 @@ export default function renderStartContent() {
 
   const RaundDisplay = document.createElement('div');
   RaundDisplay.classList.add('raund');
-  RaundDisplay.textContent = 'Raund: 1 / 5 ';
+  RaundDisplay.textContent = 'Raund: 2 / 5 ';
   settingsUnavailable.append(RaundDisplay);
 
   settings.append(settingsAvailable, settingsUnavailable);

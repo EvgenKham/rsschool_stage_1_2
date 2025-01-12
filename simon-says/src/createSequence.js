@@ -27,32 +27,32 @@ const LETTERS = [
   'N',
   'M',
 ];
+const SEQUENCE = [];
 
 function createSequence(level, raund) {
   let seq = undefined;
 
   switch (level) {
     case 'easy':
-      seq = getSequence(NUMBERS, raund);
+      seq = getRandomSequence(NUMBERS, raund);
       break;
     case 'medium':
-      seq = getSequence(LETTERS, raund);
+      seq = getRandomSequence(LETTERS, raund);
       break;
     case 'hard':
-      seq = getSequence(NUMBERS.concat(LETTERS), raund);
+      seq = getRandomSequence(NUMBERS.concat(LETTERS), raund);
       break;
   }
   console.log(seq);
-  simulateSequence(seq, level);
+  simulateSequence(seq);
 }
 
-function getSequence(symbols, raund) {
-  const sequence = [];
+function getRandomSequence(symbols, raund) {
   for (let i = 0; i < raund * 2; i++) {
     const index = Math.floor(Math.random() * symbols.length);
-    sequence.push(symbols[index]);
+    SEQUENCE.push(symbols[index]);
   }
-  return sequence;
+  return SEQUENCE;
 }
 
 function simulateSequence(sequence) {
@@ -76,6 +76,7 @@ function simulateSequence(sequence) {
     });
   });
 
+  //Turn on all buttons on the page, only after simulation
   setTimeout(
     () => {
       [...allBtn].forEach((btn) => btn.classList.remove('btn_disable'));
@@ -84,4 +85,8 @@ function simulateSequence(sequence) {
   );
 }
 
-export { createSequence };
+function getSequence() {
+  return SEQUENCE;
+}
+
+export { createSequence, simulateSequence, getSequence };
