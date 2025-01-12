@@ -1,3 +1,5 @@
-import createPopup from './createPopup.js';
+import renderPopup from './renderPopup.js';
+import renderStartContent from './renderStartContent.js';
 
-createPopup();
+renderPopup();
+renderStartContent();

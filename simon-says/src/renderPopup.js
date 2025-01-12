@@ -1,4 +1,4 @@
-export default function createPopup() {
+export default function renderPopup() {
   const body = document.body;
   const popup = document.createElement('div');
   popup.classList.add('popup', 'popup-hidden');
@@ -11,6 +11,7 @@ export default function createPopup() {
 
   const headliner = document.createElement('p');
   headliner.classList.add('headline');
+  headliner.textContent = 'Choose level';
 
   const levelBlock = document.createElement('div');
   levelBlock.classList.add('level');
