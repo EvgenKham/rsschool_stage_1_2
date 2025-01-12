@@ -41,6 +41,9 @@
   font-weight: 600;
   cursor: default; }
 
+.header {
+  cursor: default; }
+
 .btn {
   text-align: center;
   cursor: pointer;
@@ -139,7 +142,7 @@
     scale: 1.2; }
 
 .btn_disable {
-  background-color: #b6b6b6;
+  background-color: #d8d8d8f1;
   opacity: 0.5;
   pointer-events: none;
   cursor: default; }

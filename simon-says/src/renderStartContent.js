@@ -59,7 +59,7 @@ export default function renderStartContent() {
 
   const levelDisplay = document.createElement('div');
   levelDisplay.classList.add('chosen-level');
-  levelDisplay.textContent = 'Level: ';
+  levelDisplay.textContent = 'Level: easy';
   settingsUnavailable.append(levelDisplay);
 
   const RaundDisplay = document.createElement('div');

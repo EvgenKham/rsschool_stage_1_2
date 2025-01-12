@@ -1,13 +1,13 @@
 export default function renderPopup() {
   const body = document.body;
   const popup = document.createElement('div');
-  popup.classList.add('popup', 'popup-hidden');
+  popup.classList.add('popup'); // add class popup-hidden
 
   const container = document.createElement('div');
   container.classList.add('popup__container');
 
   const content = document.createElement('div');
-  content.classList.add('popup__content', 'popup-unvisible');
+  content.classList.add('popup__content'); // add class popup-unvisible
 
   const headliner = document.createElement('p');
   headliner.classList.add('headline');
@@ -51,7 +51,9 @@ function createInput(id, checked, text) {
   input.setAttribute('id', id);
   input.setAttribute('name', 'radio');
   input.setAttribute('value', text);
-  input.setAttribute('checked', checked);
+  if (checked) {
+    input.setAttribute('checked', checked);
+  }
   return input;
 }
 
