@@ -1,7 +1,7 @@
-export default function renderPopup() {
+function renderSettingPopup() {
   const body = document.body;
   const popup = document.createElement('div');
-  popup.classList.add('popup'); // add class popup-hidden
+  popup.classList.add('popup', 'popup_start'); // add class popup-hidden
 
   const container = document.createElement('div');
   container.classList.add('popup__container');
@@ -45,6 +45,64 @@ export default function renderPopup() {
   body.append(popup);
 }
 
+function renderMistakePopup() {
+  const body = document.body;
+  const popup = document.createElement('div');
+  popup.classList.add('popup', 'popup-mistake', 'popup-hidden'); // add class popup-hidden
+
+  const container = document.createElement('div');
+  container.classList.add('popup__container');
+
+  const content = document.createElement('div');
+  content.classList.add('popup__content', 'popup-mistake__content', 'popup-unvisible'); // add class popup-unvisible
+
+  const headliner = document.createElement('p');
+  headliner.classList.add('headline');
+  headliner.textContent = 'Mistake';
+
+  const text = document.createElement('p');
+  text.classList.add('headline');
+  text.textContent = `You've only 1 attempt!`;
+
+  const buttonStr = document.createElement('button');
+  buttonStr.classList.add('btn', 'btn_start', 'btn_continue');
+  buttonStr.textContent = 'Continue';
+
+  content.append(headliner, text, buttonStr);
+  container.append(content);
+  popup.append(container);
+  body.append(popup);
+}
+
+function renderLosePopup() {
+  const body = document.body;
+  const popup = document.createElement('div');
+  popup.classList.add('popup', 'popup-lose', 'popup-hidden'); // add class popup-hidden
+
+  const container = document.createElement('div');
+  container.classList.add('popup__container');
+
+  const content = document.createElement('div');
+  content.classList.add('popup__content', 'popup-lose__content', 'popup-unvisible'); // add class popup-unvisible
+
+  const headliner = document.createElement('p');
+  headliner.classList.add('headline');
+  headliner.textContent = 'Game Over';
+
+  const text = document.createElement('p');
+  text.classList.add('headline');
+  text.textContent = `You can try again`;
+
+  const buttonStr = document.createElement('button');
+  buttonStr.classList.add('btn', 'btn_start', 'btn_ok');
+  buttonStr.textContent = 'OK';
+
+  content.append(headliner, text, buttonStr);
+  container.append(content);
+  popup.append(container);
+  body.append(popup);
+}
+
 function createInput(id, checked, text) {
   const input = document.createElement('input');
   input.setAttribute('type', 'radio');
@@ -63,3 +121,5 @@ function createLabel(id, text) {
   label.textContent = text.toUpperCase();
   return label;
 }
+
+export { renderSettingPopup, renderMistakePopup, renderLosePopup };

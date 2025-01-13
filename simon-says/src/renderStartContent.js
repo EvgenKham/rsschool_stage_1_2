@@ -49,6 +49,11 @@ export default function renderStartContent() {
   newGame.textContent = 'New game';
   settingsAvailable.append(newGame);
 
+  const nextRaund = document.createElement('div');
+  nextRaund.classList.add('btn', 'btn_next-raund');
+  nextRaund.textContent = 'Next';
+  settingsAvailable.append(nextRaund);
+
   const repeat = document.createElement('div');
   repeat.classList.add('btn', 'btn_repeat');
   repeat.textContent = 'Repeat the sequence';
@@ -64,7 +69,7 @@ export default function renderStartContent() {
 
   const RaundDisplay = document.createElement('div');
   RaundDisplay.classList.add('raund');
-  RaundDisplay.textContent = 'Raund: 2 / 5 ';
+  RaundDisplay.textContent = 'Raund: 5 / 5';
   settingsUnavailable.append(RaundDisplay);
 
   settings.append(settingsAvailable, settingsUnavailable);

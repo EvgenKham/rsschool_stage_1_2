@@ -116,10 +116,19 @@
     justify-content: space-around; }
 
 .btn_new-game {
+  display: block;
   transition: all 0.2s;
   background-color: #59fd72;
   margin-bottom: 10px; }
   .btn_new-game:hover {
+    scale: 1.2; }
+
+.btn_next-raund {
+  display: none;
+  transition: all 0.2s;
+  background-color: #59fd72;
+  margin-bottom: 10px; }
+  .btn_next-raund:hover {
     scale: 1.2; }
 
 .chosen-level {
@@ -222,13 +231,23 @@
 
 .letter-error {
   color: #ff0000;
-  animation: shake-error 0.6s ease-in both, roll-out-left 0.8s ease-in both;
-  animation-delay: 0s, 0.8s; }
+  animation: shake-error 0.6s ease-in both; }
 
 .letter-win {
   color: #00ff08;
   animation: win-rotate 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both, roll-out-right 0.8s ease-in both;
   animation-delay: 0s, 0.8s; }
+
+.clean-error {
+  animation: roll-out-left 0.6s ease-in both; }
+
+.win-game-finish {
+  color: #00ff08;
+  animation: swirl-out-bl-fwd 0.65s ease-in both; }
+
+.win-game-start {
+  color: #00ff08;
+  animation: win-rotate 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 
 @keyframes choose-level {
   0% {
@@ -345,3 +364,17 @@
     transform: scale(1); }
   100% {
     transform: scale(0.9); } }
+
+@keyframes swirl-out-bl-fwd {
+  0% {
+    -webkit-transform: rotate(0) scale(1);
+      -webkit-transform-transform: rotate(0) scale(1);
+    -webkit-transform-origin: 0 100%;
+      -webkit-transform-origin-transform-origin: 0 100%;
+    opacity: 1; }
+  100% {
+    -webkit-transform: rotate(540deg) scale(5);
+      -webkit-transform-transform: rotate(540deg) scale(5);
+    -webkit-transform-origin: 0 100%;
+      -webkit-transform-origin-transform-origin: 0 100%;
+    opacity: 0; } }

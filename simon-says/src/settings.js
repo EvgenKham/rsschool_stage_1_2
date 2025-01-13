@@ -1,4 +1,5 @@
 let LEVEL = 'easy';
+let MISTAKE = false;
 
 function setLevel(event) {
   const keyboard = document.querySelector('.keyboard-container');
@@ -29,7 +30,35 @@ function setLevel(event) {
 
 function getRaund() {
   const raund = document.querySelector('.raund');
-  return raund.textContent.split(' ')[1];
+  return Number(raund.textContent.split(' ')[1]);
 }
 
-export { setLevel, getRaund, LEVEL };
+function resetRaund() {
+  const raund = document.querySelector('.raund');
+  raund.textContent = 'Raund: 1 / 5';
+}
+
+function nextValueRaund() {
+  const raund = document.querySelector('.raund');
+  let value = Number(raund.textContent.split(' ')[1]);
+  value += 1;
+  raund.textContent = `Raund: ${value} / 5`;
+}
+
+function getStateMistake() {
+  return MISTAKE;
+}
+
+function setStateMistake(state) {
+  MISTAKE = state;
+}
+
+// function changeStateMistake() {
+//   if (MISTAKE) {
+//     MISTAKE = false;
+//   } else {
+//     MISTAKE = true;
+//   }
+// }
+
+export { setLevel, getRaund, nextValueRaund, resetRaund, getStateMistake, setStateMistake, LEVEL };

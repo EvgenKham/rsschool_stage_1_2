@@ -89,4 +89,9 @@ function getSequence() {
   return SEQUENCE;
 }
 
-export { createSequence, simulateSequence, getSequence };
+function removeSequance() {
+  let seq = getSequence();
+  seq.splice(0, seq.length);
+}
+
+export { createSequence, simulateSequence, getSequence, removeSequance };
