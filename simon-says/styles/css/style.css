@@ -109,7 +109,9 @@
   margin-bottom: 20px; }
   .settings__available {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    max-width: 170px;
+    width: 100%; }
   .settings__unavailable {
     display: flex;
     flex-direction: column;
@@ -126,8 +128,7 @@
 .btn_next-raund {
   display: none;
   transition: all 0.2s;
-  background-color: #59fd72;
-  margin-bottom: 10px; }
+  background-color: #59fd72; }
   .btn_next-raund:hover {
     scale: 1.2; }
 
@@ -153,6 +154,10 @@
 .btn_disable {
   background-color: #d8d8d8f1;
   opacity: 0.5;
+  pointer-events: none;
+  cursor: default; }
+
+.btn_block {
   pointer-events: none;
   cursor: default; }
 
@@ -243,7 +248,7 @@
 
 .win-game-finish {
   color: #00ff08;
-  animation: swirl-out-bl-fwd 0.65s ease-in both; }
+  animation: rotate-out-center 1.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) both; }
 
 .win-game-start {
   color: #00ff08;
@@ -365,16 +370,10 @@
   100% {
     transform: scale(0.9); } }
 
-@keyframes swirl-out-bl-fwd {
+@keyframes rotate-out-center {
   0% {
-    -webkit-transform: rotate(0) scale(1);
-      -webkit-transform-transform: rotate(0) scale(1);
-    -webkit-transform-origin: 0 100%;
-      -webkit-transform-origin-transform-origin: 0 100%;
+    transform: rotate(0);
     opacity: 1; }
   100% {
-    -webkit-transform: rotate(540deg) scale(5);
-      -webkit-transform-transform: rotate(540deg) scale(5);
-    -webkit-transform-origin: 0 100%;
-      -webkit-transform-origin-transform-origin: 0 100%;
+    transform: rotate(-360deg);
     opacity: 0; } }

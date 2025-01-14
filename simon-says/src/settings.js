@@ -53,12 +53,4 @@ function setStateMistake(state) {
   MISTAKE = state;
 }
 
-// function changeStateMistake() {
-//   if (MISTAKE) {
-//     MISTAKE = false;
-//   } else {
-//     MISTAKE = true;
-//   }
-// }
-
 export { setLevel, getRaund, nextValueRaund, resetRaund, getStateMistake, setStateMistake, LEVEL };
