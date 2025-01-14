@@ -145,14 +145,37 @@ function showWinGame() {
   newBtn.classList.remove('btn_disable');
 
   [...display.children].forEach((item, index) => {
-    setTimeout(() => item.classList.add('win-game-start'), 400 + 300 * index);
-    setTimeout(
-      () => item.classList.remove('win-game-start'),
-      400 + 300 * [...display.children].length,
-    );
+    setTimeout(() => item.classList.add('win-game-start'), 600 + 300 * index + 300);
   });
 
-  setTimeout(() => display.classList.add('win-game-finish'), 3500);
+  setTimeout(() => display.classList.add('win-game-finish'), 4000);
+}
+
+function isPopupActive() {
+  const allPopups = document.querySelectorAll('.popup');
+  const countPopup = allPopups.length;
+
+  let isActive = false;
+
+  for (let i = 0; i < countPopup; i++) {
+    const popup = [...allPopups][i];
+    if (!popup.classList.contains('popup-hidden')) {
+      isActive = true;
+      break;
+    }
+  }
+  return isActive;
+}
+
+function isKeysDisable(container) {
+  return [...container].every((btn) => btn.classList.contains('btn_disable'));
+}
+
+function isKeyboardClick() {
+  const btnLetters = document.querySelectorAll('.btn_letter');
+  const btnNumbers = document.querySelectorAll('.btn_number');
+  const keysBtn = [...btnNumbers].concat([...btnLetters]);
+  return keysBtn.some((btn) => btn.classList.contains('btn_click'));
 }
 
 export {
@@ -166,4 +189,7 @@ export {
   newRaund,
   showWinGame,
   loseGame,
+  isPopupActive,
+  isKeysDisable,
+  isKeyboardClick,
 };

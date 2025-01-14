@@ -19,6 +19,9 @@ import {
   winRaund,
   newRaund,
   showWinGame,
+  isPopupActive,
+  isKeysDisable,
+  isKeyboardClick,
 } from './interaction.js';
 
 renderSettingPopup();
@@ -30,12 +33,12 @@ const levels = document.querySelectorAll('.level__btn');
 const allBtn = document.querySelectorAll('.btn');
 const keyboard = document.querySelector('.keyboard-container');
 const display = document.querySelector('.display');
+const btnLetters = document.querySelectorAll('.btn_letter');
+const btnNumbers = document.querySelectorAll('.btn_number');
 const popupMistake = document.querySelector('.popup-mistake');
 const popupMistakeContent = document.querySelector('.popup-mistake__content');
 const popupLose = document.querySelector('.popup-lose');
 const popupLoseContent = document.querySelector('.popup-lose__content');
-// eslint-disable-next-line no-unused-vars
-let MISTAKE = false;
 
 function startGame() {
   const popup = document.querySelector('.popup_start');
@@ -134,10 +137,146 @@ keyboard.addEventListener('click', (event) => {
   }
 });
 
-//Todo work with physical keyboard
-// document.addEventListener('keydown', (event) => {
-//   console.log(event.code);
-// });
+//TODO rewrite function acording DRY
+document.addEventListener('keyup', (event) => {
+  const code = event.code;
+
+  if (code.includes('Key') || code.includes('Digit')) {
+    const symbol = code.slice(-1);
+    // console.log(symbol);
+
+    const isNumberKeysHidden = keyboard.firstChild.classList.contains('keyboard-hidden');
+    const isLetterKeysHidden = keyboard.lastChild.classList.contains('keyboard-hidden');
+
+    //If keyboard of numbers don't hidden, popup don't active and keyboard active
+    //Find button and add effect when click it
+    if (!isNumberKeysHidden && !isPopupActive()) {
+      if (!isKeysDisable(btnNumbers)) {
+        if (!isKeyboardClick()) {
+          [...btnNumbers].forEach((btnNumber) => {
+            if (btnNumber.textContent == symbol) {
+              //Add effect button click
+              btnNumber.classList.add('btn_click');
+              setTimeout(() => btnNumber.classList.remove('btn_click'), 100);
+
+              const sequence = getSequence();
+
+              if ([...display.children].length < sequence.length) {
+                const index = [...display.children].length;
+
+                //If correct symbol / Right block
+                if (checkKey(symbol, index)) {
+                  writeKey(symbol);
+
+                  if (checkWin()) {
+                    console.log('Win Raund!');
+
+                    if (getRaund() < 5) {
+                      winRaund();
+                    } else {
+                      console.log('You win the game!');
+                      [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
+                      showWinGame();
+                      const startBtn = document.querySelector('.btn_start');
+                      startBtn.classList.remove('btn_disable');
+                    }
+                  }
+                  //If incorrect symbol / Mistake block
+                } else {
+                  writeKey(symbol);
+                  btnNumber.classList.add('key-error');
+                  display.children[index].classList.add('letter-error');
+                  setTimeout(() => btnNumber.classList.remove('key-error'), 600);
+
+                  const allBtn = document.querySelectorAll('.btn');
+                  [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
+
+                  const startBtn = document.querySelector('.btn_start');
+                  startBtn.classList.remove('btn_disable');
+
+                  if (!getStateMistake()) {
+                    const continueBtn = document.querySelector('.btn_continue');
+                    continueBtn.classList.remove('btn_disable');
+                    setTimeout(() => popupMistakeContent.classList.toggle('popup-unvisible'), 400);
+                    setTimeout(() => popupMistake.classList.toggle('popup-hidden'), 800);
+                  } else {
+                    const okBtn = document.querySelector('.btn_ok');
+                    okBtn.classList.remove('btn_disable');
+                    setTimeout(() => popupLoseContent.classList.remove('popup-unvisible'), 400);
+                    setTimeout(() => popupLose.classList.remove('popup-hidden'), 800);
+                  }
+                }
+              }
+            }
+          });
+        }
+      }
+    }
+
+    if (!isLetterKeysHidden && !isPopupActive()) {
+      if (!isKeysDisable(btnLetters)) {
+        if (!isKeyboardClick()) {
+          [...btnLetters].forEach((btnLetter) => {
+            if (btnLetter.textContent == symbol) {
+              //Add effect button click
+              btnLetter.classList.add('btn_click');
+              setTimeout(() => btnLetter.classList.remove('btn_click'), 100);
+
+              const sequence = getSequence();
+
+              if ([...display.children].length < sequence.length) {
+                const index = [...display.children].length;
+
+                //If correct symbol / Right block
+                if (checkKey(symbol, index)) {
+                  writeKey(symbol);
+
+                  if (checkWin()) {
+                    console.log('Win Raund!');
+
+                    if (getRaund() < 5) {
+                      winRaund();
+                    } else {
+                      console.log('You win the game!');
+                      [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
+                      showWinGame();
+                      const startBtn = document.querySelector('.btn_start');
+                      startBtn.classList.remove('btn_disable');
+                    }
+                  }
+                  //If incorrect symbol / Mistake block
+                } else {
+                  writeKey(symbol);
+                  btnLetter.classList.add('key-error');
+                  display.children[index].classList.add('letter-error');
+                  setTimeout(() => btnLetter.classList.remove('key-error'), 600);
+
+                  const allBtn = document.querySelectorAll('.btn');
+                  [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
+
+                  const startBtn = document.querySelector('.btn_start');
+                  startBtn.classList.remove('btn_disable');
+
+                  if (!getStateMistake()) {
+                    const continueBtn = document.querySelector('.btn_continue');
+                    continueBtn.classList.remove('btn_disable');
+                    setTimeout(() => popupMistakeContent.classList.toggle('popup-unvisible'), 400);
+                    setTimeout(() => popupMistake.classList.toggle('popup-hidden'), 800);
+                  } else {
+                    const okBtn = document.querySelector('.btn_ok');
+                    okBtn.classList.remove('btn_disable');
+                    setTimeout(() => popupLoseContent.classList.remove('popup-unvisible'), 400);
+                    setTimeout(() => popupLose.classList.remove('popup-hidden'), 800);
+                  }
+                }
+              }
+            }
+          });
+        }
+      }
+    }
+  }
+});
 
 const startBtn = document.querySelector('.btn_start');
 startBtn.addEventListener('click', startGame);
