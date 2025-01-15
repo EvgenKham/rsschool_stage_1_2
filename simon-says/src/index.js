@@ -120,9 +120,9 @@ keyboard.addEventListener('click', (event) => {
             console.log('You win the game!');
             [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
             showWinGame();
-            const startBtn = document.querySelector('.btn_start');
-            startBtn.classList.remove('btn_disable');
           }
+          const startBtn = document.querySelector('.btn_start');
+          startBtn.classList.remove('btn_disable');
           const newGameBtn = document.querySelector('.btn_new-game');
           newGameBtn.classList.remove('btn_disable');
         }
@@ -195,9 +195,9 @@ document.addEventListener('keyup', (event) => {
                       console.log('You win the game!');
                       [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
                       showWinGame();
-                      const startBtn = document.querySelector('.btn_start');
-                      startBtn.classList.remove('btn_disable');
                     }
+                    const startBtn = document.querySelector('.btn_start');
+                    startBtn.classList.remove('btn_disable');
                     const newGameBtn = document.querySelector('.btn_new-game');
                     newGameBtn.classList.remove('btn_disable');
                   }
@@ -260,9 +260,9 @@ document.addEventListener('keyup', (event) => {
                       console.log('You win the game!');
                       [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
                       showWinGame();
-                      const startBtn = document.querySelector('.btn_start');
-                      startBtn.classList.remove('btn_disable');
                     }
+                    const startBtn = document.querySelector('.btn_start');
+                    startBtn.classList.remove('btn_disable');
                     const newGameBtn = document.querySelector('.btn_new-game');
                     newGameBtn.classList.remove('btn_disable');
                   }
