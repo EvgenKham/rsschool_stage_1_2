@@ -1,6 +1,6 @@
 import { renderSettingPopup, renderMistakePopup, renderLosePopup } from './renderPopup.js';
 import renderStartContent from './renderStartContent.js';
-import { createSequence, getSequence } from './createSequence.js';
+import { createSequence, getSequence, simulateSequence } from './createSequence.js';
 import {
   setLevel,
   getRaund,
@@ -31,6 +31,7 @@ renderStartContent();
 
 const levels = document.querySelectorAll('.level__btn');
 const allBtn = document.querySelectorAll('.btn');
+const repeatBtn = document.querySelector('.btn_repeat');
 const keyboard = document.querySelector('.keyboard-container');
 const display = document.querySelector('.display');
 const btnLetters = document.querySelectorAll('.btn_letter');
@@ -65,13 +66,25 @@ function continueGame() {
 
   setStateMistake(true);
 
-  [...allBtn].forEach((btn) => btn.classList.remove('btn_disable'));
+  //Disable all buutons
+  [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
 
+  //Add animation remove symbols
   const display = document.querySelector('.display');
-  //Add animation remove
   [...display.children].forEach((symbol) => symbol.classList.add('clean-error'));
-  //Clean display after animation
-  setTimeout(() => (display.innerHTML = ''), 700);
+
+  //Compute state button repeat before action repeat
+  const sequence = getSequence();
+  let isRepeatDisable = repeat.classList.contains('btn_disable');
+
+  //Repeat sequence after mistake
+  setTimeout(() => {
+    display.innerHTML = '';
+    simulateSequence(sequence);
+    if (isRepeatDisable) {
+      repeatBtn.classList.add('btn_disable');
+    }
+  }, 700);
 }
 
 [...levels].forEach((item) => {
