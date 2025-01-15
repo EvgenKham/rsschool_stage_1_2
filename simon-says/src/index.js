@@ -46,6 +46,9 @@ function startGame() {
   popupContent.classList.add('popup-unvisible');
   setTimeout(() => popup.classList.add('popup-hidden'), 300);
 
+  //Remove display win animation after previous game
+  display.classList.remove('win-game-finish');
+
   //Turn off all buttons on the page
   [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
 
@@ -104,9 +107,9 @@ keyboard.addEventListener('click', (event) => {
             console.log('You win the game!');
             [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
             showWinGame();
-            const startBtn = document.querySelector('.btn_start');
-            startBtn.classList.remove('btn_disable');
           }
+          const newGameBtn = document.querySelector('.btn_new-game');
+          newGameBtn.classList.remove('btn_disable');
         }
         //If incorrect symbol / Mistake block
       } else {
@@ -180,6 +183,8 @@ document.addEventListener('keyup', (event) => {
                       const startBtn = document.querySelector('.btn_start');
                       startBtn.classList.remove('btn_disable');
                     }
+                    const newGameBtn = document.querySelector('.btn_new-game');
+                    newGameBtn.classList.remove('btn_disable');
                   }
                   //If incorrect symbol / Mistake block
                 } else {
@@ -243,6 +248,8 @@ document.addEventListener('keyup', (event) => {
                       const startBtn = document.querySelector('.btn_start');
                       startBtn.classList.remove('btn_disable');
                     }
+                    const newGameBtn = document.querySelector('.btn_new-game');
+                    newGameBtn.classList.remove('btn_disable');
                   }
                   //If incorrect symbol / Mistake block
                 } else {

@@ -60,7 +60,7 @@ function checkWin() {
 
   if ([...display.children].length === sequence.length) {
     for (let i = 0; i < sequence.length; i++) {
-      if (Number(display.children[i].textContent) === sequence[i]) {
+      if (display.children[i].textContent == sequence[i]) {
         return true;
       }
     }
