@@ -5,9 +5,10 @@ function repeatSequence() {
   const allBtn = document.querySelectorAll('.btn');
   const repeat = document.querySelector('.btn_repeat');
 
-  //Clean display
+  //Clean display after animation
   const display = document.querySelector('.display');
-  display.innerHTML = '';
+  [...display.children].forEach((symbol) => symbol.classList.add('clean-error'));
+  setTimeout(() => (display.innerHTML = ''), 700);
 
   //Turn off all buttons on the page
   [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
@@ -15,7 +16,7 @@ function repeatSequence() {
   const sequence = getSequence();
   simulateSequence(sequence);
 
-  //Turn off the button 'repeat' after first simulation
+  //Turn off the button 'repeat' after repeat simulation
   const count = getSequence().length;
   setTimeout(() => repeat.classList.add('btn_disable'), 1701 + 1000 * (count - 1));
 
