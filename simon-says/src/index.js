@@ -66,25 +66,27 @@ function continueGame() {
 
   setStateMistake(true);
 
-  //Disable all buutons
-  [...allBtn].forEach((btn) => btn.classList.add('btn_disable'));
+  [...allBtn].forEach((btn) => btn.classList.remove('btn_disable'));
 
   //Add animation remove symbols
   const display = document.querySelector('.display');
   [...display.children].forEach((symbol) => symbol.classList.add('clean-error'));
 
+  //Clean display after animation
+  setTimeout(() => (display.innerHTML = ''), 700);
+
   //Compute state button repeat before action repeat
-  const sequence = getSequence();
-  let isRepeatDisable = repeat.classList.contains('btn_disable');
+  // const sequence = getSequence();
+  // let isRepeatDisable = repeat.classList.contains('btn_disable');
 
   //Repeat sequence after mistake
-  setTimeout(() => {
-    display.innerHTML = '';
-    simulateSequence(sequence);
-    if (isRepeatDisable) {
-      repeatBtn.classList.add('btn_disable');
-    }
-  }, 700);
+  // setTimeout(() => {
+  //   display.innerHTML = '';
+  //   simulateSequence(sequence);
+  //   if (isRepeatDisable) {
+  //     repeatBtn.classList.add('btn_disable');
+  //   }
+  // }, 700);
 }
 
 [...levels].forEach((item) => {
