@@ -1,16 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nonogram</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/images/icon-crossword-68.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Nonogram</title>
+    <link
       href="https://cdn.jsdelivr.net/npm/modern-normalize@3.0.1/modern-normalize.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/css/style.css" />
-</head>
-<body>
-  <script type="module" src="js/index.js"></script>
-</body>
+  </head>
+  <body>
+    <div class="bg-game"></div>
+    <div class="wrapper">
+      <div class="header">
+        <div class="logo__container">
+          <img class="logo__image" src="assets/images/logo.png" alt="logo-puzzle" />
+          <h1 class="logo__text">Nonograms</h1>
+        </div>
+        <div class="settings">
+          <div class="best-results settings__icon">
+            <i class="fa fa-flag-checkered"></i>
+          </div>
+          <div class="switch-theme settings__icon">
+            <i class="fa fa-sun-o"></i>
+            <!-- <i class="fa fa-moon-o"></i> -->
+          </div>
+          <div class="switch-sound settings__icon">
+            <i class="fa fa-volume-up"></i>
+            <!-- <i class="fa fa-volume-off"></i> -->
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="choose-level"></div>
+        <div class="timer"></div>
+        <div class="table-game"></div>
+        <div class="options"></div>
+      </div>
+    </div>
+    <script type="module" src="js/index.js"></script>
+  </body>
 </html>
