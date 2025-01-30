@@ -17,6 +17,51 @@
   </head>
   <body>
     <div class="bg-game"></div>
+    <div class="popup popup_start">
+      <div class="popup__container">
+        <div class="popup__content">
+          <p class="popup__title">Choose level</p>
+          <div class="level">
+            <div class="level__btn easy">
+              <input type="radio" id="level-easy" name="radio" value="easy" checked="true" />
+              <label for="level-easy">5 x 5</label>
+            </div>
+            <div class="level__btn medium">
+              <input type="radio" id="level-medium" name="radio" value="medium" />
+              <label for="level-easy">10 x 10</label>
+            </div>
+            <div class="level__btn hard">
+              <input type="radio" id="level-hard" name="radio" value="hard" />
+              <label for="level-easy">15 x 15</label>
+            </div>
+          </div>
+          <div class="puzzle">
+            <div class="puzzle__easy">
+              <div class="puzzle__item">1</div>
+              <div class="puzzle__item">2</div>
+              <div class="puzzle__item">3</div>
+              <div class="puzzle__item">4</div>
+              <div class="puzzle__item">5</div>
+            </div>
+            <div class="puzzle__medium puzzle__hidden">
+              <div class="puzzle__item">6</div>
+              <div class="puzzle__item">7</div>
+              <div class="puzzle__item">8</div>
+              <div class="puzzle__item">9</div>
+              <div class="puzzle__item">10</div>
+            </div>
+            <div class="puzzle__hard puzzle__hidden">
+              <div class="puzzle__item">11</div>
+              <div class="puzzle__item">12</div>
+              <div class="puzzle__item">13</div>
+              <div class="puzzle__item">14</div>
+              <div class="puzzle__item">15</div>
+            </div>
+          </div>
+          <div class="start btn"></div>
+        </div>
+      </div>
+    </div>
     <div class="wrapper">
       <div class="header">
         <div class="logo__container">
@@ -38,10 +83,256 @@
         </div>
       </div>
       <div class="main">
-        <div class="choose-level"></div>
-        <div class="timer"></div>
-        <div class="table-game"></div>
-        <div class="options"></div>
+        <div class="timer">00:00</div>
+        <div class="table-game">
+          <div class="free-space"></div>
+          <div class="horizont-clue">
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">2</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">9</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">2</div>
+              <div class="cell_clue-horizont cell">4</div>
+              <div class="cell_clue-horizont cell">2</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">1</div>
+              <div class="cell_clue-horizont cell">3</div>
+              <div class="cell_clue-horizont cell">1</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">1</div>
+              <div class="cell_clue-horizont cell">4</div>
+              <div class="cell_clue-horizont cell">2</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">10</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">10</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell">1</div>
+              <div class="cell_clue-horizont cell">1</div>
+              <div class="cell_clue-horizont cell">1</div>
+              <div class="cell_clue-horizont cell">1</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">1</div>
+              <div class="cell_clue-horizont cell">1</div>
+            </div>
+            <div class="horizont-clue__row">
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell"></div>
+              <div class="cell_clue-horizont cell">10</div>
+            </div>
+          </div>
+          <div class="vertical-clue">
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell"></div>
+              <div class="cell_clue-vertical cell">5</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell">2</div>
+              <div class="cell_clue-vertical cell">3</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell">1</div>
+              <div class="cell_clue-vertical cell">2</div>
+              <div class="cell_clue-vertical cell">2</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell"></div>
+              <div class="cell_clue-vertical cell">8</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell"></div>
+              <div class="cell_clue-vertical cell">7</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell"></div>
+              <div class="cell_clue-vertical cell">6</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell">2</div>
+              <div class="cell_clue-vertical cell">3</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell">1</div>
+              <div class="cell_clue-vertical cell">3</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell">2</div>
+              <div class="cell_clue-vertical cell">3</div>
+              <div class="cell_clue-vertical cell">2</div>
+            </div>
+            <div class="vertical-clue__column">
+              <div class="cell_clue-vertical cell"></div>
+              <div class="cell_clue-vertical cell">7</div>
+              <div class="cell_clue-vertical cell">1</div>
+            </div>
+          </div>
+          <div class="field-game">
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+            <div class="field-game__row">
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+              <div class="cell_field cell"></div>
+            </div>
+          </div>
+        </div>
+        <div class="options">
+          <div class="options__choose btn">New game</div>
+          <div class="options__random btn">Random game</div>
+
+          <div class="options__solution btn">Solution</div>
+          <div class="options__reset btn">Reset game</div>
+
+          <div class="options__save btn">Save game</div>
+          <div class="options__continue btn">Continue saved game</div>
+        </div>
       </div>
     </div>
     <script type="module" src="js/index.js"></script>
