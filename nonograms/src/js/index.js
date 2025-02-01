@@ -1,1 +1,4 @@
-console.log('Start task nonogram');
+import { createBackgraund, renderAllPopups } from './renderPopups.js';
+
+createBackgraund();
+renderAllPopups();
