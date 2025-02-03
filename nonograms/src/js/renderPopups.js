@@ -151,7 +151,7 @@ function renderPopupBest() {
 
   table.append(caption, tableHead, tableBody);
   wrapper.append(table);
-  const btn = createHtmlElement('div', ['close', 'btn'], 'Ok');
+  const btn = createHtmlElement('div', ['close-best', 'btn'], 'Ok');
   content.append(wrapper, btn);
 }
 
@@ -161,7 +161,7 @@ function renderPopupWin() {
   const title = createHtmlElement('p', ['popup__title'], 'Great!');
   const text = `You have solved the nonogram in ${TIME} seconds!`;
   const subtitle = createHtmlElement('p', ['popup__subtitle'], text);
-  const btn = createHtmlElement('div', ['close', 'btn'], 'Ok');
+  const btn = createHtmlElement('div', ['close-win', 'btn'], 'Ok');
 
   content.append(title, subtitle, btn);
 }

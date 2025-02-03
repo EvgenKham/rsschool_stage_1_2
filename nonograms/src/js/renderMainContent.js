@@ -51,7 +51,7 @@ function renderHeaderSection() {
 function renderMainSection() {
   const main = createHtmlElement('div', ['main']);
 
-  const timer = createHtmlElement('div', ['timer'], '00:00');
+  const timer = createHtmlElement('div', ['timer'], '00 : 00');
 
   const options = createHtmlElement('div', ['options']);
 
