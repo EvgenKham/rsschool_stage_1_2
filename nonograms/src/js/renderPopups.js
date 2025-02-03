@@ -1,3 +1,5 @@
+import { PUZZLES } from './dataPuzzle.js';
+
 const body = document.body;
 
 //TODO Add name puzzles from array with data
@@ -49,8 +51,7 @@ const classesPuzzleBox = [
 ];
 
 function createBackgraund() {
-  const bg = document.createElement('div');
-  bg.classList.add('bg-game');
+  const bg = createHtmlElement('div', ['bg-game']);
   body.append(bg);
 }
 
@@ -63,16 +64,9 @@ function renderAllPopups() {
 function renderPopupNewGame() {
   const popupNew = createPopupWrapper('popup__new-game');
   const content = popupNew.firstChild.firstChild;
-
-  const paragraph = document.createElement('p');
-  paragraph.classList.add('popup__title');
-  paragraph.textContent = 'Choose puzzle';
-
-  const levelBox = document.createElement('div');
-  levelBox.classList.add('level');
-
-  const puzzleBox = document.createElement('div');
-  puzzleBox.classList.add('puzzle');
+  const paragraph = createHtmlElement('p', ['popup__title'], 'Choose puzzle');
+  const levelBox = createHtmlElement('div', ['level']);
+  const puzzleBox = createHtmlElement('div', ['puzzle']);
 
   let countPuzzle = 0;
 
@@ -80,8 +74,7 @@ function renderPopupNewGame() {
     const input = createBoxInput(classesLevelBox[i], ...attributes[i]);
     levelBox.append(input);
 
-    const puzzleBlock = document.createElement('div');
-    puzzleBlock.classList.add(...classesPuzzleBox[i]);
+    const puzzleBlock = createHtmlElement('div', [...classesPuzzleBox[i]]);
 
     for (let j = 0; j < 5; j++) {
       let cheched = false;
@@ -100,16 +93,13 @@ function renderPopupNewGame() {
     puzzleBox.append(puzzleBlock);
   }
 
-  const btn = document.createElement('div');
-  btn.classList.add('start', 'btn');
-  btn.textContent = 'Start';
+  const btn = createHtmlElement('div', ['start', 'btn'], 'Start');
 
   content.append(paragraph, levelBox, puzzleBox, btn);
 }
 
 function createBoxInput(classes, id, name, value, content, checked) {
-  const box = document.createElement('div');
-  box.classList.add(...classes);
+  const box = createHtmlElement('div', [...classes]);
 
   const input = document.createElement('input');
   input.setAttribute('type', 'radio');
@@ -120,9 +110,8 @@ function createBoxInput(classes, id, name, value, content, checked) {
     input.setAttribute('cheched', checked);
   }
 
-  const label = document.createElement('label');
+  const label = createHtmlElement('label', [], content);
   label.setAttribute('for', id);
-  label.textContent = content;
 
   box.append(input, label);
 
@@ -132,17 +121,10 @@ function createBoxInput(classes, id, name, value, content, checked) {
 function renderPopupBest() {
   const popupBest = createPopupWrapper('popup__best');
   const content = popupBest.firstChild.firstChild;
-
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('table__results');
-
+  const wrapper = createHtmlElement('div', ['table__results']);
   const table = document.createElement('table');
-
-  const caption = document.createElement('caption');
-  caption.textContent = 'Your best results';
-
+  const caption = createHtmlElement('caption', [], 'Your best results');
   const tableHead = document.createElement('thead');
-
   const headRow = document.createElement('tr');
 
   for (let i = 0; i < 4; i++) {
@@ -169,48 +151,37 @@ function renderPopupBest() {
 
   table.append(caption, tableHead, tableBody);
   wrapper.append(table);
-
-  const btn = document.createElement('div');
-  btn.classList.add('close', 'btn');
-  btn.textContent = 'Ok';
-
+  const btn = createHtmlElement('div', ['close', 'btn'], 'Ok');
   content.append(wrapper, btn);
 }
 
 function renderPopupWin() {
   const popupWin = createPopupWrapper('popup__win');
   const content = popupWin.firstChild.firstChild;
-
-  const title = document.createElement('p');
-  title.classList.add('popup__title');
-  title.textContent = 'Great!';
-
-  const subtitle = document.createElement('p');
-  subtitle.classList.add('popup__subtitle');
-  subtitle.textContent = `You have solved the nonogram in ${TIME} seconds!`;
-
-  const btn = document.createElement('div');
-  btn.classList.add('close', 'btn');
-  btn.textContent = 'Ok';
+  const title = createHtmlElement('p', ['popup__title'], 'Great!');
+  const text = `You have solved the nonogram in ${TIME} seconds!`;
+  const subtitle = createHtmlElement('p', ['popup__subtitle'], text);
+  const btn = createHtmlElement('div', ['close', 'btn'], 'Ok');
 
   content.append(title, subtitle, btn);
 }
 
 function createPopupWrapper(name) {
-  const popup = document.createElement('div');
-  popup.classList.add('popup', name, 'popup-hidden');
-
-  const container = document.createElement('div');
-  container.classList.add('popup__container');
-
-  const content = document.createElement('div');
-  content.classList.add('popup__content', 'popup-unvisible');
-
+  const popup = createHtmlElement('div', ['popup', name, 'popup-hidden']);
+  const container = createHtmlElement('div', ['popup__container']);
+  const content = createHtmlElement('div', ['popup__content', 'popup-unvisible']);
   container.append(content);
   popup.append(container);
   body.append(popup);
 
   return popup;
+}
+
+function createHtmlElement(tag, classes = [], text = '') {
+  const element = document.createElement(tag);
+  element.classList.add(...classes);
+  element.textContent = text;
+  return element;
 }
 
 export { createBackgraund, renderAllPopups };
