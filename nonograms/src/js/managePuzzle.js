@@ -79,7 +79,12 @@ function getRandomId() {
   return id;
 }
 
-function resetGame() {}
+function cleanGameField() {
+  const allFieldCells = document.querySelectorAll('.cell_field');
+  [...allFieldCells].forEach((cell) => {
+    cell.classList.remove('cell_fill', 'cell_cross');
+  });
+}
 
 export {
   checkSolve,
@@ -88,6 +93,6 @@ export {
   chooseLevel,
   choosePuzzle,
   getRandomId,
-  resetGame,
+  cleanGameField,
   defaultIdPuzzle,
 };
