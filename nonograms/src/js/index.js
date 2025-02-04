@@ -13,6 +13,7 @@ import {
   defaultIdPuzzle,
   saveGame,
   getSavedGame,
+  solvePuzzle,
 } from './managePuzzle.js';
 
 createBackgraund();
@@ -45,6 +46,10 @@ function fillCell(event) {
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
+
+      resetGameBtn.classList.add('btn__disable');
+      saveGameBtn.classList.add('btn__disable');
+      solutionGameBtn.classList.add('btn__disable');
     }
   }
 }
@@ -73,6 +78,10 @@ function crossCell(event) {
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
+
+      resetGameBtn.classList.add('btn__disable');
+      saveGameBtn.classList.add('btn__disable');
+      solutionGameBtn.classList.add('btn__disable');
     }
   }
 }
@@ -101,6 +110,11 @@ function resetGame() {
   stopTimer();
   resetTimer();
   cleanGameField();
+  const fieldGame = document.querySelector('.field-game');
+  fieldGame.classList.remove('field-avoid-click');
+  resetGameBtn.classList.add('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
+  solutionGameBtn.classList.remove('btn__disable');
 }
 
 function continueGame() {
@@ -109,6 +123,17 @@ function continueGame() {
   resetTimer();
   setTime(savedTime);
   startTimer();
+}
+
+function getSolution() {
+  solvePuzzle();
+  stopTimer();
+  resetTimer();
+  const fieldGame = document.querySelector('.field-game');
+  fieldGame.classList.add('field-avoid-click');
+  resetGameBtn.classList.remove('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
+  solutionGameBtn.classList.add('btn__disable');
 }
 
 main.addEventListener('click', fillCell);
@@ -142,3 +167,6 @@ saveGameBtn.addEventListener('click', saveGame);
 
 const continueGameBtn = document.querySelector('.options__continue');
 continueGameBtn.addEventListener('click', continueGame);
+
+const solutionGameBtn = document.querySelector('.options__solution');
+solutionGameBtn.addEventListener('click', getSolution);
