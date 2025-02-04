@@ -1,4 +1,6 @@
 import { PUZZLES } from './dataPuzzle.js';
+import { saveTimer } from './timer.js';
+import { createGameBox } from './renderMainContent.js';
 
 let defaultIdPuzzle = 1;
 
@@ -86,6 +88,54 @@ function cleanGameField() {
   });
 }
 
+function saveGame() {
+  const allFieldCells = document.querySelectorAll('.cell_field');
+
+  //0 - empty, 1 - filled, 2 - crossed
+  const saveGameField = [];
+  [...allFieldCells].forEach((cell) => {
+    if (cell.classList.contains('cell_fill')) {
+      saveGameField.push(1);
+    } else if (cell.classList.contains('cell_cross')) {
+      saveGameField.push(2);
+    } else {
+      saveGameField.push(0);
+    }
+  });
+
+  const time = saveTimer();
+
+  //Save state of game field, time and id puzzle
+  localStorage.setItem('savedFieldGame', JSON.stringify(saveGameField));
+  localStorage.setItem('savedTime', time);
+  localStorage.setItem('savedIdPuzzle', defaultIdPuzzle);
+
+  const continueBtn = document.querySelector('.options__continue');
+  continueBtn.classList.remove('btn__disable');
+}
+
+function getSavedGame() {
+  const savedGameField = JSON.parse(localStorage.getItem('savedFieldGame'));
+  const savedTime = localStorage.getItem('savedTime');
+  const savedIdPuzzle = localStorage.getItem('savedIdPuzzle');
+
+  const main = document.querySelector('.main');
+  const fieldGame = [...main.children][1];
+  fieldGame.replaceWith(createGameBox(PUZZLES[savedIdPuzzle - 1]));
+  const allFieldCells = document.querySelectorAll('.cell_field');
+
+  [...allFieldCells].forEach((cell, index) => {
+    if (savedGameField[index] === 1) {
+      cell.classList.add('cell_fill');
+    }
+    if (savedGameField[index] === 2) {
+      cell.classList.add('cell_cross');
+    }
+  });
+
+  return savedTime;
+}
+
 export {
   checkSolve,
   showPopup,
@@ -94,5 +144,7 @@ export {
   choosePuzzle,
   getRandomId,
   cleanGameField,
+  saveGame,
+  getSavedGame,
   defaultIdPuzzle,
 };

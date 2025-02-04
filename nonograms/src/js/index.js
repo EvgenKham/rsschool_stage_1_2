@@ -1,7 +1,7 @@
 import { PUZZLES } from './dataPuzzle.js';
 import { createBackgraund, renderAllPopups } from './renderPopups.js';
 import { renderStartContent, createGameBox } from './renderMainContent.js';
-import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer } from './timer.js';
+import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer, setTime } from './timer.js';
 import {
   checkSolve,
   showPopup,
@@ -11,6 +11,8 @@ import {
   getRandomId,
   cleanGameField,
   defaultIdPuzzle,
+  saveGame,
+  getSavedGame,
 } from './managePuzzle.js';
 
 createBackgraund();
@@ -19,7 +21,7 @@ renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
 const main = document.querySelector('.main');
-const tableGame = document.querySelector('.table-game');
+// const tableGame = document.querySelector('.table-game');
 
 function fillCell(event) {
   const cell = event.target;
@@ -94,6 +96,14 @@ function resetGame() {
   cleanGameField();
 }
 
+function continueGame() {
+  const savedTime = getSavedGame();
+  stopTimer();
+  resetTimer();
+  setTime(savedTime);
+  startTimer();
+}
+
 main.addEventListener('click', fillCell);
 main.addEventListener('contextmenu', crossCell);
 
@@ -119,3 +129,9 @@ randomGameBtn.addEventListener('click', randomGame);
 
 const resetGameBtn = document.querySelector('.options__reset');
 resetGameBtn.addEventListener('click', resetGame);
+
+const saveGameBtn = document.querySelector('.options__save');
+saveGameBtn.addEventListener('click', saveGame);
+
+const continueGameBtn = document.querySelector('.options__continue');
+continueGameBtn.addEventListener('click', continueGame);
