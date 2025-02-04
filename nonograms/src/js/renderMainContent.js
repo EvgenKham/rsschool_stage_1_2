@@ -127,7 +127,7 @@ function createGameBox(puzzle = PUZZLES[0]) {
 }
 
 function getClues(puzzle) {
-  console.log(puzzle.data);
+  // console.log(puzzle.data);
 
   const rotateDate = [];
   for (let i = 0; i < puzzle.size; i++) {
@@ -201,4 +201,4 @@ function createHtmlElement(tag, classes, text = '') {
   return element;
 }
 
-export { renderStartContent };
+export { renderStartContent, createGameBox };

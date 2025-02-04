@@ -97,7 +97,7 @@ function createBoxInput(classes, id, name, value, content, checked) {
   input.setAttribute('name', name);
   input.setAttribute('value', value);
   if (checked) {
-    input.setAttribute('cheched', checked);
+    input.setAttribute('checked', checked);
   }
 
   const label = createHtmlElement('label', [], content);
