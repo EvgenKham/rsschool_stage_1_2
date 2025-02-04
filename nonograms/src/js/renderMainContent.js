@@ -58,8 +58,8 @@ function renderMainSection() {
   const choose = createHtmlElement('div', ['options__choose', 'btn'], 'New game');
   const random = createHtmlElement('div', ['options__random', 'btn'], 'Random game');
   const solution = createHtmlElement('div', ['options__solution', 'btn'], 'Solution');
-  const reset = createHtmlElement('div', ['options__reset', 'btn'], 'Reset game');
-  const save = createHtmlElement('div', ['options__save', 'btn'], 'Save game');
+  const reset = createHtmlElement('div', ['options__reset', 'btn', 'btn__disable'], 'Reset game');
+  const save = createHtmlElement('div', ['options__save', 'btn', 'btn__disable'], 'Save game');
 
   const continueBtnClasses = ['options__continue', 'btn', 'btn__disable'];
 

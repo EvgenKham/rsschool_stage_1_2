@@ -13,6 +13,7 @@ import {
   defaultIdPuzzle,
   saveGame,
   getSavedGame,
+  solvePuzzle,
 } from './managePuzzle.js';
 
 createBackgraund();
@@ -21,13 +22,14 @@ renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
 const main = document.querySelector('.main');
-// const tableGame = document.querySelector('.table-game');
 
 function fillCell(event) {
   const cell = event.target;
   if (cell.classList.contains('cell_field')) {
     if (!stateTimer) {
       startTimer();
+      resetGameBtn.classList.remove('btn__disable');
+      saveGameBtn.classList.remove('btn__disable');
     }
 
     cell.classList.remove('cell_cross');
@@ -44,6 +46,10 @@ function fillCell(event) {
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
+
+      resetGameBtn.classList.add('btn__disable');
+      saveGameBtn.classList.add('btn__disable');
+      solutionGameBtn.classList.add('btn__disable');
     }
   }
 }
@@ -54,6 +60,8 @@ function crossCell(event) {
   if (cell.classList.contains('cell_field')) {
     if (!stateTimer) {
       startTimer();
+      resetGameBtn.classList.remove('btn__disable');
+      saveGameBtn.classList.remove('btn__disable');
     }
 
     cell.classList.remove('cell_fill');
@@ -70,6 +78,10 @@ function crossCell(event) {
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
+
+      resetGameBtn.classList.add('btn__disable');
+      saveGameBtn.classList.add('btn__disable');
+      solutionGameBtn.classList.add('btn__disable');
     }
   }
 }
@@ -80,6 +92,8 @@ function buildNewGame() {
   fieldGame.replaceWith(createGameBox(PUZZLES[defaultIdPuzzle - 1]));
   stopTimer();
   resetTimer();
+  resetGameBtn.classList.add('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
 }
 
 function randomGame() {
@@ -88,12 +102,19 @@ function randomGame() {
   fieldGame.replaceWith(createGameBox(PUZZLES[randomId]));
   stopTimer();
   resetTimer();
+  resetGameBtn.classList.add('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
 }
 
 function resetGame() {
   stopTimer();
   resetTimer();
   cleanGameField();
+  const fieldGame = document.querySelector('.field-game');
+  fieldGame.classList.remove('field-avoid-click');
+  resetGameBtn.classList.add('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
+  solutionGameBtn.classList.remove('btn__disable');
 }
 
 function continueGame() {
@@ -102,6 +123,17 @@ function continueGame() {
   resetTimer();
   setTime(savedTime);
   startTimer();
+}
+
+function getSolution() {
+  solvePuzzle();
+  stopTimer();
+  resetTimer();
+  const fieldGame = document.querySelector('.field-game');
+  fieldGame.classList.add('field-avoid-click');
+  resetGameBtn.classList.remove('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
+  solutionGameBtn.classList.add('btn__disable');
 }
 
 main.addEventListener('click', fillCell);
@@ -135,3 +167,6 @@ saveGameBtn.addEventListener('click', saveGame);
 
 const continueGameBtn = document.querySelector('.options__continue');
 continueGameBtn.addEventListener('click', continueGame);
+
+const solutionGameBtn = document.querySelector('.options__solution');
+solutionGameBtn.addEventListener('click', getSolution);

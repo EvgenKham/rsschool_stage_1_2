@@ -43,7 +43,6 @@ function hidePopup(popup) {
 
 function chooseLevel(event) {
   const level = event.target.parentElement.classList[1];
-  console.log(level);
 
   const puzzleBlock = document.querySelector('.puzzle');
   switch (level) {
@@ -66,12 +65,10 @@ function chooseLevel(event) {
       defaultIdPuzzle = 11;
       break;
   }
-  console.log(defaultIdPuzzle);
 }
 
 function choosePuzzle(event) {
   defaultIdPuzzle = event.target.value;
-  console.log(defaultIdPuzzle);
 }
 
 function getRandomId() {
@@ -136,6 +133,28 @@ function getSavedGame() {
   return savedTime;
 }
 
+function solvePuzzle() {
+  const fieldGame = document.querySelector('.field-game');
+  const puzzle = PUZZLES[defaultIdPuzzle - 1];
+
+  for (let i = 0; i < puzzle.size; i++) {
+    const rowField = [...fieldGame.children][i];
+    for (let j = 0; j < puzzle.size; j++) {
+      const cellField = [...rowField.children][j];
+      const cellPuzzle = puzzle.data[i][j];
+
+      cellField.classList.remove('cell_fill', 'cell_cross');
+
+      if (cellPuzzle === 1) {
+        cellField.classList.add('cell_fill');
+      }
+      if (cellPuzzle === 0) {
+        cellField.classList.add('cell_cross');
+      }
+    }
+  }
+}
+
 export {
   checkSolve,
   showPopup,
@@ -146,5 +165,6 @@ export {
   cleanGameField,
   saveGame,
   getSavedGame,
+  solvePuzzle,
   defaultIdPuzzle,
 };
