@@ -9,6 +9,7 @@ import {
   chooseLevel,
   choosePuzzle,
   getRandomId,
+  cleanGameField,
   defaultIdPuzzle,
 } from './managePuzzle.js';
 
@@ -87,6 +88,12 @@ function randomGame() {
   resetTimer();
 }
 
+function resetGame() {
+  stopTimer();
+  resetTimer();
+  cleanGameField();
+}
+
 main.addEventListener('click', fillCell);
 main.addEventListener('contextmenu', crossCell);
 
@@ -109,3 +116,6 @@ startBtn.addEventListener('click', buildNewGame);
 
 const randomGameBtn = document.querySelector('.options__random');
 randomGameBtn.addEventListener('click', randomGame);
+
+const resetGameBtn = document.querySelector('.options__reset');
+resetGameBtn.addEventListener('click', resetGame);
