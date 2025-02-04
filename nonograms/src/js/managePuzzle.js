@@ -1,6 +1,5 @@
 import { PUZZLES } from './dataPuzzle.js';
 
-// let defaultLevel = 'easy';
 let defaultIdPuzzle = 1;
 
 function checkSolve(puzzle = PUZZLES[defaultIdPuzzle - 1]) {
@@ -33,7 +32,6 @@ function showPopup(popup) {
 }
 
 function hidePopup(popup) {
-  // const popup = event.target.closest('.popup');
   setTimeout(() => {
     popup.classList.add('popup-hidden');
   }, 300);
@@ -51,21 +49,18 @@ function chooseLevel(event) {
       [...puzzleBlock.children][0].classList.remove('puzzle__hidden');
       [...puzzleBlock.children][1].classList.add('puzzle__hidden');
       [...puzzleBlock.children][2].classList.add('puzzle__hidden');
-      // defaultLevel = 'easy;';
       defaultIdPuzzle = 1;
       break;
     case 'medium':
       [...puzzleBlock.children][0].classList.add('puzzle__hidden');
       [...puzzleBlock.children][1].classList.remove('puzzle__hidden');
       [...puzzleBlock.children][2].classList.add('puzzle__hidden');
-      // defaultLevel = 'medium;';
       defaultIdPuzzle = 6;
       break;
     case 'hard':
       [...puzzleBlock.children][0].classList.add('puzzle__hidden');
       [...puzzleBlock.children][1].classList.add('puzzle__hidden');
       [...puzzleBlock.children][2].classList.remove('puzzle__hidden');
-      // defaultLevel = 'hard';
       defaultIdPuzzle = 11;
       break;
   }
@@ -77,8 +72,18 @@ function choosePuzzle(event) {
   console.log(defaultIdPuzzle);
 }
 
-// function getCheckedPuzzle() {
-//   const levels = document.querySelectorAll();
-// }
+function getRandomId() {
+  const count = PUZZLES.length;
+  const id = Math.floor(Math.random() * count);
+  return id;
+}
 
-export { checkSolve, showPopup, hidePopup, chooseLevel, choosePuzzle, defaultIdPuzzle };
+export {
+  checkSolve,
+  showPopup,
+  hidePopup,
+  chooseLevel,
+  choosePuzzle,
+  getRandomId,
+  defaultIdPuzzle,
+};
