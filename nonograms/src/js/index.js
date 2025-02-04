@@ -1,5 +1,5 @@
 import { PUZZLES } from './dataPuzzle.js';
-import { createBackgraund, renderAllPopups } from './renderPopups.js';
+import { createBackgraund, renderAllPopups, apdateTableBest } from './renderPopups.js';
 import { renderStartContent, createGameBox } from './renderMainContent.js';
 import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer, setTime } from './timer.js';
 import {
@@ -14,6 +14,7 @@ import {
   saveGame,
   getSavedGame,
   solvePuzzle,
+  saveResult,
 } from './managePuzzle.js';
 
 createBackgraund();
@@ -43,11 +44,13 @@ function fillCell(event) {
       const subtitle = document.querySelector('.popup__subtitle');
       subtitle.textContent = text;
 
+      saveResult(PUZZLES[defaultIdPuzzle - 1], saveTimer());
+      apdateTableBest();
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
 
-      resetGameBtn.classList.add('btn__disable');
+      resetGameBtn.classList.remove('btn__disable');
       saveGameBtn.classList.add('btn__disable');
       solutionGameBtn.classList.add('btn__disable');
     }
@@ -75,11 +78,13 @@ function crossCell(event) {
       const subtitle = document.querySelector('.popup__subtitle');
       subtitle.textContent = text;
 
+      saveResult(PUZZLES[defaultIdPuzzle - 1], saveTimer());
+      apdateTableBest();
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
 
-      resetGameBtn.classList.add('btn__disable');
+      resetGameBtn.classList.remove('btn__disable');
       saveGameBtn.classList.add('btn__disable');
       solutionGameBtn.classList.add('btn__disable');
     }
@@ -123,6 +128,9 @@ function continueGame() {
   resetTimer();
   setTime(savedTime);
   startTimer();
+  resetGameBtn.classList.remove('btn__disable');
+  saveGameBtn.classList.remove('btn__disable');
+  solutionGameBtn.classList.remove('btn__disable');
 }
 
 function getSolution() {
@@ -139,13 +147,20 @@ function getSolution() {
 main.addEventListener('click', fillCell);
 main.addEventListener('contextmenu', crossCell);
 
-const closeWin = document.querySelector('.close-win');
-const winPopup = document.querySelector('.popup__win');
-closeWin.addEventListener('click', () => hidePopup(winPopup));
-
 const chooseGameBtn = document.querySelector('.options__choose');
 const newGamePopup = document.querySelector('.popup__new-game');
 chooseGameBtn.addEventListener('click', () => showPopup(newGamePopup));
+
+const closeWinBtn = document.querySelector('.close-win');
+const winPopup = document.querySelector('.popup__win');
+closeWinBtn.addEventListener('click', () => hidePopup(winPopup));
+
+const bestBtn = document.querySelector('.best-results');
+const bestGamePopup = document.querySelector('.popup__best');
+bestBtn.addEventListener('click', () => showPopup(bestGamePopup));
+
+const closeBestBtn = document.querySelector('.close-best');
+closeBestBtn.addEventListener('click', () => hidePopup(bestGamePopup));
 
 const levelBlock = document.querySelector('.level');
 levelBlock.addEventListener('click', chooseLevel);

@@ -1,22 +1,7 @@
 import { PUZZLES } from './dataPuzzle.js';
+import { convertTime } from './timer.js';
 
 const body = document.body;
-
-//TODO Results download from Locale Storage
-const BEST_RESULTS = [
-  {
-    id: 1,
-    puzzleName: 'Mug',
-    level: 'Medium',
-    time: 125,
-  },
-  {
-    id: 2,
-    puzzleName: 'Viking',
-    level: 'Hard',
-    time: 425,
-  },
-];
 
 const HEAD_TABLE = ['#', 'Template', 'Level', 'Time'];
 
@@ -45,8 +30,8 @@ function createBackgraund() {
 
 function renderAllPopups() {
   renderPopupNewGame();
-  renderPopupBest();
   renderPopupWin();
+  renderPopupBest();
 }
 
 function renderPopupNewGame() {
@@ -124,14 +109,58 @@ function renderPopupBest() {
   }
 
   tableHead.append(headRow);
-
   const tableBody = document.createElement('tbody');
 
-  for (let i = 0; i < BEST_RESULTS.length; i++) {
-    const bodyRow = document.createElement('tr');
+  const bestScore = JSON.parse(localStorage.getItem('bestScores'));
 
-    for (let value of Object.values(BEST_RESULTS[i])) {
+  //If have no result
+  if (bestScore === null) {
+    const caption = createHtmlElement('caption', [], 'You have no results yet!');
+    table.append(caption);
+    //If results already have exist
+  } else {
+    for (let i = 0; i < bestScore.length; i++) {
+      const bodyRow = document.createElement('tr');
       const bodyCell = document.createElement('td');
+      const id = i + 1;
+      bodyCell.textContent = id;
+      bodyRow.append(bodyCell);
+
+      for (let [key, value] of Object.entries(bestScore[i])) {
+        const bodyCell = document.createElement('td');
+        if (key === 'time') {
+          value = convertTime(value);
+        }
+        bodyCell.textContent = value;
+        bodyRow.append(bodyCell);
+      }
+
+      tableBody.append(bodyRow);
+    }
+    table.append(caption, tableHead, tableBody);
+  }
+
+  wrapper.append(table);
+  const btn = createHtmlElement('div', ['close-best', 'btn'], 'Ok');
+  content.append(wrapper, btn);
+}
+
+function apdateTableBest() {
+  const bestScore = JSON.parse(localStorage.getItem('bestScores'));
+  const tableBody = document.createElement('tbody');
+
+  for (let i = 0; i < bestScore.length; i++) {
+    const bodyRow = document.createElement('tr');
+    const bodyCell = document.createElement('td');
+    const id = i + 1;
+    bodyCell.textContent = id;
+    bodyRow.append(bodyCell);
+
+    for (let [key, value] of Object.entries(bestScore[i])) {
+      const bodyCell = document.createElement('td');
+      if (key === 'time') {
+        value = convertTime(value);
+      }
       bodyCell.textContent = value;
       bodyRow.append(bodyCell);
     }
@@ -139,10 +168,10 @@ function renderPopupBest() {
     tableBody.append(bodyRow);
   }
 
-  table.append(caption, tableHead, tableBody);
-  wrapper.append(table);
-  const btn = createHtmlElement('div', ['close-best', 'btn'], 'Ok');
-  content.append(wrapper, btn);
+  const tableBodyBest = document.querySelector('tbody');
+  tableBodyBest.remove();
+  const tableBest = document.querySelector('table');
+  tableBest.append(tableBody);
 }
 
 function renderPopupWin() {
@@ -174,4 +203,4 @@ function createHtmlElement(tag, classes = [], text = '') {
   return element;
 }
 
-export { createBackgraund, renderAllPopups };
+export { createBackgraund, renderAllPopups, apdateTableBest };

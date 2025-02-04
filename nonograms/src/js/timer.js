@@ -30,9 +30,9 @@ function resetTimer() {
   displayTimer.textContent = '00 : 00';
 }
 
-function getTime() {
-  return userTime;
-}
+// function getTime() {
+//   return userTime;
+// }
 
 function setTime(time) {
   userTime = time;
@@ -57,4 +57,4 @@ function convertTime(time) {
   return result;
 }
 
-export { startTimer, stopTimer, saveTimer, resetTimer, setTime, stateTimer };
+export { startTimer, stopTimer, saveTimer, resetTimer, setTime, stateTimer, convertTime };
