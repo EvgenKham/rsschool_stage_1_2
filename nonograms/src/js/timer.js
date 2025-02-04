@@ -30,6 +30,14 @@ function resetTimer() {
   displayTimer.textContent = '00 : 00';
 }
 
+function getTime() {
+  return userTime;
+}
+
+function setTime(time) {
+  userTime = time;
+}
+
 function convertTime(time) {
   let minutes = Math.floor(time / 60);
   let seconds = time % 60;
@@ -49,4 +57,4 @@ function convertTime(time) {
   return result;
 }
 
-export { startTimer, stopTimer, saveTimer, resetTimer, stateTimer };
+export { startTimer, stopTimer, saveTimer, resetTimer, setTime, stateTimer };

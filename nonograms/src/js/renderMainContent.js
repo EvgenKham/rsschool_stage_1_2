@@ -60,11 +60,15 @@ function renderMainSection() {
   const solution = createHtmlElement('div', ['options__solution', 'btn'], 'Solution');
   const reset = createHtmlElement('div', ['options__reset', 'btn'], 'Reset game');
   const save = createHtmlElement('div', ['options__save', 'btn'], 'Save game');
-  const cont = createHtmlElement(
-    'div',
-    ['options__continue', 'btn', 'btn__disable'],
-    'Continue saved game',
-  );
+
+  const continueBtnClasses = ['options__continue', 'btn', 'btn__disable'];
+
+  //If there is the saved game in localStorage, the continue button  is available
+  if (localStorage.getItem('savedFieldGame')) {
+    continueBtnClasses.pop();
+  }
+
+  const cont = createHtmlElement('div', continueBtnClasses, 'Continue saved game');
 
   options.append(choose, random, solution, reset, save, cont);
 
