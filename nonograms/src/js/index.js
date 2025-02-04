@@ -1,7 +1,7 @@
 import { createBackgraund, renderAllPopups } from './renderPopups.js';
 import { renderStartContent } from './renderMainContent.js';
 import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer } from './timer.js';
-import { checkSolve, showPopup, hidePopup } from './managePuzzle.js';
+import { checkSolve, showPopup, hidePopup, chooseLevel } from './managePuzzle.js';
 
 createBackgraund();
 renderAllPopups();
@@ -62,3 +62,10 @@ fieldGame.addEventListener('contextmenu', crossCell);
 
 const closeWin = document.querySelector('.close-win');
 closeWin.addEventListener('click', hidePopup);
+
+const chooseGameBtn = document.querySelector('.options__choose');
+const newGamePopup = document.querySelector('.popup__new-game');
+chooseGameBtn.addEventListener('click', () => showPopup(newGamePopup));
+
+const levelBox = document.querySelector('.level');
+levelBox.addEventListener('click', chooseLevel);

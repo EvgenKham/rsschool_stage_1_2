@@ -38,4 +38,30 @@ function hidePopup(event) {
   content.classList.add('popup-unvisible');
 }
 
-export { checkSolve, showPopup, hidePopup };
+function chooseLevel(event) {
+  const level = event.target.parentElement.classList[1];
+  console.log(level);
+
+  const puzzleBlock = document.querySelector('.puzzle');
+  switch (level) {
+    case 'easy':
+      [...puzzleBlock.children][0].classList.remove('puzzle__hidden');
+      [...puzzleBlock.children][1].classList.add('puzzle__hidden');
+      [...puzzleBlock.children][2].classList.add('puzzle__hidden');
+      break;
+    case 'medium':
+      [...puzzleBlock.children][0].classList.add('puzzle__hidden');
+      [...puzzleBlock.children][1].classList.remove('puzzle__hidden');
+      [...puzzleBlock.children][2].classList.add('puzzle__hidden');
+      break;
+    case 'hard':
+      [...puzzleBlock.children][0].classList.add('puzzle__hidden');
+      [...puzzleBlock.children][1].classList.add('puzzle__hidden');
+      [...puzzleBlock.children][2].classList.remove('puzzle__hidden');
+      break;
+  }
+}
+
+function choosePuzzle() {}
+
+export { checkSolve, showPopup, hidePopup, chooseLevel };
