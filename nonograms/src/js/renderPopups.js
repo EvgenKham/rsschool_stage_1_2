@@ -2,13 +2,6 @@ import { PUZZLES } from './dataPuzzle.js';
 
 const body = document.body;
 
-//TODO Add name puzzles from array with data
-const NAME_PUZZLES = [
-  ['Fish', 'Cat', 'Landscape', 'Helicopter', 'Castle'],
-  ['Ambulance', 'Mug', 'Batman', 'Bug', 'Smile'],
-  ['Bomb', 'Dragon', 'Age', 'Viking', 'Map'],
-];
-
 //TODO Results download from Locale Storage
 const BEST_RESULTS = [
   {
@@ -24,11 +17,6 @@ const BEST_RESULTS = [
     time: 425,
   },
 ];
-
-//TODO Time of the last solved puzzle
-const TIME = 345;
-
-const LEVELS = ['easy', 'medium', 'hard'];
 
 const HEAD_TABLE = ['#', 'Template', 'Level', 'Time'];
 
@@ -79,14 +67,16 @@ function renderPopupNewGame() {
     for (let j = 0; j < 5; j++) {
       let cheched = false;
       if (j === 0) cheched = true;
+
       const puzzle = createBoxInput(
         ['puzzle__item'],
-        `puzzle-${++countPuzzle}`,
-        `puzzle-${LEVELS[i]}`,
-        NAME_PUZZLES[i][j],
-        NAME_PUZZLES[i][j],
+        `puzzle-${PUZZLES[countPuzzle].id}`,
+        `puzzle-${PUZZLES[countPuzzle].level}`,
+        PUZZLES[countPuzzle].id,
+        PUZZLES[countPuzzle].name,
         cheched,
       );
+      countPuzzle++;
       puzzleBlock.append(puzzle);
     }
 
@@ -159,7 +149,7 @@ function renderPopupWin() {
   const popupWin = createPopupWrapper('popup__win');
   const content = popupWin.firstChild.firstChild;
   const title = createHtmlElement('p', ['popup__title'], 'Great!');
-  const text = `You have solved the nonogram in ${TIME} seconds!`;
+  const text = `You have solved the nonogram in 0 seconds!`;
   const subtitle = createHtmlElement('p', ['popup__subtitle'], text);
   const btn = createHtmlElement('div', ['close-win', 'btn'], 'Ok');
 

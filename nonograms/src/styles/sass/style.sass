@@ -70,8 +70,6 @@ $bg-btn: #E6EDC0
   &__btn
     padding: 5px
     margin-right: 20px
-    &:last-child
-      margin-right: 0px
     input
       display: none
       &:checked + label
@@ -86,6 +84,8 @@ $bg-btn: #E6EDC0
       border: 1px solid #999
       border-radius: 16px
       user-select: none
+    &:last-child
+      margin-right: 0px
 
 .puzzle
   display: flex
@@ -303,6 +303,9 @@ $bg-btn: #E6EDC0
     &:nth-child(5n):not(:last-child)
       border-bottom: 2px solid $border-color
 
+.field-avoid-click
+  pointer-events: none
+
 .cell
   display: flex
   justify-content: center
@@ -401,7 +404,7 @@ $bg-btn: #E6EDC0
     display: grid
     grid-template-columns: auto auto auto
     grid-template-rows: 70px auto
-    grid-template-areas: "timer timer timer" "table table table"  "options options options"
+    grid-template-areas: "timer timer ." "table table ."  "options options options"
     justify-content: center
     align-items: center
     max-width: 1440px
@@ -429,4 +432,3 @@ $bg-btn: #E6EDC0
       grid-area: save
     &__continue
       grid-area: continue
-

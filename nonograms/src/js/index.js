@@ -1,13 +1,14 @@
 import { createBackgraund, renderAllPopups } from './renderPopups.js';
 import { renderStartContent } from './renderMainContent.js';
 import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer } from './timer.js';
-import { checkSolve, showPopup, hidePopup } from './managePuzzle.js';
+import { checkSolve, showPopup, hidePopup, chooseLevel } from './managePuzzle.js';
 
 createBackgraund();
 renderAllPopups();
 renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
+const fieldGame = document.querySelector('.field-game');
 
 function fillCell(event) {
   const cell = event.target;
@@ -28,6 +29,8 @@ function fillCell(event) {
       subtitle.textContent = text;
 
       showPopup(popupWin);
+
+      fieldGame.classList.add('field-avoid-click');
     }
   }
 }
@@ -52,13 +55,20 @@ function crossCell(event) {
       subtitle.textContent = text;
 
       showPopup(popupWin);
+      fieldGame.classList.add('field-avoid-click');
     }
   }
 }
 
-const fieldGame = document.querySelector('.field-game');
 fieldGame.addEventListener('click', fillCell);
 fieldGame.addEventListener('contextmenu', crossCell);
 
 const closeWin = document.querySelector('.close-win');
 closeWin.addEventListener('click', hidePopup);
+
+const chooseGameBtn = document.querySelector('.options__choose');
+const newGamePopup = document.querySelector('.popup__new-game');
+chooseGameBtn.addEventListener('click', () => showPopup(newGamePopup));
+
+const levelBox = document.querySelector('.level');
+levelBox.addEventListener('click', chooseLevel);
