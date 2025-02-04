@@ -21,13 +21,14 @@ renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
 const main = document.querySelector('.main');
-// const tableGame = document.querySelector('.table-game');
 
 function fillCell(event) {
   const cell = event.target;
   if (cell.classList.contains('cell_field')) {
     if (!stateTimer) {
       startTimer();
+      resetGameBtn.classList.remove('btn__disable');
+      saveGameBtn.classList.remove('btn__disable');
     }
 
     cell.classList.remove('cell_cross');
@@ -54,6 +55,8 @@ function crossCell(event) {
   if (cell.classList.contains('cell_field')) {
     if (!stateTimer) {
       startTimer();
+      resetGameBtn.classList.remove('btn__disable');
+      saveGameBtn.classList.remove('btn__disable');
     }
 
     cell.classList.remove('cell_fill');
@@ -80,6 +83,8 @@ function buildNewGame() {
   fieldGame.replaceWith(createGameBox(PUZZLES[defaultIdPuzzle - 1]));
   stopTimer();
   resetTimer();
+  resetGameBtn.classList.add('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
 }
 
 function randomGame() {
@@ -88,6 +93,8 @@ function randomGame() {
   fieldGame.replaceWith(createGameBox(PUZZLES[randomId]));
   stopTimer();
   resetTimer();
+  resetGameBtn.classList.add('btn__disable');
+  saveGameBtn.classList.add('btn__disable');
 }
 
 function resetGame() {
