@@ -8,6 +8,7 @@ renderAllPopups();
 renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
+const fieldGame = document.querySelector('.field-game');
 
 function fillCell(event) {
   const cell = event.target;
@@ -28,6 +29,8 @@ function fillCell(event) {
       subtitle.textContent = text;
 
       showPopup(popupWin);
+
+      fieldGame.classList.add('field-avoid-click');
     }
   }
 }
@@ -52,11 +55,11 @@ function crossCell(event) {
       subtitle.textContent = text;
 
       showPopup(popupWin);
+      fieldGame.classList.add('field-avoid-click');
     }
   }
 }
 
-const fieldGame = document.querySelector('.field-game');
 fieldGame.addEventListener('click', fillCell);
 fieldGame.addEventListener('contextmenu', crossCell);
 
