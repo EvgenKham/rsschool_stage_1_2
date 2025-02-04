@@ -75,8 +75,11 @@ function choosePuzzle(event) {
 function getRandomId() {
   const count = PUZZLES.length;
   const id = Math.floor(Math.random() * count);
+  defaultIdPuzzle = id + 1;
   return id;
 }
+
+function resetGame() {}
 
 export {
   checkSolve,
@@ -85,5 +88,6 @@ export {
   chooseLevel,
   choosePuzzle,
   getRandomId,
+  resetGame,
   defaultIdPuzzle,
 };
