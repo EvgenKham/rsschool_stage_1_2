@@ -1,6 +1,9 @@
 import { PUZZLES } from './dataPuzzle.js';
 
-function checkSolve(puzzle = PUZZLES[0]) {
+// let defaultLevel = 'easy';
+let defaultIdPuzzle = 1;
+
+function checkSolve(puzzle = PUZZLES[defaultIdPuzzle - 1]) {
   const fieldGame = document.querySelector('.field-game');
 
   for (let i = 0; i < puzzle.size; i++) {
@@ -29,8 +32,8 @@ function showPopup(popup) {
   content.classList.remove('popup-unvisible');
 }
 
-function hidePopup(event) {
-  const popup = event.target.closest('.popup');
+function hidePopup(popup) {
+  // const popup = event.target.closest('.popup');
   setTimeout(() => {
     popup.classList.add('popup-hidden');
   }, 300);
@@ -48,20 +51,34 @@ function chooseLevel(event) {
       [...puzzleBlock.children][0].classList.remove('puzzle__hidden');
       [...puzzleBlock.children][1].classList.add('puzzle__hidden');
       [...puzzleBlock.children][2].classList.add('puzzle__hidden');
+      // defaultLevel = 'easy;';
+      defaultIdPuzzle = 1;
       break;
     case 'medium':
       [...puzzleBlock.children][0].classList.add('puzzle__hidden');
       [...puzzleBlock.children][1].classList.remove('puzzle__hidden');
       [...puzzleBlock.children][2].classList.add('puzzle__hidden');
+      // defaultLevel = 'medium;';
+      defaultIdPuzzle = 6;
       break;
     case 'hard':
       [...puzzleBlock.children][0].classList.add('puzzle__hidden');
       [...puzzleBlock.children][1].classList.add('puzzle__hidden');
       [...puzzleBlock.children][2].classList.remove('puzzle__hidden');
+      // defaultLevel = 'hard';
+      defaultIdPuzzle = 11;
       break;
   }
+  console.log(defaultIdPuzzle);
 }
 
-function choosePuzzle() {}
+function choosePuzzle(event) {
+  defaultIdPuzzle = event.target.value;
+  console.log(defaultIdPuzzle);
+}
 
-export { checkSolve, showPopup, hidePopup, chooseLevel };
+// function getCheckedPuzzle() {
+//   const levels = document.querySelectorAll();
+// }
+
+export { checkSolve, showPopup, hidePopup, chooseLevel, choosePuzzle, defaultIdPuzzle };

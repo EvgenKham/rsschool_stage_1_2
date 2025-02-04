@@ -1,14 +1,24 @@
+import { PUZZLES } from './dataPuzzle.js';
 import { createBackgraund, renderAllPopups } from './renderPopups.js';
-import { renderStartContent } from './renderMainContent.js';
+import { renderStartContent, createGameBox } from './renderMainContent.js';
 import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer } from './timer.js';
-import { checkSolve, showPopup, hidePopup, chooseLevel } from './managePuzzle.js';
+import {
+  checkSolve,
+  showPopup,
+  hidePopup,
+  chooseLevel,
+  choosePuzzle,
+  defaultIdPuzzle,
+} from './managePuzzle.js';
 
 createBackgraund();
 renderAllPopups();
 renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
-const fieldGame = document.querySelector('.field-game');
+const main = document.querySelector('.main');
+// const fieldGame = document.querySelector('.field-game');
+const tableGame = document.querySelector('.table-game');
 
 function fillCell(event) {
   const cell = event.target;
@@ -29,7 +39,7 @@ function fillCell(event) {
       subtitle.textContent = text;
 
       showPopup(popupWin);
-
+      const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
     }
   }
@@ -55,20 +65,36 @@ function crossCell(event) {
       subtitle.textContent = text;
 
       showPopup(popupWin);
+      const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
     }
   }
 }
 
-fieldGame.addEventListener('click', fillCell);
-fieldGame.addEventListener('contextmenu', crossCell);
+function buildNewGame() {
+  hidePopup(newGamePopup);
+  // console.log();
+  [...main.children][1].replaceWith(createGameBox(PUZZLES[defaultIdPuzzle - 1]));
+  stopTimer();
+  resetTimer();
+}
+
+main.addEventListener('click', fillCell);
+main.addEventListener('contextmenu', crossCell);
 
 const closeWin = document.querySelector('.close-win');
-closeWin.addEventListener('click', hidePopup);
+const winPopup = document.querySelector('.popup__win');
+closeWin.addEventListener('click', () => hidePopup(winPopup));
 
 const chooseGameBtn = document.querySelector('.options__choose');
 const newGamePopup = document.querySelector('.popup__new-game');
 chooseGameBtn.addEventListener('click', () => showPopup(newGamePopup));
 
-const levelBox = document.querySelector('.level');
-levelBox.addEventListener('click', chooseLevel);
+const levelBlock = document.querySelector('.level');
+levelBlock.addEventListener('click', chooseLevel);
+
+const puzzleBlock = document.querySelector('.puzzle');
+puzzleBlock.addEventListener('click', choosePuzzle);
+
+const startGame = document.querySelector('.start');
+startGame.addEventListener('click', buildNewGame);
