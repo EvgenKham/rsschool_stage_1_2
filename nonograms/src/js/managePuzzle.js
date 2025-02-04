@@ -155,6 +155,22 @@ function solvePuzzle() {
   }
 }
 
+function saveResult(puzzle, time) {
+  const result = {};
+  result.name = puzzle.name;
+  result.level = puzzle.level;
+  result.time = time;
+
+  let bestScores = JSON.parse(localStorage.getItem('bestScores')) || [];
+
+  bestScores.push(result);
+
+  bestScores.sort((a, b) => a.time - b.time);
+  bestScores = bestScores.slice(0, 5);
+
+  localStorage.setItem('bestScores', JSON.stringify(bestScores));
+}
+
 export {
   checkSolve,
   showPopup,
@@ -166,5 +182,6 @@ export {
   saveGame,
   getSavedGame,
   solvePuzzle,
+  saveResult,
   defaultIdPuzzle,
 };
