@@ -172,9 +172,6 @@ $bg-btn: #E6EDC0
   height: 100vh
   overflow: hidden
 
-// .burger
-//   display: none
-
 .header
   display: flex
   justify-content: space-between
@@ -398,18 +395,22 @@ $bg-btn: #E6EDC0
   100%
     transform: scale3d(1, 1, 1)
 
-@media ( max-width: 768px )
+@media ( max-width: 930px )
 
   .main
     display: grid
     grid-template-columns: auto auto auto
-    grid-template-rows: 70px auto
+    grid-template-rows: 50px auto
     grid-template-areas: "timer timer ." "table table ."  "options options options"
     justify-content: center
     align-items: center
     max-width: 1440px
     width: 100%
     padding: 0 40px 0 40px
+
+  .cell
+    width: 22px
+    height: 22px
 
   .timer
     padding-right: 0

@@ -8,6 +8,7 @@ import {
   hidePopup,
   chooseLevel,
   choosePuzzle,
+  getRandomId,
   defaultIdPuzzle,
 } from './managePuzzle.js';
 
@@ -17,7 +18,6 @@ renderStartContent();
 
 const popupWin = document.querySelector('.popup__win');
 const main = document.querySelector('.main');
-// const fieldGame = document.querySelector('.field-game');
 const tableGame = document.querySelector('.table-game');
 
 function fillCell(event) {
@@ -73,8 +73,16 @@ function crossCell(event) {
 
 function buildNewGame() {
   hidePopup(newGamePopup);
-  // console.log();
-  [...main.children][1].replaceWith(createGameBox(PUZZLES[defaultIdPuzzle - 1]));
+  const fieldGame = [...main.children][1];
+  fieldGame.replaceWith(createGameBox(PUZZLES[defaultIdPuzzle - 1]));
+  stopTimer();
+  resetTimer();
+}
+
+function randomGame() {
+  const fieldGame = [...main.children][1];
+  const randomId = getRandomId();
+  fieldGame.replaceWith(createGameBox(PUZZLES[randomId]));
   stopTimer();
   resetTimer();
 }
@@ -96,5 +104,8 @@ levelBlock.addEventListener('click', chooseLevel);
 const puzzleBlock = document.querySelector('.puzzle');
 puzzleBlock.addEventListener('click', choosePuzzle);
 
-const startGame = document.querySelector('.start');
-startGame.addEventListener('click', buildNewGame);
+const startBtn = document.querySelector('.start');
+startBtn.addEventListener('click', buildNewGame);
+
+const randomGameBtn = document.querySelector('.options__random');
+randomGameBtn.addEventListener('click', randomGame);
