@@ -203,4 +203,4 @@ function createHtmlElement(tag, classes, text = '') {
   return element;
 }
 
-export { renderStartContent, createGameBox };
+export { renderStartContent, createGameBox, createHtmlElement };
