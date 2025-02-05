@@ -15,6 +15,7 @@ import {
   getSavedGame,
   solvePuzzle,
   saveResult,
+  switchElements,
 } from './managePuzzle.js';
 
 createBackgraund();
@@ -143,6 +144,7 @@ function randomGame() {
   resetTimer();
   resetGameBtn.classList.add('btn__disable');
   saveGameBtn.classList.add('btn__disable');
+  solutionGameBtn.classList.remove('btn__disable');
   if (turnOn) {
     new Audio('./assets/sounds/click-options.mp3').play();
   }
@@ -206,6 +208,27 @@ function switchSound() {
     switchSoundBtn.append(soundIconOff);
     turnOn = false;
   }
+}
+
+function switchTheme() {
+  const lightIcon = createHtmlElement('i', ['fa', 'fa-sun-o']);
+  const darkIcon = createHtmlElement('i', ['fa', 'fa-moon-o']);
+  const icon = switchThemeBtn.firstChild;
+
+  if (icon.classList.contains('fa-sun-o')) {
+    icon.remove();
+    switchThemeBtn.append(darkIcon);
+  }
+  if (icon.classList.contains('fa-moon-o')) {
+    icon.remove();
+    switchThemeBtn.append(lightIcon);
+  }
+
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
+
+  switchElements();
 }
 
 main.addEventListener('click', fillCell);
@@ -272,3 +295,6 @@ solutionGameBtn.addEventListener('click', getSolution);
 
 const switchSoundBtn = document.querySelector('.switch-sound');
 switchSoundBtn.addEventListener('click', switchSound);
+
+const switchThemeBtn = document.querySelector('.switch-theme');
+switchThemeBtn.addEventListener('click', switchTheme);

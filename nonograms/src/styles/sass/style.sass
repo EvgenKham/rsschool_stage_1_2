@@ -40,6 +40,10 @@ $bg-btn: #E6EDC0
     font-size: 16px
     background: linear-gradient(0deg, hsla(233, 100%, 90%, 1) 0%, hsla(0, 0%, 89%, 1) 100%)
     animation: visible-popup 0.5s both
+  &_dark-theme
+    background: linear-gradient(90deg, hsla(213, 77%, 14%, 1) 0%, hsla(202, 27%, 45%, 1) 100%)
+    // color: #cdc5d8
+    filter: invert(15%) hue-rotate(35deg) saturate(2)
   &__title
     margin: 30px 0
     font-size: 20px
@@ -188,6 +192,13 @@ $bg-btn: #E6EDC0
   &__text
     cursor: default
 
+.dark-theme
+  filter: invert(85%)
+  &_game-field
+    filter: invert(15%) hue-rotate(40deg) saturate(2)
+  &_button
+    filter: invert(80%) hue-rotate(130deg) saturate(1)
+
 .settings
   display: flex
   justify-content: space-between
@@ -250,6 +261,8 @@ $bg-btn: #E6EDC0
     opacity: 0.4
     pointer-events: none
     cursor: default
+  &_dark-theme
+    background-color: #9a9a9a
 
 
 .table-game
