@@ -171,6 +171,24 @@ function saveResult(puzzle, time) {
   localStorage.setItem('bestScores', JSON.stringify(bestScores));
 }
 
+function switchElements() {
+  const header = document.querySelector('.header');
+  const bg = document.querySelector('.bg-game');
+  const timer = document.querySelector('.timer');
+  const tableGame = document.querySelector('.table-game');
+  // const settings = document.querySelector('.settings');
+  const popups = document.querySelectorAll('.popup__content');
+  const buttons = document.querySelectorAll('.btn');
+
+  header.classList.toggle('dark-theme');
+  bg.classList.toggle('dark-theme');
+  timer.classList.toggle('dark-theme');
+  tableGame.classList.toggle('dark-theme_game-field');
+  // settings.classList.toggle('dark-theme_button');
+  [...popups].map((popup) => popup.classList.toggle('popup_dark-theme'));
+  [...buttons].map((btn) => btn.classList.toggle('dark-theme_button'));
+}
+
 export {
   checkSolve,
   showPopup,
@@ -183,5 +201,6 @@ export {
   getSavedGame,
   solvePuzzle,
   saveResult,
+  switchElements,
   defaultIdPuzzle,
 };
