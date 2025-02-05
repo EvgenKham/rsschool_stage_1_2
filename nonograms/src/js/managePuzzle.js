@@ -114,11 +114,11 @@ function saveGame() {
 function getSavedGame() {
   const savedGameField = JSON.parse(localStorage.getItem('savedFieldGame'));
   const savedTime = localStorage.getItem('savedTime');
-  const savedIdPuzzle = localStorage.getItem('savedIdPuzzle');
+  defaultIdPuzzle = localStorage.getItem('savedIdPuzzle');
 
   const main = document.querySelector('.main');
   const fieldGame = [...main.children][1];
-  fieldGame.replaceWith(createGameBox(PUZZLES[savedIdPuzzle - 1]));
+  fieldGame.replaceWith(createGameBox(PUZZLES[defaultIdPuzzle - 1]));
   const allFieldCells = document.querySelectorAll('.cell_field');
 
   [...allFieldCells].forEach((cell, index) => {
