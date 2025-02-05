@@ -1,6 +1,6 @@
 import { PUZZLES } from './dataPuzzle.js';
 import { createBackgraund, renderAllPopups, apdateTableBest } from './renderPopups.js';
-import { renderStartContent, createGameBox } from './renderMainContent.js';
+import { renderStartContent, createGameBox, createHtmlElement } from './renderMainContent.js';
 import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer, setTime } from './timer.js';
 import {
   checkSolve,
@@ -21,6 +21,7 @@ createBackgraund();
 renderAllPopups();
 renderStartContent();
 
+let turnOn = true;
 const popupWin = document.querySelector('.popup__win');
 const main = document.querySelector('.main');
 
@@ -33,11 +34,26 @@ function fillCell(event) {
       saveGameBtn.classList.remove('btn__disable');
     }
 
+    const isFilled = cell.classList.contains('cell_fill');
+    if (isFilled) {
+      if (turnOn) {
+        new Audio('./assets/sounds/empty-cell.mp3').play();
+      }
+    } else {
+      if (turnOn) {
+        new Audio('./assets/sounds/fill-cell.mp3').play();
+      }
+    }
+
     cell.classList.remove('cell_cross');
     cell.classList.toggle('cell_fill');
 
     const isSolve = checkSolve();
     if (isSolve) {
+      if (turnOn) {
+        new Audio('./assets/sounds/win.mp3').play();
+      }
+
       stopTimer();
       const time = saveTimer();
       const text = `You have solved the nonogram in ${time} seconds!`;
@@ -67,11 +83,26 @@ function crossCell(event) {
       saveGameBtn.classList.remove('btn__disable');
     }
 
+    const isCrossed = cell.classList.contains('cell_cross');
+    if (isCrossed) {
+      if (turnOn) {
+        new Audio('./assets/sounds/empty-cell.mp3').play();
+      }
+    } else {
+      if (turnOn) {
+        new Audio('./assets/sounds/cross-cell.mp3').play();
+      }
+    }
+
     cell.classList.remove('cell_fill');
     cell.classList.toggle('cell_cross');
 
     const isSolve = checkSolve();
     if (isSolve) {
+      if (turnOn) {
+        new Audio('./assets/sounds/win.mp3').play();
+      }
+
       stopTimer();
       const time = saveTimer();
       const text = `You have solved the nonogram in ${time} seconds!`;
@@ -99,6 +130,9 @@ function buildNewGame() {
   resetTimer();
   resetGameBtn.classList.add('btn__disable');
   saveGameBtn.classList.add('btn__disable');
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
 }
 
 function randomGame() {
@@ -109,6 +143,9 @@ function randomGame() {
   resetTimer();
   resetGameBtn.classList.add('btn__disable');
   saveGameBtn.classList.add('btn__disable');
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
 }
 
 function resetGame() {
@@ -120,6 +157,9 @@ function resetGame() {
   resetGameBtn.classList.add('btn__disable');
   saveGameBtn.classList.add('btn__disable');
   solutionGameBtn.classList.remove('btn__disable');
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
 }
 
 function continueGame() {
@@ -131,6 +171,9 @@ function continueGame() {
   resetGameBtn.classList.remove('btn__disable');
   saveGameBtn.classList.remove('btn__disable');
   solutionGameBtn.classList.remove('btn__disable');
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
 }
 
 function getSolution() {
@@ -142,6 +185,27 @@ function getSolution() {
   resetGameBtn.classList.remove('btn__disable');
   saveGameBtn.classList.add('btn__disable');
   solutionGameBtn.classList.add('btn__disable');
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
+}
+
+function switchSound() {
+  const soundIconOff = createHtmlElement('i', ['fa', 'fa-volume-off']);
+  const soundIconUp = createHtmlElement('i', ['fa', 'fa-volume-up']);
+  const icon = switchSoundBtn.firstChild;
+
+  if (icon.classList.contains('fa-volume-off')) {
+    icon.remove();
+    switchSoundBtn.append(soundIconUp);
+    turnOn = true;
+  }
+  if (icon.classList.contains('fa-volume-up')) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+    icon.remove();
+    switchSoundBtn.append(soundIconOff);
+    turnOn = false;
+  }
 }
 
 main.addEventListener('click', fillCell);
@@ -149,18 +213,38 @@ main.addEventListener('contextmenu', crossCell);
 
 const chooseGameBtn = document.querySelector('.options__choose');
 const newGamePopup = document.querySelector('.popup__new-game');
-chooseGameBtn.addEventListener('click', () => showPopup(newGamePopup));
+chooseGameBtn.addEventListener('click', () => {
+  showPopup(newGamePopup);
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
+});
 
 const closeWinBtn = document.querySelector('.close-win');
 const winPopup = document.querySelector('.popup__win');
-closeWinBtn.addEventListener('click', () => hidePopup(winPopup));
+closeWinBtn.addEventListener('click', () => {
+  hidePopup(winPopup);
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
+});
 
 const bestBtn = document.querySelector('.best-results');
 const bestGamePopup = document.querySelector('.popup__best');
-bestBtn.addEventListener('click', () => showPopup(bestGamePopup));
+bestBtn.addEventListener('click', () => {
+  showPopup(bestGamePopup);
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
+});
 
 const closeBestBtn = document.querySelector('.close-best');
-closeBestBtn.addEventListener('click', () => hidePopup(bestGamePopup));
+closeBestBtn.addEventListener('click', () => {
+  hidePopup(bestGamePopup);
+  if (turnOn) {
+    new Audio('./assets/sounds/click-options.mp3').play();
+  }
+});
 
 const levelBlock = document.querySelector('.level');
 levelBlock.addEventListener('click', chooseLevel);
@@ -185,3 +269,6 @@ continueGameBtn.addEventListener('click', continueGame);
 
 const solutionGameBtn = document.querySelector('.options__solution');
 solutionGameBtn.addEventListener('click', getSolution);
+
+const switchSoundBtn = document.querySelector('.switch-sound');
+switchSoundBtn.addEventListener('click', switchSound);

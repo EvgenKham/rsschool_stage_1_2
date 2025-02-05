@@ -30,10 +30,6 @@ function resetTimer() {
   displayTimer.textContent = '00 : 00';
 }
 
-// function getTime() {
-//   return userTime;
-// }
-
 function setTime(time) {
   userTime = time;
 }
