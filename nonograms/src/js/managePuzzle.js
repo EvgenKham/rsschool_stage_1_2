@@ -164,9 +164,14 @@ function saveResult(puzzle, time) {
   let bestScores = JSON.parse(localStorage.getItem('bestScores')) || [];
 
   bestScores.push(result);
+  console.log(bestScores.length);
 
-  bestScores.sort((a, b) => a.time - b.time);
-  bestScores = bestScores.slice(0, 5);
+  if (bestScores.length >= 6) {
+    bestScores.shift();
+  }
+
+  // bestScores.sort((a, b) => a.time - b.time);
+  // bestScores = bestScores.slice(0, 5);
 
   localStorage.setItem('bestScores', JSON.stringify(bestScores));
 }

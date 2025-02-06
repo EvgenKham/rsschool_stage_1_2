@@ -1,5 +1,5 @@
 import { PUZZLES } from './dataPuzzle.js';
-import { createBackgraund, renderAllPopups, apdateTableBest } from './renderPopups.js';
+import { createBackgraund, renderAllPopups, updateTableBest } from './renderPopups.js';
 import { renderStartContent, createGameBox, createHtmlElement } from './renderMainContent.js';
 import { startTimer, stopTimer, saveTimer, resetTimer, stateTimer, setTime } from './timer.js';
 import {
@@ -62,7 +62,7 @@ function fillCell(event) {
       subtitle.textContent = text;
 
       saveResult(PUZZLES[defaultIdPuzzle - 1], saveTimer());
-      apdateTableBest();
+      updateTableBest();
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
@@ -111,7 +111,7 @@ function crossCell(event) {
       subtitle.textContent = text;
 
       saveResult(PUZZLES[defaultIdPuzzle - 1], saveTimer());
-      apdateTableBest();
+      updateTableBest();
       showPopup(popupWin);
       const fieldGame = document.querySelector('.field-game');
       fieldGame.classList.add('field-avoid-click');
