@@ -145,18 +145,19 @@ function renderPopupBest() {
   content.append(wrapper, btn);
 }
 
-function apdateTableBest() {
-  const bestScore = JSON.parse(localStorage.getItem('bestScores'));
+function updateTableBest() {
+  const bestScores = JSON.parse(localStorage.getItem('bestScores'));
+  bestScores.sort((a, b) => a.time - b.time);
   const tableBody = document.createElement('tbody');
 
-  for (let i = 0; i < bestScore.length; i++) {
+  for (let i = 0; i < bestScores.length; i++) {
     const bodyRow = document.createElement('tr');
     const bodyCell = document.createElement('td');
     const id = i + 1;
     bodyCell.textContent = id;
     bodyRow.append(bodyCell);
 
-    for (let [key, value] of Object.entries(bestScore[i])) {
+    for (let [key, value] of Object.entries(bestScores[i])) {
       const bodyCell = document.createElement('td');
       if (key === 'time') {
         value = convertTime(value);
@@ -169,7 +170,9 @@ function apdateTableBest() {
   }
 
   const tableBodyBest = document.querySelector('tbody');
-  tableBodyBest.remove();
+  if (tableBodyBest) {
+    tableBodyBest.remove();
+  }
   const tableBest = document.querySelector('table');
   tableBest.append(tableBody);
 }
@@ -203,4 +206,4 @@ function createHtmlElement(tag, classes = [], text = '') {
   return element;
 }
 
-export { createBackgraund, renderAllPopups, apdateTableBest };
+export { createBackgraund, renderAllPopups, updateTableBest };
