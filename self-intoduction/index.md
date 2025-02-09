@@ -1,4 +1,4 @@
-### : Video
+### Video
 
 [Link to my video](https://youtu.be/20IkcXazmQ4)
 
@@ -21,7 +21,7 @@ Since 2022, I have been interested in front-end and passed online course modern 
 ---
 ### Talk about your recent course
 
-During the education in RS School, I faced with a lot of fascinating task, which assisted me practice and brush up my knowledge. On the pre-school course I liked develop the [Shelter](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/shelter/index.html), from the layout using Figma to add functionality such as burger menu, slider and pagination even though I didn’t have enough time so I didn’t finish it completely. And also practice task like [Image Gallery](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/image-gallery/index.html), [Audio player](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/audio-player/index.html) and [Sudoku] (https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/random-game/index.html) as a random game, which I’ve made perfect.
+During the education in RS School, I faced with a lot of fascinating task, which assisted me practice and brush up my knowledge. On the pre-school course I liked develop the [Shelter](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/shelter/index.html), from the layout using Figma to add functionality such as burger menu, slider and pagination even though I didn’t have enough time so I didn’t finish it completely. And also practice task like [Image Gallery](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/image-gallery/index.html), [Audio player](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/audio-player/index.html) and [Sudoku](https://rolling-scopes-school.github.io/evgenkham-JSFEPRESCHOOL2024Q2/random-game/index.html) as a random game, which I’ve made perfect.
 
 On the stage 1 I was ready for the layout [Christmas Shop](), [Simon Say](https://rolling-scopes-school.github.io/evgenkham-JSFE2024Q4/simon-says/index.html), [Nonograms](https://rolling-scopes-school.github.io/evgenkham-JSFE2024Q4/nonograms/src/index.html), to other test and practice tasks, knew how able to distribute my time properly. That was nice practice and an opportunity to create working applications because in fact, I see my result and is able to demonstrate it other people.
 
