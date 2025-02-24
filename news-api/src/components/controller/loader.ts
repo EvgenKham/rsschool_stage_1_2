@@ -1,15 +1,17 @@
-class Loader<T = Record<string, unknown>> {
-    private baseLink: string;
-    private options: T;
+// type TCallback<T> = (data: T) => void;
 
-    constructor(baseLink: string, options: T) {
+class Loader {
+    private baseLink: string;
+    private options: object;
+
+    constructor(baseLink: string, options: object) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
-    protected getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: Partial<T> },
-        callback = () => {
+    public getResp(
+        { endpoint, options = {} }: { endpoint: string; options?: object },
+        callback = (data: unknown) => {
             console.error('No callback for GET response');
         }
     ) {
@@ -26,7 +28,7 @@ class Loader<T = Record<string, unknown>> {
         return res;
     }
 
-    private makeUrl(options: Partial<T>, endpoint: string): string {
+    private makeUrl(options: object, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -37,7 +39,7 @@ class Loader<T = Record<string, unknown>> {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: (data: unknown) => void, options: Partial<T> = {}) {
+    private load(method: string, endpoint: string, callback: (data: unknown) => void, options: object = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

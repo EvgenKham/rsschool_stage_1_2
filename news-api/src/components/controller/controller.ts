@@ -1,16 +1,18 @@
+import { IResponceSources, IResponseNews } from '../../types/index';
 import AppLoader from './appLoader';
+type TCallback<T> = (data: T) => void;
 
 class AppController extends AppLoader {
-    getSources(callback: () => void): void {
+    getSources(callback: (data: IResponceSources) => void): void {
         super.getResp(
             {
                 endpoint: 'sources',
             },
-            callback
+            (data) => callback(data)
         );
     }
 
-    getNews(e: MouseEvent, callback: () => void): void {
+    getNews(e: MouseEvent, callback: (data: IResponseNews) => void): void {
         let target = <HTMLElement>e.target;
         const newsContainer = <HTMLElement>e.currentTarget;
 
@@ -26,7 +28,7 @@ class AppController extends AppLoader {
                                 sources: sourceId,
                             },
                         },
-                        callback
+                        (data) => callback(data)
                     );
                 }
                 return;

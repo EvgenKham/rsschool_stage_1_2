@@ -36,3 +36,5 @@ export interface IResponceSources extends IResponse {
 export abstract class Drawer<T> {
     abstract draw(data: Array<T>): void;
 }
+
+export type TCallback<T> = (data: T) => void;

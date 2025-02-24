@@ -1,4 +1,4 @@
-import { IResponseNews, IResponceSources } from '../../types/index';
+import { IResponseNews, IResponceSources, TCallback } from '../../types/index';
 import News from './news/news';
 import Sources from './sources/sources';
 
