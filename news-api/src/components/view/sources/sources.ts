@@ -1,8 +1,8 @@
-import { TSource } from '../../../types/index';
+import { Drawer, TSource } from '../../../types/index';
 import './sources.css';
 
-class Sources {
-    draw(data: Array<TSource>) {
+class Sources extends Drawer<TSource> {
+    draw(data: Array<TSource>): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 

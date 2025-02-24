@@ -1,8 +1,8 @@
 import './news.css';
-import { INews } from '../../../types/index';
+import { Drawer, INews } from '../../../types/index';
 
-class News {
-    draw(data: Array<INews>) {
+class News extends Drawer<INews> {
+    draw(data: Array<INews>): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();

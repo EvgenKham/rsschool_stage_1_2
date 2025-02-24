@@ -11,3 +11,7 @@ export interface INews {
     urlToImage?: string;
     publishedAt: string;
 }
+
+export abstract class Drawer<T> {
+    abstract draw(data: Array<T>): void;
+}
