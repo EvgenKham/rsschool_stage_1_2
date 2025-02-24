@@ -1,5 +1,5 @@
 {
-    "plugins": ["prettier", "import", "@typescript-eslint", "plugin:@typescript-eslint/recommended"],
+    "plugins": ["prettier", "import", "@typescript-eslint"],
     "extends": ["plugin:prettier/recommended", "prettier", "eslint:recommended"],
     "parserOptions": {
         "ecmaVersion": 2020,
