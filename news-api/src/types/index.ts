@@ -1,8 +1,9 @@
+export type TSource = {
+    name: string;
+    id: string;
+};
 export interface INews {
-    source: {
-        id?: string;
-        name: string;
-    };
+    source: TSource;
     author?: string;
     title: string;
     description: string;
