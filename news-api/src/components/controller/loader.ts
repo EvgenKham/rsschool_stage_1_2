@@ -1,5 +1,7 @@
-// type TCallback<T> = (data: T) => void;
+import { IResponceSources, IResponseNews } from '../../types/index';
 
+type TResponseData = IResponceSources | IResponseNews;
+type TCallback<T> = (data: T) => void;
 class Loader {
     private baseLink: string;
     private options: object;
@@ -11,7 +13,7 @@ class Loader {
 
     public getResp(
         { endpoint, options = {} }: { endpoint: string; options?: object },
-        callback = (data: unknown) => {
+        callback = (data: TResponseData) => {
             console.error('No callback for GET response');
         }
     ) {
@@ -39,7 +41,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: (data: unknown) => void, options: object = {}) {
+    private load(method: string, endpoint: string, callback: TCallback<TResponseData>, options: object = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

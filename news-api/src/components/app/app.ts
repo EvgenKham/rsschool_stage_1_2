@@ -1,7 +1,6 @@
 import { IResponseNews, IResponceSources } from '../../types/index';
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { TCallback } from '../../types/index';
 
 class App {
     private controller: AppController;
