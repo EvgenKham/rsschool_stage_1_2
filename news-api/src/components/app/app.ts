@@ -18,6 +18,24 @@ class App {
         );
         this.controller.getSources((data: IResponceSources) => this.view.drawSources(data));
     }
+
+    openSources() {
+        const openBtn = <HTMLDivElement>document.querySelector('.btn');
+        const sources = <HTMLDivElement>document.querySelector('.sources');
+        openBtn.addEventListener('click', (e: MouseEvent) => {
+            sources.classList.toggle('sources_open');
+        });
+    }
+
+    closeSources() {
+        const sources = <HTMLDivElement>document.querySelector('.sources');
+        sources.addEventListener('click', (e: MouseEvent) => {
+            const target = <HTMLElement>e.target;
+            if (target.closest('.source__item')) {
+                sources.classList.remove('sources_open');
+            }
+        });
+    }
 }
 
 export default App;
