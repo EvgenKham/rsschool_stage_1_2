@@ -3,3 +3,5 @@ import './global.css';
 
 const app = new App();
 app.start();
+app.openSources();
+app.closeSources();

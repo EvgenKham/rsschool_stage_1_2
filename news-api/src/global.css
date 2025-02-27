@@ -10,13 +10,52 @@ body {
     font-family: sans-serif;
 }
 
-header {
+.header {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 30px;
 }
 
-header h1 {
+.title {
     font-size: 40px;
     font-weight: 800;
+}
+
+.btn {
+    background: none;
+    border: 2px solid #ffc130;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    color: #ffc130;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border-color: #e2e798;
+    color: #e2e798;
+    box-shadow: 0 0.5em 0.5em -0.4em #74bae8;
+    transform: translateY(-0.25em);
+}
+
+.open-sources {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sources {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 136px;
+}
+
+.sources_open {
+    height: min-content;
 }
 
 .footer {
