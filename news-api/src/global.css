@@ -4,10 +4,17 @@
     box-sizing: border-box;
 }
 
-body {
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+}
+
+.wrapper:last-child {
+    justify-content: end;
 }
 
 .header {
@@ -64,6 +71,7 @@ body {
     align-items: center;
     width: 100%;
     min-height: 100px;
+    margin-top: auto;
     padding: 10px 0 10px 0;
 }
 
