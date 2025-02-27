@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     color: #fff;
     background: #17181c;
@@ -13,23 +19,58 @@ header h1 {
     font-weight: 800;
 }
 
-footer {
-    height: 100px;
+.footer {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 0 10px 0;
 }
-footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+
+.footer__github {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    text-decoration: none;
+    font-size: 40px;
+    transition: color 0.3s;
 }
-footer .copyright a {
-    color: #444;
+
+.footer__github_icon {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    background-image: url('./assets/github-icons/github-mark-white.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 60px;
+    border-radius: 50%;
 }
-footer .copyright a:hover {
-    color: #555;
+
+.footer__github_icon:hover {
+    transition: all 0.2s;
+    transform: scale(1.1);
 }
-footer .copyright:before {
-    content: '©';
+
+.footer__year {
+    font-size: 20px;
+    cursor: default;
+    user-select: none;
+}
+
+.footer__school_icon {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    background-image: url('./assets/rss-logo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px;
+}
+
+.footer__school_icon:hover {
+    transition: all 0.2s;
+    transform: scale(1.1);
 }
