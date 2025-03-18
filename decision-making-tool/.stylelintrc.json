@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-clean-order"
+  ],
+  "plugins": ["stylelint-scss", "stylelint-order"],
+  "rules": {
+    "color-hex-length": "short",
+    "block-no-empty": true,
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]*$",
+    "scss/dollar-variable-pattern": "^[a-z][a-zA-Z0-9]*$",
+    "order/properties-order": [
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "display",
+      "flex",
+      "flex-grow",
+      "flex-shrink",
+      "flex-basis",
+      "justify-content",
+      "align-items",
+      "align-self",
+      "order",
+      "grid",
+      "grid-template-rows",
+      "grid-template-columns",
+      "grid-template-areas",
+      "grid-gap",
+      "gap",
+      "width",
+      "height",
+      "color",
+      "background-color",
+      "background",
+      "background-image",
+      "background-position",
+      "background-size",
+      "alphabetical"
+    ],
+    "color-no-invalid-hex": true,
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes"]
+      }
+    ]
+  }
+}

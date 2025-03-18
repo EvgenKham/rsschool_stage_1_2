@@ -1,0 +1,9 @@
+body {
+  color: #333;
+  background-color: #f0f0f0;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 20px;
+}

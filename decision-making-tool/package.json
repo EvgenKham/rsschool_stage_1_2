@@ -6,24 +6,64 @@
   "scripts": {
     "start": "npx ts-node index.ts",
     "lint-check": "npx eslint .",
-    "lint": "npx eslint --fix src/**/*.ts",
-    "prettier": "npx prettier --write ."
+    "lint": "npx eslint --fix src/**/*.{js,ts}",
+    "format": "prettier --write .",
+    "stylelint-check": "stylelint src/**/*.{css,scss}",
+    "stylelint": "stylelint --fix src/**/*.{css,scss}",
+    "lint-staged": "lint-staged",
+    "prepare": "cd .. && husky ./decision-making-tool/.husky",
+    "build": "webpack-cli --mode production",
+    "dev": "webpack-dev-server --mode development"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.0",
     "@eslint/js": "^9.22.0",
+    "@types/node": "^22.13.10",
+    "@types/webpack": "^5.28.5",
+    "@types/webpack-dev-server": "^4.7.1",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
+    "commitlint": "^19.8.0",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-unicorn": "^57.0.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
+    "stylelint": "^16.16.0",
+    "stylelint-config-clean-order": "^7.0.0",
+    "stylelint-config-standard": "^37.0.0",
+    "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.1"
+    "typescript-eslint": "^8.26.1",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "--no-install commitlint --edit"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,css,sass}": [
+      "eslint --fix"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
