@@ -1,0 +1,36 @@
+{
+  "name": "async-race",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "bundle": "webpack-cli",
+    "develop": "webpack-dev-server",
+    "lint": "npx eslint src/**/*.{js,ts}",
+    "lint:fix": "npx eslint --fix src/**/*.{js,ts}",
+    "prettier": "npx prettier --write ."
+  },
+  "dependencies": {
+    "tsc-init": "^2.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.5",
+    "eslint-plugin-unicorn": "^58.0.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.28.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  }
+}
