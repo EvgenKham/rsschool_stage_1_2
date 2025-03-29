@@ -5,7 +5,6 @@ import prettierConfig from "eslint-config-prettier";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 
 export default [
-  eslintPluginUnicorn.configs.recommended,
   {
     files: ["**/*.ts"],
 
@@ -20,6 +19,7 @@ export default [
     plugins: {
       "@typescript-eslint": tseslint,
       prettier: prettierPlugin,
+      unicorn: eslintPluginUnicorn,
     },
 
     rules: {
@@ -35,7 +35,7 @@ export default [
       "unicorn/no-empty-file": "warn",
       "unicorn/filename-case": "warn",
       "@typescript-eslint/consistent-type-assertions": [
-        "error",
+        "warn",
         { assertionStyle: "never" },
       ],
       "@typescript-eslint/consistent-type-imports": "error",

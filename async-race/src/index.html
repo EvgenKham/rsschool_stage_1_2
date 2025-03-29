@@ -4,6 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Async Race</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/icons/flag-favicon.png"
+      type="image/png"
+    />
   </head>
-  <body></body>
+  <body>
+    <div class="cal">
+      <center>
+        <form>
+          <br />
+          <p>Result : <span id="display"></span></p>
+          <input
+            type="number"
+            class="input"
+            placeholder="Enter first number"
+            name="firstnumber"
+            value="1"
+            min="1"
+            min="9"
+          /><br />
+          <input
+            type="number"
+            class="input"
+            placeholder="Enter second number"
+            name="secondnumber"
+            value="1"
+            min="1"
+            min="9"
+          /><br /><br />
+          <button type="submit" class="button">Subtract</button>
+        </form>
+      </center>
+    </div>
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>

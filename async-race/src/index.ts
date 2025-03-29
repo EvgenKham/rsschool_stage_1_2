@@ -1,12 +1,24 @@
-const myFunction = (
-  name: string,
-  age: number,
-): { name: string; age: number } => {
-  console.log("Hello, " + name + "! You are " + age + " years old.");
+import { subtract } from "./app";
+import "./styles/css/main.css";
 
-  let unusedVariable = 42; // Unused variable (ESLint should warn about this)
+function init(): void {
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", submitHandler);
+}
 
-  return { name: name, age: age };
-};
+function submitHandler(event: Event): void {
+  event.preventDefault();
+  const number1 = document.querySelector(
+    "input[name='firstnumber']",
+  ) as HTMLInputElement;
+  const number2 = document.querySelector(
+    "input[name='secondnumber']",
+  ) as HTMLInputElement;
+  const result = subtract(Number(number1.value), Number(number2.value));
+  const resultElement = document.querySelector("p");
+  if (resultElement) {
+    resultElement.textContent = result.toString();
+  }
+}
 
-console.log(myFunction("Alice", 25)); // Incorrect spacing, missing semicolon, inconsistent quotes
+init();
