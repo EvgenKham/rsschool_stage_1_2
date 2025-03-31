@@ -35,7 +35,7 @@ export default [
       "unicorn/no-empty-file": "warn",
       "unicorn/filename-case": "warn",
       "@typescript-eslint/consistent-type-assertions": [
-        "warn",
+        "error",
         { assertionStyle: "never" },
       ],
       "@typescript-eslint/consistent-type-imports": "error",
