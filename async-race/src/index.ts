@@ -14,9 +14,9 @@ const exampleNewCar: Car = {
   color: "#ff0000",
 };
 
-getCar(carId).then((car) => {
-  console.log("Car:", car);
-});
+// getCar(carId).then((car) => {
+//   console.log("Car:", car);
+// });
 
 // getAllCars().then((cars) => {
 //   cars.forEach((car, index) => console.log(`Car #${index + 1}:`, car));

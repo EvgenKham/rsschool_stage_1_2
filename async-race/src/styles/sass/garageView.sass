@@ -1,0 +1,136 @@
+$border-color: #85ccbf
+$bg-btn: #C7FFF2
+$bg-btn-nav: #6593FF
+$bg-btn-manage: #fff172
+$bg-btn-pagination: #56ff56
+$text-color: #EBD97F
+$text-label: #D39F5A
+
+//Style background of the page
+.bg-race
+  position: absolute
+  top: 0px
+  bottom: 0px
+  right: 0px
+  left: 0px
+  z-index: -100
+  background-image: url('../../assets/images/background-road.jpg')
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  max-width: 1440px
+  margin: 0 auto
+  height: 100vh
+  overflow: hidden
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  max-width: 100vw
+  width: 100%
+  padding: 0 20px
+
+.logo
+  display: flex
+  &__img
+    width: 120px
+
+.navigation
+  display: flex
+  gap: 10px
+
+.settings
+  display: grid
+  // grid-template-columns: auto auto auto
+  // grid-template-rows: auto auto
+  grid-template-areas: "create-field create-field manage" "update-field update-field manage"
+
+.create-field
+  display: grid
+  grid-area: create-field
+
+.update-field
+  display: grid
+  grid-area: update-field
+
+.manage
+  display: grid
+  grid-area: manage
+  align-content: space-between
+  padding-left: 50px
+  row-gap: 10px
+
+
+.title-field
+  color: $text-color
+  margin: 0
+  padding: 10px 0
+
+.input-box
+  display: flex
+  align-items: center
+  gap: 10px
+
+.input-text
+  color: $text-label
+
+.btn
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 16px
+  padding: 5px 10px
+  border: 1px solid $border-color
+  border-radius: 5px
+  background-color: $bg-btn
+  cursor: pointer
+  transition: all 0.1s
+  &:hover
+    scale: 1.1
+  &__disable
+    background-color: $bg-btn
+    opacity: 0.4
+    pointer-events: none
+    cursor: default
+  &_dark-theme
+    background-color: #9a9a9a
+  &_garage
+    background-color: $bg-btn-nav
+  &_winners
+    background-color: $bg-btn-nav
+  &_prev
+    background-color: $bg-btn-pagination
+  &_next
+    background-color: $bg-btn-pagination
+  &_race
+    background-color: $bg-btn-manage
+  &_reset
+    background-color: $bg-btn-manage
+  &_generate
+    background-color: $bg-btn-manage
+
+.pagination
+  display: flex
+  align-items: center
+  flex-direction: row
+  column-gap: 20px
+
+.current-page
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 50px
+  height: 50px
+  font-weight: 600
+  font-size: 18px
+  text-align: center
+  border: 2px solid #fddcc4
+  border-radius: 30px
+  background: #fddcc4
+  cursor: default

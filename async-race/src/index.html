@@ -3,14 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/icons/flag-favicon.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Async Race</title>
     <link
-      rel="shortcut icon"
-      href="./assets/icons/flag-favicon.png"
-      type="image/png"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.css"
+      rel="stylesheet"
     />
+    <link rel="stylesheet" href="styles/css/garageView.css" />
   </head>
   <body>
+    <div class="bg-race"></div>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <img src="assets/images/logo.png" alt="logo-car" class="logo__img" />
+        </div>
+        <nav class="navigation">
+          <button class="btn_garage btn btn__disable">GARAGE</button>
+          <button class="btn_winners btn">WINNERS</button>
+        </nav>
+      </header>
+      <section class="settings">
+        <div class="create-field">
+          <h2 class="title-field">Create new car</h2>
+          <div class="input-box">
+            <label for="newNameId" class="input-text">Name </label>
+            <input type="text" id="newNameId" placeholder="Mersedes" />
+
+            <label for="newColorId" class="input-text">Color </label>
+            <input type="color" id="newColorId" value="#58F8F3" />
+
+            <button class="btn btn_create">create</button>
+          </div>
+        </div>
+        <div class="update-field">
+          <h2 class="title-field">Update car</h2>
+          <div class="input-box">
+            <label for="updateNameId" class="input-text">Name </label>
+            <input type="text" id="updateNameId" disabled />
+
+            <label for="updateColorId" class="input-text">Color </label>
+            <input type="color" id="updateColorId" value="#FF338F" disabled />
+
+            <button class="btn btn_update btn__disable" id="updateCar">
+              update
+            </button>
+          </div>
+        </div>
+        <div class="manage">
+          <button class="btn btn_race">race</button>
+          <button class="btn btn_reset">reset</button>
+          <button class="btn btn_generate">generate cars</button>
+        </div>
+      </section>
+      <section class="track">
+        <div class="track__info">
+          <h2 class="title-page">GARAGE</h2>
+          <h3 class="all-cars">Total number of cars: 4</h3>
+        </div>
+        <div class="car">
+          <div class="car__update-block">
+            <button class="btn btn_select">select</button>
+            <button class="btn btn_remove">remove</button>
+            <div class="car__name">Tesla</div>
+          </div>
+          <div class="car__manage-block">
+            <button class="btn btn_start-engine">Start</button>
+            <button class="btn btn_stop-engine">Stop</button>
+          </div>
+          <div class="road">
+            <div class="car__image"></div>
+            <div class="road__line"></div>
+            <div class="finish__flag"></div>
+          </div>
+        </div>
+        <div class="car">
+          <div class="car__update-block">
+            <button class="btn btn_select">select</button>
+            <button class="btn btn_remove">remove</button>
+            <div class="car__name">Tesla</div>
+          </div>
+          <div class="car__manage-block">
+            <button class="btn btn_start-engine">Start</button>
+            <button class="btn btn_stop-engine">Stop</button>
+          </div>
+          <div class="road">
+            <div class="car__image"></div>
+            <div class="road__line"></div>
+            <div class="finish__flag"></div>
+          </div>
+        </div>
+        <div class="pagination">
+          <button class="btn_prev btn btn__disable">prev</button>
+          <div class="current-page">1</div>
+          <button class="btn_prev btn">next</button>
+        </div>
+      </section>
+    </div>
     <script type="module" src="index.js"></script>
   </body>
 </html>
