@@ -5,8 +5,8 @@
 		"../sass/main.sass"
 	],
 	"sourcesContent": [
-		"@import url('garageView.sass');\n"
+		"@import url('garageView.sass');\n@import url('winnersView.sass');\n"
 	],
 	"names": [],
-	"mappings": "AAAA,OAAO,CAAC,sBAAI"
+	"mappings": "AAAA,OAAO,CAAC,sBAAI;AACZ,OAAO,CAAC,uBAAI"
 }

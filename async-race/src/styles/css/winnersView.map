@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "winnersView.css",
+	"sources": [
+		"../sass/winnersView.sass"
+	],
+	"sourcesContent": [
+		"$bg-btn-manage: #fff172;\n\n.table__results {\n  overflow: auto;\n  margin: 0 auto;\n  width: 80%; }\n\n.table__results table {\n  color: $bg-btn-manage;\n  height: 100%;\n  width: 100%;\n  table-layout: fixed;\n  border-collapse: collapse;\n  border-spacing: 1px;\n  text-align: left; }\n\n.table__results caption {\n  caption-side: top;\n  text-align: center;\n  margin: 30px 0;\n  font-size: 20px;\n  font-weight: 600;\n  cursor: default; }\n\n.table__results thead {\n  background-color: #ffc720; }\n\n.table__results th {\n  border-bottom: 1px solid #8cc0ff;\n  color: #000000;\n  padding: 5px;\n  cursor: default; }\n\n.table__results td {\n  padding: 5px; }\n\n.table__results tr:nth-child(even) td {\n  background-color: #e0f9ff;\n  color: #000000; }\n\n.sortable {\n  cursor: pointer;\n  color: blue;\n  transition: 0.3s; }\n\n.sortable:hover {\n  text-decoration: underline;\n  color: #458627;\n  cursor: pointer; }\n"
+	],
+	"names": [],
+	"mappings": ";AAEA,AAAA,eAAe,CAAC;EACd,QAAQ,EAAE,IAAI;EACd,MAAM,EAAE,MAAM;EACd,KAAK,EAAE,GAAG;CAAG;;;AAEf,AAAA,eAAe,CAAC,KAAK,CAAC;EACpB,KAAK,EARS,OAAO;EASrB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,YAAY,EAAE,KAAK;EACnB,eAAe,EAAE,QAAQ;EACzB,cAAc,EAAE,GAAG;EACnB,UAAU,EAAE,IAAI;CAAG;;;AAErB,AAAA,eAAe,CAAC,OAAO,CAAC;EACtB,YAAY,EAAE,GAAG;EACjB,UAAU,EAAE,MAAM;EAClB,MAAM,EAAE,MAAM;EACd,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,GAAG;EAChB,MAAM,EAAE,OAAO;CAAG;;;AAEpB,AAAA,eAAe,CAAC,KAAK,CAAC;EACpB,gBAAgB,EAAE,OAAO;CAAG;;;AAE9B,AAAA,eAAe,CAAC,EAAE,CAAC;EACjB,aAAa,EAAE,iBAAiB;EAChC,KAAK,EAAE,OAAO;EACd,OAAO,EAAE,GAAG;EACZ,MAAM,EAAE,OAAO;CAAG;;;AAEpB,AAAA,eAAe,CAAC,EAAE,CAAC;EACjB,OAAO,EAAE,GAAG;CAAG;;;AAEjB,AAAA,eAAe,CAAC,EAAE,AAAA,UAAW,CAAA,IAAI,EAAE,EAAE,CAAC;EACpC,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAE,OAAO;CAAG;;;AAEnB,AAAA,SAAS,CAAC;EACR,MAAM,EAAE,OAAO;EACf,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,IAAI;CAAG;;;AAErB,AAAA,SAAS,AAAA,MAAM,CAAC;EACd,eAAe,EAAE,SAAS;EAC1B,KAAK,EAAE,OAAO;EACd,MAAM,EAAE,OAAO;CAAG"
+}
