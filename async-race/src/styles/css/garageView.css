@@ -27,7 +27,6 @@
 .logo {
   display: flex;
 }
-
 /* line 32, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .logo__img {
   width: 120px;
@@ -82,7 +81,7 @@
 
 /* line 70, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .title-field {
-  color: #EBD97F;
+  color: #ebd97f;
   margin: 0;
   padding: 10px 0;
 }
@@ -96,7 +95,7 @@
 
 /* line 80, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .input-text {
-  color: #D39F5A;
+  color: #d39f5a;
 }
 
 /* line 83, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
@@ -108,96 +107,80 @@
   padding: 5px 10px;
   border: 1px solid #85ccbf;
   border-radius: 5px;
-  background-color: #C7FFF2;
+  background-color: #c7fff2;
   cursor: pointer;
   transition: all 0.1s;
 }
-
 /* line 94, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn:hover {
   scale: 1.1;
 }
-
 /* line 96, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn__disable {
-  background-color: #C7FFF2;
+  background-color: #c7fff2;
   opacity: 0.4;
   pointer-events: none;
   cursor: default;
 }
-
 /* line 101, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_dark-theme {
   background-color: #9a9a9a;
 }
-
 /* line 103, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_garage {
-  background-color: #6593FF;
+  background-color: #6593ff;
 }
-
 /* line 105, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_winners {
-  background-color: #6593FF;
+  background-color: #6593ff;
 }
-
 /* line 107, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_prev {
   background-color: #3f85ff;
 }
-
 /* line 109, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_next {
   background-color: #3f85ff;
 }
-
 /* line 111, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_race {
   background-color: #fff172;
 }
-
 /* line 113, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_reset {
   background-color: #fff172;
 }
-
 /* line 115, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_generate {
   background-color: #fff172;
 }
-
 /* line 117, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_select {
   border-radius: 10px;
   color: #acff68;
-  transition: .2s linear;
-  background: #0B63F6;
+  transition: 0.2s linear;
+  background: #0b63f6;
 }
-
 /* line 122, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_select:hover {
   transform: rotateZ(5deg);
 }
-
 /* line 124, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_remove {
   border-radius: 10px;
   color: #eac1c1;
-  transition: .2s linear;
-  background: #0B63F6;
+  transition: 0.2s linear;
+  background: #0b63f6;
 }
-
 /* line 129, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_remove:hover {
   transform: rotateZ(5deg);
 }
-
 /* line 131, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_start-engine {
   border-radius: 20px;
-  background-color: #E42542;
+  background-color: #e42542;
 }
-
 /* line 134, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn_stop-engine {
   border-radius: 20px;
@@ -229,7 +212,6 @@
   width: 100%;
   padding: 0 20px;
 }
-
 /* line 159, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .track__info {
   display: flex;
@@ -258,24 +240,20 @@
   flex-direction: column;
   margin-bottom: 10px;
 }
-
 /* line 179, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__control-block {
   display: flex;
   align-items: center;
   column-gap: 10px;
 }
-
 /* line 183, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__track-block {
   display: flex;
 }
-
 /* line 185, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__name {
   color: #9afffc;
 }
-
 /* line 187, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__run {
   display: flex;
@@ -286,7 +264,6 @@
   padding: 10px 0;
   margin-right: 20px;
 }
-
 /* line 195, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__view {
   display: flex;
@@ -296,14 +273,12 @@
   position: relative;
   overflow: hidden;
 }
-
 /* line 202, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__image-box {
   position: absolute;
   bottom: 0;
   width: 100px;
 }
-
 /* line 206, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car__image {
   fill: gold;

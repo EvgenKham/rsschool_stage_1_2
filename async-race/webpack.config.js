@@ -20,6 +20,7 @@ export default {
     open: true, // Автоматически открывать браузер
     compress: true,
     port: 4000,
+    historyApiFallback: true,
   },
   devtool: "source-map",
   module: {
@@ -29,6 +30,18 @@ export default {
         exclude: /node_module/,
         use: "ts-loader",
       },
+      // {
+      //   test: /\.(png|jpe?g|gif|svg)$/, //правило для обработки изображений
+      //   use: [
+      //     {
+      //       loader: "file-loader",
+      //       options: {
+      //         // name: "[path][name].[ext]", // сохраняет структуру папок и имена файлов
+      //         // outputPath: "assets/", // папка для выходных файлов
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
@@ -42,12 +55,13 @@ export default {
     new HtmlWebpackPlugin({
       template: "src/index.html",
       filename: "index.html",
+      favicon: "src/assets/icons/flag-favicon.png",
     }),
     new MiniCssExtractPlugin({
       filename: "bundle.css",
     }),
     new CopyPlugin({
-      patterns: [{ from: "src/assets", to: "img" }],
+      patterns: [{ from: "src/assets", to: "assets" }],
     }),
   ],
   optimization: {

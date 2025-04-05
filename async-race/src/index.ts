@@ -1,18 +1,26 @@
-import type { Car } from "./utils/api";
+import "./styles/css/main.css";
+// import type { Car } from "./utils/api";
+import createHeader from "./componets/header";
 import {
-  createCar,
-  deleteCar,
-  getAllCars,
-  getCar,
-  updateCar,
-} from "./utils/api";
+  createSettingSection,
+  createGarageSection,
+  craetePagination,
+} from "./componets/garage";
 
-const carId = 2;
+// import {
+//   createCar,
+//   deleteCar,
+//   getAllCars,
+//   getCar,
+//   updateCar,
+// } from "./utils/api";
 
-const exampleNewCar: Car = {
-  name: "New Red Car",
-  color: "#ff0000",
-};
+// const carId = 2;
+
+// const exampleNewCar: Car = {
+//   name: "New Red Car",
+//   color: "#ff0000",
+// };
 
 // getCar(carId).then((car) => {
 //   console.log("Car:", car);
@@ -36,3 +44,11 @@ const exampleNewCar: Car = {
 
 //   return updateCar(updatedCar);
 // });
+
+const container: HTMLElement = document.createElement("div");
+container.classList.add("container");
+container.append(createHeader());
+container.append(createSettingSection());
+container.append(createGarageSection());
+container.append(craetePagination());
+document.body.append(container);

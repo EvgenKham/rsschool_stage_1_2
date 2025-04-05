@@ -29,6 +29,7 @@ export default [
       "no-console": "warn",
       semi: ["error", "always"],
       quotes: ["error", "double"],
+      "max-len": ["error", { code: 100 }],
       "prettier/prettier": "error",
       "unicorn/better-regex": "error",
       "unicorn/error-message": "error",
