@@ -6,6 +6,7 @@ import {
   createGarageSection,
   craetePagination,
 } from "./componets/garage";
+import createWinners from "./componets/winners";
 
 // import {
 //   createCar,
@@ -48,7 +49,9 @@ import {
 const container: HTMLElement = document.createElement("div");
 container.classList.add("container");
 container.append(createHeader());
-container.append(createSettingSection());
-container.append(createGarageSection());
-container.append(craetePagination());
+// container.append(createSettingSection());
+// container.append(createGarageSection());
+// container.append(craetePagination());
+container.append(createWinners());
+
 document.body.append(container);
