@@ -1,7 +1,7 @@
 import createHtmlElement from "../utils/baseHtmlElement";
 
 export default function createWinners(): HTMLElement {
-  const section: HTMLElement = createHtmlElement("div", ["winners"]);
+  const section: HTMLElement = createHtmlElement("section", ["winners"]);
 
   const tableBox: HTMLElement = createHtmlElement("div", ["table__results"]);
   const table: HTMLElement = document.createElement("table");
