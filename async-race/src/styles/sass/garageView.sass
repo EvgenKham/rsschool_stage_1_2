@@ -1,0 +1,235 @@
+$border-color: #85ccbf
+$bg-btn: #C7FFF2
+$bg-btn-nav: #6593FF
+$bg-btn-manage: #fff172
+$bg-btn-pagination: #3f85ff
+$text-color: #EBD97F
+$text-label: #D39F5A
+
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  max-width: 1440px
+  min-height: 100vh
+  margin: 0 auto
+  overflow: hidden
+  background-image: url('../../assets/images/background-road.jpg')
+  background-position: center
+  background-size: cover
+  background-attachment: fixed
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  max-width: 100vw
+  width: 100%
+  padding: 0 20px
+
+.logo
+  display: flex
+  &__img
+    width: 120px
+
+.navigation
+  display: flex
+  gap: 10px
+
+.settings
+  display: grid
+  // grid-template-columns: auto auto auto
+  // grid-template-rows: auto auto
+  grid-template-areas: "create-field create-field manage" "update-field update-field manage"
+  max-width: 580px
+
+.create-field
+  display: grid
+  grid-area: create-field
+  max-width: 430px
+
+#newNameId
+  max-width: 170px
+
+#updateNameId
+  max-width: 170px
+
+.update-field
+  display: grid
+  grid-area: update-field
+  max-width: 430px
+
+.manage
+  display: grid
+  grid-area: manage
+  align-content: space-between
+  padding-top: 20px
+  margin-left: 15px
+  max-width: 90px
+
+.title-field
+  color: $text-color
+  margin: 0
+  padding: 10px 0
+
+.input-box
+  display: flex
+  align-items: center
+  gap: 10px
+
+.input-text
+  color: $text-label
+
+.btn
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 16px
+  padding: 5px 10px
+  border: 1px solid $border-color
+  border-radius: 5px
+  background-color: $bg-btn
+  cursor: pointer
+  transition: all 0.1s
+  &:hover
+    scale: 1.1
+  &__disable
+    background-color: $bg-btn
+    opacity: 0.4
+    pointer-events: none
+    cursor: default
+  &_dark-theme
+    background-color: #9a9a9a
+  &_garage
+    background-color: $bg-btn-nav
+  &_winners
+    background-color: $bg-btn-nav
+  &_prev
+    background-color: $bg-btn-pagination
+  &_next
+    background-color: $bg-btn-pagination
+  &_race
+    background-color: $bg-btn-manage
+  &_reset
+    background-color: $bg-btn-manage
+  &_generate
+    background-color: $bg-btn-manage
+  &_select
+    border-radius: 10px
+    color: #acff68
+    transition: .2s linear
+    background: #0B63F6
+    &:hover
+      transform: rotateZ(5deg)
+  &_remove
+    border-radius: 10px
+    color: #eac1c1
+    transition: .2s linear
+    background: #0B63F6
+    &:hover
+      transform: rotateZ(5deg)
+  &_start-engine
+    border-radius: 20px
+    background-color: #E42542
+  &_stop-engine
+    border-radius: 20px
+    background-color: #25ff51
+
+.current-page
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 50px
+  height: 50px
+  font-weight: 600
+  font-size: 18px
+  text-align: center
+  border: 2px solid #fddcc4
+  border-radius: 30px
+  background: #fddcc4
+  cursor: default
+
+.track
+  display: flex
+  justify-content: space-between
+  flex-direction: column
+  max-width: 100vw
+  width: 100%
+  padding: 0 20px
+  &__info
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    padding: 20px 0 40px 0
+
+.title-page
+  color: #9ac100
+  margin: 0
+  padding-bottom: 20px
+
+.all-cars
+  color: #ffa44e
+  margin: 0
+
+.car
+  display: flex
+  flex-direction: column
+  margin-bottom: 10px
+  &__control-block
+    display: flex
+    align-items: center
+    column-gap: 10px
+  &__track-block
+    display: flex
+  &__name
+    color: #9afffc
+  &__run
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    width: fit-content
+    row-gap: 10px
+    padding: 10px 0
+    margin-right: 20px
+  &__view
+    display: flex
+    justify-content: space-between
+    width: 95%
+    align-items: flex-end
+    position: relative
+    overflow: hidden
+  &__image-box
+    position: absolute
+    bottom: 0
+    width: 100px
+  &__image
+    fill: gold
+    transition: transform 1s ease-in-out
+    // transform: translateX(800%)
+
+.finish__flag
+  position: absolute
+  top: 50%
+  right: 30px
+  transform: translate(-50%, -50%)
+  z-index: 10
+
+.flag-image
+  width: 70px
+  filter: invert(70%) sepia(100%) saturate(1000%) hue-rotate(40deg)
+
+.road__line
+  display: flex
+  width: 100%
+  height: 2px
+  border-top: 2px dashed #ffffff
+  margin-bottom: 20px
+
+.pagination
+  display: flex
+  align-items: center
+  flex-direction: row
+  justify-content: center
+  column-gap: 20px
+  margin: 40px 0
