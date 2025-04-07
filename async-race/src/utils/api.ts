@@ -154,8 +154,6 @@ export async function getDateForWins(): Promise<WinnerTableDate[]> {
       };
     });
 
-    console.log(tableRows);
-
     return tableRows;
   } catch (error) {
     console.log("Error getitng date for winner table:", error);

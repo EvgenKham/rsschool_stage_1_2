@@ -13,8 +13,9 @@ const sections: { [key: string]: HTMLElement } = {
   header: createHeader(),
   setting: createSettingSection(),
   track: createGarageSection(),
-  pagination: craetePagination(),
+  paginationGarage: craetePagination(),
   winners: createWinners(),
+  paginationWinners: craetePagination(),
 };
 
 export function renderStartPage(): void {
@@ -23,10 +24,13 @@ export function renderStartPage(): void {
   container.append(sections.header);
   container.append(sections.setting);
   container.append(sections.track);
-  container.append(sections.pagination);
-  const winnerSection: HTMLElement = sections.winners;
-  winnerSection.style.display = "none";
-  container.append(winnerSection);
+  container.append(sections.paginationGarage);
+
+  const winnerTable: HTMLElement = sections.winners;
+  winnerTable.style.display = "none";
+  const winnerPagination: HTMLElement = sections.paginationWinners;
+  winnerPagination.style.display = "none";
+  container.append(winnerTable, winnerPagination);
   document.body.append(container);
 }
 
@@ -34,16 +38,18 @@ export function renderStartPage(): void {
 function showGaragePage(): void {
   sections.setting.style.display = "grid";
   sections.track.style.display = "flex";
-  sections.pagination.style.display = "flex";
+  sections.paginationGarage.style.display = "flex";
   sections.winners.style.display = "none";
+  sections.paginationWinners.style.display = "none";
 }
 
 // Функция для отображения Winners page
 function showWinnersPage(): void {
   sections.setting.style.display = "none";
   sections.track.style.display = "none";
-  sections.pagination.style.display = "none";
+  sections.paginationGarage.style.display = "none";
   sections.winners.style.display = "block";
+  sections.paginationWinners.style.display = "flex";
 }
 
 // Обработчики событий навигации
