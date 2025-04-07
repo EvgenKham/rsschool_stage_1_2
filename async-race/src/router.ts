@@ -1,44 +1,90 @@
-// Управляет навигацией между разными частями приложения, обеспечивая бесшовный переход между "Garage" и "Winners"
+import createHeader from "./componets/header";
+import {
+  createSettingSection,
+  createGarageSection,
+  craetePagination,
+} from "./componets/garage";
+import createWinners from "./componets/winners";
+// Управляет навигацией между разными частями приложения,
+// обеспечивая бесшовный переход между "Garage" и "Winners"
 // API: History API
 
-// Функция для загрузки HTML-контента в элемент с id "app"
-// async function loadComponent(component: string): Promise<void> {
-//   const response = await fetch(`components/${component}.html`);
-//   const html = await response.text();
-//   document.body.innerHTML = html;
-//   setupNavigation(); // Настройка навигации после загрузки нового контента
-// }
+const sections: { [key: string]: HTMLElement } = {
+  header: createHeader(),
+  setting: createSettingSection(),
+  track: createGarageSection(),
+  pagination: craetePagination(),
+  winners: createWinners(),
+};
 
-// Функция для настройки навигации по ссылкам
-// function setupNavigation(): void {
-//   const garageLink = document.getElementById("link-garage");
-//   const winnersLink = document.getElementById("link-winners");
+export function renderStartPage(): void {
+  const container: HTMLElement = document.createElement("div");
+  container.classList.add("container");
+  container.append(sections.header);
+  container.append(sections.setting);
+  container.append(sections.track);
+  container.append(sections.pagination);
+  const winnerSection: HTMLElement = sections.winners;
+  winnerSection.style.display = "none";
+  container.append(winnerSection);
+  document.body.append(container);
+}
 
-//   if (garageLink) {
-//     garageLink.addEventListener("click", (event) => {
-//       event.preventDefault();
-//       history.pushState({ page: "garage" }, "Гараж", "garage");
-//       loadComponent("garage");
-//     });
-//   }
+// Функция для отображения Garage page
+function showGaragePage(): void {
+  sections.setting.style.display = "grid";
+  sections.track.style.display = "flex";
+  sections.pagination.style.display = "flex";
+  sections.winners.style.display = "none";
+}
 
-//   if (winnersLink) {
-//     winnersLink.addEventListener("click", (event) => {
-//       event.preventDefault();
-//       history.pushState({ page: "winners" }, "Победители", "winners");
-//       loadComponent("winners");
-//     });
-//   }
-// }
+// Функция для отображения Winners page
+function showWinnersPage(): void {
+  sections.setting.style.display = "none";
+  sections.track.style.display = "none";
+  sections.pagination.style.display = "none";
+  sections.winners.style.display = "block";
+}
 
-// Обработка события "popstate" для поддержки кнопок "Назад" и "Вперед"
-// window.addEventListener("popstate", (event) => {
-//   if (event.state) {
-//     loadComponent(event.state.page);
-//   }
-// });
+// Обработчики событий навигации
+document.addEventListener("DOMContentLoaded", function () {
+  const buttonGarage: HTMLButtonElement | null =
+    document.querySelector(".btn_garage");
+  const buttonWinners: HTMLButtonElement | null =
+    document.querySelector(".btn_winners");
 
-// Загрузка начального компонента при загрузке страницы
-// window.onload = (): void => {
-//   loadComponent("garage"); // Загружаем компонент Garage по умолчанию
-// };
+  buttonGarage?.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateTo("garage");
+    buttonGarage.classList.add("btn__disable");
+    buttonWinners?.classList.remove("btn__disable");
+  });
+
+  buttonWinners?.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateTo("winners");
+    buttonGarage?.classList.remove("btn__disable");
+    buttonWinners.classList.add("btn__disable");
+  });
+});
+
+// Функция для обработки навигации
+function navigateTo(page: string): void {
+  history.pushState({ page }, "", page);
+  if (page === "garage") {
+    showGaragePage();
+  } else if (page === "winners") {
+    showWinnersPage();
+  }
+}
+
+// Обработка события "popstate" для навигации назад/вперед
+window.addEventListener("popstate", (event) => {
+  if (event.state) {
+    if (event.state.page === "garage") {
+      showGaragePage();
+    } else if (event.state.page === "winners") {
+      showWinnersPage();
+    }
+  }
+});

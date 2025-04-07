@@ -10,8 +10,7 @@
   background-image: url("../../assets/images/background-road.jpg");
   background-position: center;
   background-size: cover;
-  background-attachment: fixed;
-}
+  background-attachment: fixed; }
 
 /* line 22, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .header {
@@ -20,54 +19,45 @@
   align-items: center;
   max-width: 100vw;
   width: 100%;
-  padding: 0 20px;
-}
+  padding: 0 20px; }
 
 /* line 30, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .logo {
-  display: flex;
-}
-/* line 32, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.logo__img {
-  width: 120px;
-}
+  display: flex; }
+  /* line 32, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .logo__img {
+    width: 120px; }
 
 /* line 35, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .navigation {
   display: flex;
-  gap: 10px;
-}
+  gap: 10px; }
 
 /* line 39, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .settings {
   display: grid;
   grid-template-areas: "create-field create-field manage" "update-field update-field manage";
-  max-width: 580px;
-}
+  max-width: 580px; }
 
 /* line 46, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .create-field {
   display: grid;
   grid-area: create-field;
-  max-width: 430px;
-}
+  max-width: 430px; }
 
 /* line 51, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 #newNameId {
-  max-width: 170px;
-}
+  max-width: 170px; }
 
 /* line 54, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 #updateNameId {
-  max-width: 170px;
-}
+  max-width: 170px; }
 
 /* line 57, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .update-field {
   display: grid;
   grid-area: update-field;
-  max-width: 430px;
-}
+  max-width: 430px; }
 
 /* line 62, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .manage {
@@ -76,27 +66,23 @@
   align-content: space-between;
   padding-top: 20px;
   margin-left: 15px;
-  max-width: 90px;
-}
+  max-width: 90px; }
 
 /* line 70, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .title-field {
-  color: #ebd97f;
+  color: #EBD97F;
   margin: 0;
-  padding: 10px 0;
-}
+  padding: 10px 0; }
 
 /* line 75, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .input-box {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
+  gap: 10px; }
 
 /* line 80, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .input-text {
-  color: #d39f5a;
-}
+  color: #D39F5A; }
 
 /* line 83, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .btn {
@@ -107,85 +93,68 @@
   padding: 5px 10px;
   border: 1px solid #85ccbf;
   border-radius: 5px;
-  background-color: #c7fff2;
+  background-color: #C7FFF2;
   cursor: pointer;
-  transition: all 0.1s;
-}
-/* line 94, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn:hover {
-  scale: 1.1;
-}
-/* line 96, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn__disable {
-  background-color: #c7fff2;
-  opacity: 0.4;
-  pointer-events: none;
-  cursor: default;
-}
-/* line 101, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_dark-theme {
-  background-color: #9a9a9a;
-}
-/* line 103, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_garage {
-  background-color: #6593ff;
-}
-/* line 105, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_winners {
-  background-color: #6593ff;
-}
-/* line 107, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_prev {
-  background-color: #3f85ff;
-}
-/* line 109, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_next {
-  background-color: #3f85ff;
-}
-/* line 111, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_race {
-  background-color: #fff172;
-}
-/* line 113, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_reset {
-  background-color: #fff172;
-}
-/* line 115, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_generate {
-  background-color: #fff172;
-}
-/* line 117, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_select {
-  border-radius: 10px;
-  color: #acff68;
-  transition: 0.2s linear;
-  background: #0b63f6;
-}
-/* line 122, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_select:hover {
-  transform: rotateZ(5deg);
-}
-/* line 124, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_remove {
-  border-radius: 10px;
-  color: #eac1c1;
-  transition: 0.2s linear;
-  background: #0b63f6;
-}
-/* line 129, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_remove:hover {
-  transform: rotateZ(5deg);
-}
-/* line 131, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_start-engine {
-  border-radius: 20px;
-  background-color: #e42542;
-}
-/* line 134, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.btn_stop-engine {
-  border-radius: 20px;
-  background-color: #25ff51;
-}
+  transition: all 0.1s; }
+  /* line 94, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn:hover {
+    scale: 1.1; }
+  /* line 96, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn__disable {
+    background-color: #C7FFF2;
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default; }
+  /* line 101, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_dark-theme {
+    background-color: #9a9a9a; }
+  /* line 103, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_garage {
+    background-color: #6593FF; }
+  /* line 105, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_winners {
+    background-color: #6593FF; }
+  /* line 107, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_prev {
+    background-color: #3f85ff; }
+  /* line 109, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_next {
+    background-color: #3f85ff; }
+  /* line 111, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_race {
+    background-color: #fff172; }
+  /* line 113, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_reset {
+    background-color: #fff172; }
+  /* line 115, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_generate {
+    background-color: #fff172; }
+  /* line 117, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_select {
+    border-radius: 10px;
+    color: #acff68;
+    transition: .2s linear;
+    background: #0B63F6; }
+    /* line 122, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+    .btn_select:hover {
+      transform: rotateZ(5deg); }
+  /* line 124, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_remove {
+    border-radius: 10px;
+    color: #eac1c1;
+    transition: .2s linear;
+    background: #0B63F6; }
+    /* line 129, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+    .btn_remove:hover {
+      transform: rotateZ(5deg); }
+  /* line 131, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_start-engine {
+    border-radius: 20px;
+    background-color: #E42542; }
+  /* line 134, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .btn_stop-engine {
+    border-radius: 20px;
+    background-color: #25ff51; }
 
 /* line 138, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .current-page {
@@ -200,8 +169,7 @@
   border: 2px solid #fddcc4;
   border-radius: 30px;
   background: #fddcc4;
-  cursor: default;
-}
+  cursor: default; }
 
 /* line 152, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .track {
@@ -210,80 +178,67 @@
   flex-direction: column;
   max-width: 100vw;
   width: 100%;
-  padding: 0 20px;
-}
-/* line 159, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.track__info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 0 40px 0;
-}
+  padding: 0 20px; }
+  /* line 159, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .track__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0 40px 0; }
 
 /* line 166, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .title-page {
   color: #9ac100;
   margin: 0;
-  padding-bottom: 20px;
-}
+  padding-bottom: 20px; }
 
 /* line 171, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .all-cars {
   color: #ffa44e;
-  margin: 0;
-}
+  margin: 0; }
 
 /* line 175, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .car {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-}
-/* line 179, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__control-block {
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
-}
-/* line 183, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__track-block {
-  display: flex;
-}
-/* line 185, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__name {
-  color: #9afffc;
-}
-/* line 187, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__run {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: fit-content;
-  row-gap: 10px;
-  padding: 10px 0;
-  margin-right: 20px;
-}
-/* line 195, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__view {
-  display: flex;
-  justify-content: space-between;
-  width: 95%;
-  align-items: flex-end;
-  position: relative;
-  overflow: hidden;
-}
-/* line 202, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__image-box {
-  position: absolute;
-  bottom: 0;
-  width: 100px;
-}
-/* line 206, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
-.car__image {
-  fill: gold;
-  transition: transform 1s ease-in-out;
-}
+  margin-bottom: 10px; }
+  /* line 179, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__control-block {
+    display: flex;
+    align-items: center;
+    column-gap: 10px; }
+  /* line 183, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__track-block {
+    display: flex; }
+  /* line 185, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__name {
+    color: #9afffc; }
+  /* line 187, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__run {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    row-gap: 10px;
+    padding: 10px 0;
+    margin-right: 20px; }
+  /* line 195, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__view {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden; }
+  /* line 202, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__image-box {
+    position: absolute;
+    bottom: 0;
+    width: 100px; }
+  /* line 206, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
+  .car__image {
+    transition: transform 1s ease-in-out; }
 
 /* line 211, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .finish__flag {
@@ -291,14 +246,12 @@
   top: 50%;
   right: 30px;
   transform: translate(-50%, -50%);
-  z-index: 10;
-}
+  z-index: 10; }
 
 /* line 218, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .flag-image {
   width: 70px;
-  filter: invert(70%) sepia(100%) saturate(1000%) hue-rotate(40deg);
-}
+  filter: invert(70%) sepia(100%) saturate(1000%) hue-rotate(40deg); }
 
 /* line 222, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .road__line {
@@ -306,8 +259,7 @@
   width: 100%;
   height: 2px;
   border-top: 2px dashed #ffffff;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 /* line 229, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/garageView.sass */
 .pagination {
@@ -316,7 +268,6 @@
   flex-direction: row;
   justify-content: center;
   column-gap: 20px;
-  margin: 40px 0;
-}
+  margin: 40px 0; }
 
 /*# sourceMappingURL=garageView.css.map */

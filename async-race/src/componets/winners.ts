@@ -1,7 +1,10 @@
+import { getDateForWins } from "../utils/api";
 import createHtmlElement from "../utils/baseHtmlElement";
+import { createSvgImage } from "../componets/garage";
+import type { WinnerTableDate } from "../utils/api";
 
 export default function createWinners(): HTMLElement {
-  const section: HTMLElement = createHtmlElement("div", ["winners"]);
+  const section: HTMLElement = createHtmlElement("section", ["winners"]);
 
   const tableBox: HTMLElement = createHtmlElement("div", ["table__results"]);
   const table: HTMLElement = document.createElement("table");
@@ -12,10 +15,19 @@ export default function createWinners(): HTMLElement {
   const tableBody: HTMLElement = document.createElement("tbody");
 
   //TODO количесво строк с победителями будет зависеть от БД
-  const rowOne: HTMLElement = createTableBodyRow("Tesla", "04:19");
-  const rowTwo: HTMLElement = createTableBodyRow("BMW X5", "07:40");
+  getDateForWins().then((tableRows) => {
+    tableRows.forEach((item) => {
+      const rowOne: HTMLElement = createTableBodyRow(
+        item.id,
+        item.name,
+        item.color,
+        item.wins,
+        item.time,
+      );
+      tableBody.append(rowOne);
+    });
+  });
 
-  tableBody.append(rowOne, rowTwo);
   table.append(caption, tableHead, tableBody);
   tableBox.append(table);
   section.append(tableBox);
@@ -40,13 +52,22 @@ function createTableHeadRow(): HTMLElement {
   return headRow;
 }
 
-function createTableBodyRow(name: string, time: string): HTMLElement {
+function createTableBodyRow(
+  id: number,
+  name: string,
+  color: string,
+  wins: number,
+  time: string,
+): HTMLElement {
   const row: HTMLElement = document.createElement("tr");
 
-  const numberCell: HTMLElement = createHtmlElement("td", [], "1");
-  const imageCell: HTMLElement = createHtmlElement("td", [], "Image");
+  const numberCell: HTMLElement = createHtmlElement("td", [], String(id));
+  const imageCell: HTMLElement = createHtmlElement("td", []);
+  const carImage: SVGElement = createSvgImage(color);
+  carImage.style.width = "50px";
+  imageCell.append(carImage);
   const nameCell: HTMLElement = createHtmlElement("td", [], name);
-  const countWinCell: HTMLElement = createHtmlElement("td", [], "3");
+  const countWinCell: HTMLElement = createHtmlElement("td", [], String(wins));
   const timeCell: HTMLElement = createHtmlElement("td", [], time);
 
   row.append(numberCell, imageCell, nameCell, countWinCell, timeCell);

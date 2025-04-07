@@ -1,5 +1,6 @@
 import createHtmlElement from "../utils/baseHtmlElement";
 import { paths } from "../utils/svgCarPaths";
+import { getAllCars } from "../utils/api";
 import type { Paths } from "../utils/svgCarPaths";
 
 //Создание общей области с 2мя боксами (для новой машинки и обновления выбраной),
@@ -16,6 +17,7 @@ function createSettingSection(): HTMLElement {
       color: "newColorId",
     },
     "create",
+    false,
   );
 
   const updateBox: HTMLElement = createInputField(
@@ -26,6 +28,7 @@ function createSettingSection(): HTMLElement {
       color: "updateColorId",
     },
     "update",
+    true,
   );
 
   const manageBox: HTMLElement = createHtmlElement("div", ["manage"]);
@@ -58,6 +61,7 @@ function createInputField(
   title: string,
   inputId: { name: string; color: string },
   buttonText: string,
+  disabled: boolean,
 ): HTMLElement {
   const box: HTMLElement = createHtmlElement("div", [name]);
   const caption: HTMLElement = createHtmlElement("h2", ["title-field"], title);
@@ -73,6 +77,7 @@ function createInputField(
   const inputName: HTMLElement = createHtmlElement("input", []);
   inputName.setAttribute("type", "text");
   inputName.setAttribute("id", inputId.name);
+  if (disabled) inputName.setAttribute("disabled", "true");
 
   const labeColor: HTMLElement = createHtmlElement(
     "label",
@@ -85,10 +90,13 @@ function createInputField(
   inputColor.setAttribute("type", "color");
   inputColor.setAttribute("id", inputId.color);
   inputColor.setAttribute("value", "#58F8F3");
+  if (disabled) inputColor.setAttribute("disabled", "true");
 
+  const classes: string[] = ["btn", "btn_create"];
+  if (disabled) classes.push("btn__disable");
   const button: HTMLElement = createHtmlElement(
     "button",
-    ["btn", "btn_create"],
+    [...classes],
     buttonText,
   );
 
@@ -108,20 +116,26 @@ function createGarageSection(): HTMLElement {
     ["title-page"],
     "GARAGE",
   );
-  const totalInfo: HTMLElement = createHtmlElement(
-    "h3",
-    ["all-cars"],
-    "Total number of cars: 4",
-  );
-  infoBox.append(caption, totalInfo);
+  infoBox.append(caption);
+
+  getAllCars().then((cars) => {
+    const totalInfo: HTMLElement = createHtmlElement(
+      "h3",
+      ["all-cars"],
+      `Total number of cars: ${cars.length}`,
+    );
+    infoBox.append(totalInfo);
+  });
+
   section.append(infoBox);
 
   //TODO Будет получать с сервера через API количество всех машин(имена и цвет)
-  //TODO Создание всех машин через цикл
-  for (let i = 0; i < 3; i++) {
-    const carBox: HTMLElement = createCarItem("Tesla", "#FF338F");
-    section.append(carBox);
-  }
+  getAllCars().then((cars) => {
+    cars.forEach((car) => {
+      const carBox: HTMLElement = createCarItem(car.name, car.color);
+      section.append(carBox);
+    });
+  });
 
   return section;
 }
@@ -205,7 +219,7 @@ function buildCarView(color: string): HTMLElement {
 }
 
 //Полное создание SVG картинки
-function createSvgImage(color: string): SVGElement {
+export function createSvgImage(color: string): SVGElement {
   const svgNamespace = "http://www.w3.org/2000/svg";
 
   const svg = document.createElementNS(svgNamespace, "svg");
@@ -228,7 +242,7 @@ function createSvgImage(color: string): SVGElement {
 }
 
 //Склейка всех path для корректной отрисовки SVG картинки
-function combinePaths(paths: Paths): string[] {
+export function combinePaths(paths: Paths): string[] {
   return [
     paths.path1.join(""),
     paths.path2.join(""),
