@@ -4,6 +4,20 @@ export type Car = {
   id?: number;
 };
 
+export type Winner = {
+  wins: number;
+  time: string;
+  id: number;
+};
+
+export type WinnerTableDate = {
+  id: number;
+  color: string;
+  name: string;
+  wins: number;
+  time: string;
+};
+
 // type Option = {
 //   method: string;
 //   headers: Object;
@@ -94,6 +108,57 @@ export async function updateCar(updateCar: Car): Promise<Car> {
     const car: Car = await response.json();
     return car;
   } catch (error) {
+    throw error;
+  }
+}
+
+export async function getAllWinners(): Promise<Winner[]> {
+  const url: string = "http://localhost:3000/winners";
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`No got all winners. HTTP code: ${response.status}`);
+    }
+
+    const winners: Winner[] = await response.json();
+    return winners;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getDateForWins(): Promise<WinnerTableDate[]> {
+  try {
+    const winners = await getAllWinners();
+    const cars = await getAllCars();
+
+    const carsMap = new Map<number, Car>();
+    for (const car of cars) {
+      if (car.id) {
+        carsMap.set(car.id, car);
+      }
+    }
+
+    // Формируем массив строк таблицы
+    const tableRows: WinnerTableDate[] = winners.map((winner) => {
+      const car = carsMap.get(winner.id); // Получаем автомобиль по ID победителя
+
+      return {
+        id: winner.id,
+        color: car ? car.color : "Unknown",
+        name: car ? car.name : "Unknown",
+        wins: winner.wins,
+        time: winner.time,
+      };
+    });
+
+    console.log(tableRows);
+
+    return tableRows;
+  } catch (error) {
+    console.log("Error getitng date for winner table:", error);
     throw error;
   }
 }
