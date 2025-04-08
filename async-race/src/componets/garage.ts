@@ -1,6 +1,6 @@
 import createHtmlElement from "../utils/baseHtmlElement";
 import { paths } from "../utils/svgCarPaths";
-import { getAllCars, createCar, deleteCar } from "../utils/api";
+import { getAllCars, createCar, deleteCar, updateCar } from "../utils/api";
 import { sections } from "../router";
 import type { Car } from "../utils/api";
 import type { Paths } from "../utils/svgCarPaths";
@@ -97,8 +97,15 @@ function createInputField(
   inputColor.setAttribute("value", "#58F8F3");
   if (disabled) inputColor.setAttribute("disabled", "true");
 
-  const classes: string[] = ["btn", "btn_create"];
-  if (disabled) classes.push("btn__disable");
+  const classes: string[] = ["btn"];
+
+  if (disabled) {
+    classes.push("btn_update");
+    classes.push("btn__disable");
+  } else {
+    classes.push("btn_create");
+  }
+
   const button: HTMLElement = createHtmlElement(
     "button",
     [...classes],
@@ -154,6 +161,7 @@ function createCarItem(
 ): HTMLElement {
   const box: HTMLElement = createHtmlElement("div", ["car"]);
 
+  //Задаем ID контейнеру (соответсвует ID из БД) для далейшего манипулирования с авто
   box.dataset.carId = id?.toString();
 
   const blockControl: HTMLElement = buildCarUpdate(id, name);
@@ -186,8 +194,11 @@ function buildCarUpdate(id: number | undefined, name: string): HTMLElement {
     ["btn", "btn_remove"],
     "remove",
   );
-  // buttonRemove.dataset.carId = id?.toString();
+
   // Вешаем обработчик события на кнопку при ее создании
+  // Так потом к ним не получить доступ - они формируются динамически,
+  // после запроса данных из БД
+  buttonSelect.addEventListener("click", selectUpdatingCar);
   buttonRemove.addEventListener("click", deleteCarFromPage);
 
   const carName: HTMLElement = createHtmlElement("div", ["car__name"], name);
@@ -304,6 +315,8 @@ export async function createNewCar(): Promise<void> {
         color: inputColor.value,
       };
 
+      console.log(newCar.color);
+
       if (newCar.name !== "") {
         await createCar(newCar);
 
@@ -326,7 +339,8 @@ export async function createNewCar(): Promise<void> {
   }
 }
 
-export async function deleteCarFromPage(event: Event): Promise<void> {
+//Удаление авно по ID из БД и на странице
+async function deleteCarFromPage(event: Event): Promise<void> {
   const target = event.currentTarget;
 
   if (target instanceof HTMLElement) {
@@ -341,18 +355,35 @@ export async function deleteCarFromPage(event: Event): Promise<void> {
         await deleteCar(Number(carBoxId));
         //Обновляем число авто в гараже на странице
         await updateCountTrack();
-
-        // Извлекаем имя автомобиля
-        // const carNameElement = carBox.querySelector(".car__name");
-        // const carName = carNameElement?.textContent;
-        // // Извлекаем цвет изображения (если цвет хранится в атрибуте fill)
-        // const carImageElement = carBox.querySelector(".car__image");
-        // const carColor = carImageElement?.getAttribute("fill");
-        // console.log(`Имя автомобиля: ${carName}`);
-        // console.log(`Цвет автомобиля: ${carColor}`);
       }
     } catch (error) {
       console.error("No delete car:", error);
+    }
+  }
+}
+
+//Добавляем имя и цвет в поля Update
+async function selectUpdatingCar(event: Event): Promise<void> {
+  const target = event.currentTarget;
+
+  if (target instanceof HTMLElement) {
+    const carBox = target.closest(".car");
+
+    try {
+      if (carBox) {
+        // Находим ID авто
+        const carBoxId = Number(carBox.getAttribute("data-car-id"));
+        // Извлекаем имя авто
+        const carNameElement = carBox.querySelector(".car__name");
+        const carName = carNameElement?.textContent;
+        // Извлекаем цвет авто
+        const carImageElement = carBox.querySelector(".car__image");
+        const carColor = carImageElement?.getAttribute("fill");
+        // Передаем данные в форму обновления
+        showSelectedCar(carBoxId, String(carName), String(carColor));
+      }
+    } catch (error) {
+      console.error("No update car:", error);
     }
   }
 }
@@ -383,6 +414,83 @@ async function getIdNewCar(name: string, color: string): id {
     }
   });
   return id;
+}
+
+function showSelectedCar(id: number, name: string, color: string): void {
+  const inputName: HTMLInputElement | null =
+    document.querySelector("#updateNameId");
+  const inputColor: HTMLInputElement | null =
+    document.querySelector("#updateColorId");
+  const buttonUpdate: HTMLElement | null =
+    document.querySelector(".btn_update");
+
+  if (inputName && inputColor && buttonUpdate) {
+    inputName.removeAttribute("disabled");
+    inputColor.removeAttribute("disabled");
+    buttonUpdate?.classList.remove("btn__disable");
+    inputName.value = name;
+    inputColor.value = color;
+    //Задаем ID контейнеру (соответсвует ID из БД) для далейшего манипулирования с авто
+    buttonUpdate.dataset.boxId = id?.toString();
+  }
+}
+
+export async function updateSelectedCar(): Promise<void> {
+  const inputName: HTMLInputElement | null =
+    document.querySelector("#updateNameId");
+  const inputColor: HTMLInputElement | null =
+    document.querySelector("#updateColorId");
+  const buttonUpdate: HTMLElement | null =
+    document.querySelector(".btn_update");
+
+  try {
+    if (inputName && inputColor && buttonUpdate) {
+      const newCar: Car = {
+        name: inputName.value,
+        color: inputColor.value,
+        id: Number(buttonUpdate.dataset.boxId),
+      };
+
+      updateViewCar(newCar);
+      resetUpdateForm();
+      updateCar(newCar);
+    }
+  } catch (error) {
+    console.error("Error when created car", error);
+  }
+}
+
+function updateViewCar(car: Car): void {
+  const selector: string = `[data-car-id="${car.id}"]`;
+  const boxCar: HTMLElement | null = document.querySelector(selector);
+  if (boxCar) {
+    const image: HTMLElement | null = boxCar.querySelector(".car__image");
+    if (image) {
+      image.setAttribute("fill", car.color);
+    }
+    const name: HTMLElement | null = boxCar.querySelector(".car__name");
+    if (name) {
+      name.textContent = car.name;
+    }
+  }
+}
+
+function resetUpdateForm(): void {
+  const inputName: HTMLInputElement | null =
+    document.querySelector("#updateNameId");
+  const inputColor: HTMLInputElement | null =
+    document.querySelector("#updateColorId");
+  const buttonUpdate: HTMLElement | null =
+    document.querySelector(".btn_update");
+
+  if (inputName && inputColor && buttonUpdate) {
+    inputName.setAttribute("disabled", "true");
+    inputColor.setAttribute("disabled", "true");
+    buttonUpdate?.classList.add("btn__disable");
+    inputName.value = "";
+    inputColor.value = "#58f8f3";
+    delete buttonUpdate.dataset.boxId;
+  }
 }
 
 export { createSettingSection, createGarageSection, craetePagination };
