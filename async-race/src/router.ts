@@ -9,7 +9,7 @@ import createWinners from "./componets/winners";
 // обеспечивая бесшовный переход между "Garage" и "Winners"
 // API: History API
 
-const sections: { [key: string]: HTMLElement } = {
+export const sections: { [key: string]: HTMLElement } = {
   header: createHeader(),
   setting: createSettingSection(),
   track: createGarageSection(),

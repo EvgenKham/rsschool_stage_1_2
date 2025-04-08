@@ -1,10 +1,15 @@
 import createHtmlElement from "../utils/baseHtmlElement";
 import { paths } from "../utils/svgCarPaths";
-import { getAllCars } from "../utils/api";
+import { getAllCars, createCar, deleteCar } from "../utils/api";
+import { sections } from "../router";
+import type { Car } from "../utils/api";
 import type { Paths } from "../utils/svgCarPaths";
+
+type id = Promise<number | undefined>;
 
 //Создание общей области с 2мя боксами (для новой машинки и обновления выбраной),
 //а так же кнопками гонка, сброс и генерации 100 машинок
+
 //TODO разбить на более мелкие функции
 function createSettingSection(): HTMLElement {
   const section: HTMLElement = createHtmlElement("section", ["settings"]);
@@ -84,7 +89,7 @@ function createInputField(
     ["input-text"],
     "Color",
   );
-  labelName.setAttribute("for", inputId.color);
+  labeColor.setAttribute("for", inputId.color);
 
   const inputColor: HTMLElement = createHtmlElement("input", []);
   inputColor.setAttribute("type", "color");
@@ -122,7 +127,7 @@ function createGarageSection(): HTMLElement {
     const totalInfo: HTMLElement = createHtmlElement(
       "h3",
       ["all-cars"],
-      `Total number of cars: ${cars.length}`,
+      `Total number of cars: #${cars.length}`,
     );
     infoBox.append(totalInfo);
   });
@@ -132,7 +137,8 @@ function createGarageSection(): HTMLElement {
   //TODO Будет получать с сервера через API количество всех машин(имена и цвет)
   getAllCars().then((cars) => {
     cars.forEach((car) => {
-      const carBox: HTMLElement = createCarItem(car.name, car.color);
+      const id: number | undefined = car.id;
+      const carBox: HTMLElement = createCarItem(id, car.name, car.color);
       section.append(carBox);
     });
   });
@@ -141,10 +147,16 @@ function createGarageSection(): HTMLElement {
 }
 
 //Создание одной машинки с блоками кнопок Select&Remove и Start&Stop
-function createCarItem(name: string, color: string): HTMLElement {
+function createCarItem(
+  id: number | undefined,
+  name: string,
+  color: string,
+): HTMLElement {
   const box: HTMLElement = createHtmlElement("div", ["car"]);
 
-  const blockControl: HTMLElement = buildCarUpdate(name);
+  box.dataset.carId = id?.toString();
+
+  const blockControl: HTMLElement = buildCarUpdate(id, name);
 
   const trackBlock: HTMLElement = createHtmlElement("div", [
     "car__track-block",
@@ -160,7 +172,7 @@ function createCarItem(name: string, color: string): HTMLElement {
 }
 
 //Блок с кнопками Select & Remove
-function buildCarUpdate(name: string): HTMLElement {
+function buildCarUpdate(id: number | undefined, name: string): HTMLElement {
   const blockControl: HTMLElement = createHtmlElement("div", [
     "car__control-block",
   ]);
@@ -174,6 +186,10 @@ function buildCarUpdate(name: string): HTMLElement {
     ["btn", "btn_remove"],
     "remove",
   );
+  // buttonRemove.dataset.carId = id?.toString();
+  // Вешаем обработчик события на кнопку при ее создании
+  buttonRemove.addEventListener("click", deleteCarFromPage);
+
   const carName: HTMLElement = createHtmlElement("div", ["car__name"], name);
   blockControl.append(buttonSelect, buttonRemove, carName);
   return blockControl;
@@ -272,6 +288,101 @@ function craetePagination(): HTMLElement {
   section.append(buttonPrevious, currentPage, buttonNext);
 
   return section;
+}
+
+//Создание навой машинки для отправки в БД и показа на странице
+export async function createNewCar(): Promise<void> {
+  const inputName: HTMLInputElement | null =
+    document.querySelector("#newNameId");
+  const inputColor: HTMLInputElement | null =
+    document.querySelector("#newColorId");
+
+  try {
+    if (inputName && inputColor) {
+      const newCar: Car = {
+        name: inputName.value,
+        color: inputColor.value,
+      };
+
+      if (newCar.name !== "") {
+        await createCar(newCar);
+
+        inputName.value = "";
+        //Сначала берем ID созданое БД, т.к только БД создает ID
+        const newId: id = getIdNewCar(newCar.name, newCar.color);
+        //Создаем элемент авто со всеми кнопками
+        const viewCar: HTMLElement = createCarItem(
+          await newId,
+          newCar.name,
+          newCar.color,
+        );
+        sections.track.append(viewCar);
+        //Обновляем число авто в гараже на странице
+        await updateCountTrack();
+      }
+    }
+  } catch (error) {
+    console.error("Error when created car", error);
+  }
+}
+
+export async function deleteCarFromPage(event: Event): Promise<void> {
+  const target = event.currentTarget;
+
+  if (target instanceof HTMLElement) {
+    const carBox = target.closest(".car");
+
+    try {
+      if (carBox) {
+        const carBoxId = carBox.getAttribute("data-car-id");
+        // Удаляем со страницы
+        carBox.remove();
+        // Удаляем из БД
+        await deleteCar(Number(carBoxId));
+        //Обновляем число авто в гараже на странице
+        await updateCountTrack();
+
+        // Извлекаем имя автомобиля
+        // const carNameElement = carBox.querySelector(".car__name");
+        // const carName = carNameElement?.textContent;
+        // // Извлекаем цвет изображения (если цвет хранится в атрибуте fill)
+        // const carImageElement = carBox.querySelector(".car__image");
+        // const carColor = carImageElement?.getAttribute("fill");
+        // console.log(`Имя автомобиля: ${carName}`);
+        // console.log(`Цвет автомобиля: ${carColor}`);
+      }
+    } catch (error) {
+      console.error("No delete car:", error);
+    }
+  }
+}
+
+// Обновляем число, которое отображает количество машин в гараже
+async function updateCountTrack(): Promise<void> {
+  const viewCountCars: HTMLElement | null = document.querySelector(".all-cars");
+  const allCars: Car[] = await getAllCars();
+  const count: number = allCars.length;
+
+  if (viewCountCars) {
+    const currentText = viewCountCars.textContent;
+    if (currentText !== null) {
+      viewCountCars.textContent = currentText.replace(/#\d+/, `#${count}`);
+    } else {
+      viewCountCars.textContent = `#${count}`;
+    }
+  }
+}
+
+// Поиск id нового авто по имени и цвету
+async function getIdNewCar(name: string, color: string): id {
+  const cars: Car[] = await getAllCars();
+  let id = undefined;
+  cars.forEach((car) => {
+    if (car.color === color && car.name === name) {
+      id = car.id;
+    }
+  });
+  return id;
 }
 
 export { createSettingSection, createGarageSection, craetePagination };

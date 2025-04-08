@@ -1,14 +1,15 @@
 import "./styles/css/main.css";
 import { renderStartPage } from "./router";
+import { createNewCar, deleteCarFromPage } from "./componets/garage";
 // import type { Car } from "./utils/api";
 
-// import {
-//   createCar,
-//   deleteCar,
-//   getAllCars,
-//   getCar,
-//   updateCar,
-// } from "./utils/api";
+import {
+  createCar,
+  deleteCar,
+  getAllCars,
+  getCar,
+  updateCar,
+} from "./utils/api";
 
 // const carId = 2;
 
@@ -25,9 +26,7 @@ import { renderStartPage } from "./router";
 //   cars.forEach((car, index) => console.log(`Car #${index + 1}:`, car));
 // });
 
-// createCar(exampleNewCar).then();
-
-// deleteCar(9).then();
+// deleteCar(5).then();
 
 // getCar(carId).then((car) => {
 //   const newName: string = "Mersedes";
@@ -42,3 +41,12 @@ import { renderStartPage } from "./router";
 
 // Инициализация приложения
 renderStartPage();
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Создаем новое авто
+  const buttonCreate: HTMLButtonElement | null =
+    document.querySelector(".btn_create");
+  if (buttonCreate) {
+    buttonCreate.addEventListener("click", createNewCar);
+  }
+});
