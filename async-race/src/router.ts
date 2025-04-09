@@ -13,9 +13,9 @@ export const sections: { [key: string]: HTMLElement } = {
   header: createHeader(),
   setting: createSettingSection(),
   track: createGarageSection(),
-  paginationGarage: craetePagination(),
+  paginationGarage: craetePagination("cars"),
   winners: createWinners(),
-  paginationWinners: craetePagination(),
+  paginationWinners: craetePagination("wins"),
 };
 
 export function renderStartPage(): void {
