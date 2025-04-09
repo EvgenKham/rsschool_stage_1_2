@@ -71,7 +71,6 @@ export async function createCar(newCar: Car): Promise<void> {
     if (response.status !== 201) {
       throw new Error("No created new car");
     }
-    console.log("Car was created successfully");
   } catch (error) {
     throw error;
   }
@@ -85,7 +84,6 @@ export async function deleteCar(id: number): Promise<void> {
     if (!response.ok) {
       throw new Error(`Car with id ${id} NOT FOUND`);
     }
-    console.log(`Car with id ${id} was deleted successfully`);
   } catch (error) {
     throw error;
   }
@@ -104,7 +102,6 @@ export async function updateCar(updateCar: Car): Promise<Car> {
     if (!response.ok) {
       throw new Error(`Car ${updateCar.name} NOT FOUND`);
     }
-    console.log(`Car ${updateCar.name} was updated successfully`);
     const car: Car = await response.json();
     return car;
   } catch (error) {
@@ -156,7 +153,6 @@ export async function getDateForWins(): Promise<WinnerTableDate[]> {
 
     return tableRows;
   } catch (error) {
-    console.log("Error getitng date for winner table:", error);
     throw error;
   }
 }

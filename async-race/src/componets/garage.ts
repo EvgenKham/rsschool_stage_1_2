@@ -159,7 +159,7 @@ function createGarageSection(): HTMLElement {
 }
 
 //Создание одной машинки с блоками кнопок Select&Remove и Start&Stop
-function renderCarItem(
+export function renderCarItem(
   id: number | undefined,
   name: string,
   color: string,
@@ -316,8 +316,38 @@ function craetePagination(label: string): HTMLElement {
   return section;
 }
 
-//Создание навой машинки для отправки в БД и показа на странице
-export async function createNewCar(): Promise<void> {
+//Создание навого авто для отправки в БД и показа на странице
+export async function createNewCar(newCar: Car): Promise<void> {
+  try {
+    await createCar(newCar);
+
+    const cars: Car[] = await getAllCars();
+
+    const newId: id = getIdNewCar(newCar.name, newCar.color);
+    //Рендер авто, если на странице их меньше 7
+    const visibleCarCount: number = getCountCarOnPage();
+    if (visibleCarCount < CARS_PER_PAGE) {
+      const viewCar: HTMLElement = renderCarItem(
+        await newId,
+        newCar.name,
+        newCar.color,
+      );
+      sections.track.append(viewCar);
+    }
+    if (cars.length > CARS_PER_PAGE) {
+      if (checkVisibleButtonPagination("cars", ".btn_next")) {
+        changeVisibleButtonPagination("cars", ".btn_next");
+      }
+    }
+
+    await updateCountTrack();
+  } catch (error) {
+    console.error("Error when created car", error);
+  }
+}
+
+// Фунция-обработчик для кнопки создания авто
+export async function buildNewCar(): Promise<void> {
   const inputName: HTMLInputElement | null =
     document.querySelector("#newNameId");
   const inputColor: HTMLInputElement | null =
@@ -331,29 +361,8 @@ export async function createNewCar(): Promise<void> {
       };
 
       if (newCar.name !== "") {
-        await createCar(newCar);
-        const cars: Car[] = await getAllCars();
-
         inputName.value = "";
-        //Сначала берем ID созданое БД, т.к только БД создает ID
-        const newId: id = getIdNewCar(newCar.name, newCar.color);
-        //Рендер авто, если на странице их меньше 7
-        if (getCountCarOnPage() < CARS_PER_PAGE) {
-          const viewCar: HTMLElement = renderCarItem(
-            await newId,
-            newCar.name,
-            newCar.color,
-          );
-          sections.track.append(viewCar);
-        }
-        if (cars.length > CARS_PER_PAGE) {
-          if (!checkVisibleButtonPagination("cars", ".btn_next")) {
-            changeVisibleButtonPagination("cars", ".btn_next");
-          }
-        }
-
-        //Обновляем число авто в гараже на странице
-        await updateCountTrack();
+        createNewCar(newCar);
       }
     }
   } catch (error) {
@@ -391,7 +400,7 @@ async function deleteCarFromPage(event: Event): Promise<void> {
 }
 
 //Добавляем имя и цвет в поля Update
-async function selectUpdatingCar(event: Event): Promise<void> {
+export async function selectUpdatingCar(event: Event): Promise<void> {
   const target = event.currentTarget;
 
   if (target instanceof HTMLElement) {
@@ -442,7 +451,7 @@ async function updateTrack(): Promise<void> {
 }
 
 //Поиск авто, которое дополнит страницу до 7 авто
-async function findCarAfterDelete(): Promise<Car | null> {
+export async function findCarAfterDelete(): Promise<Car | null> {
   const lastCarElement: Element | null = sections.track.lastElementChild;
   let nextCar = null;
   if (lastCarElement) {
@@ -501,6 +510,8 @@ export async function updateSelectedCar(): Promise<void> {
   const buttonUpdate: HTMLElement | null =
     document.querySelector(".btn_update");
 
+  console.log(checkVisibleButtonPagination("cars", ".btn_next"));
+
   try {
     if (inputName && inputColor && buttonUpdate) {
       const newCar: Car = {
@@ -551,6 +562,7 @@ function resetUpdateForm(): void {
   }
 }
 
+// Получить авто для следующей или предыдущей страниц
 export function getCarsForDisplay(cars: Car[], page: number): Car[] {
   const startIndex = (page - 1) * CARS_PER_PAGE;
   const endIndex = startIndex + CARS_PER_PAGE;
@@ -572,14 +584,14 @@ export async function visibleButtonNext(): Promise<void> {
 }
 
 // Вычисляем количество существующих авто на странице (чтобы не превышало 7 авто)
-function getCountCarOnPage(): number {
+export function getCountCarOnPage(): number {
   const visibleCars: NodeList = document.querySelectorAll(".car");
   const count: number = visibleCars.length;
   return count;
 }
 
 // Изменяем видимость кнопок "Prev" & "Next" ("cars", ".btn_next")
-function changeVisibleButtonPagination(
+export function changeVisibleButtonPagination(
   lable: string,
   buttonClass: string,
 ): void {
@@ -600,29 +612,29 @@ function changeVisibleButtonPagination(
 }
 
 // Проверка доступности кнопок "Prev" & "Next" ("cars", ".btn_next")
-function checkVisibleButtonPagination(
-  lable: string,
+export function checkVisibleButtonPagination(
+  label: string,
   buttonClass: string,
 ): boolean {
   let pagination: HTMLElement | null = null;
 
-  if (lable === "cars") {
-    pagination = document.querySelector(".pagination, .cars");
+  if (label === "cars") {
+    pagination = document.querySelector(".pagination.cars");
   }
 
-  if (lable === "wins") {
-    pagination = document.querySelector(".pagination, .wins");
+  if (label === "wins") {
+    pagination = document.querySelector(".pagination.wins");
   }
+
   if (pagination) {
     const button: HTMLElement | null = pagination.querySelector(buttonClass);
-    if (button) {
-      button.classList.contains("btn__disable");
-      return Boolean(button);
-    }
+    return button ? button.classList.contains("btn__disable") : false;
   }
+
   return false;
 }
 
+// Функция-орбаботчик для пагинации кнопки "next"
 async function toNextPage(): Promise<void> {
   const cars: Car[] = await getAllCars();
   let currentPage: number = 1;
@@ -652,36 +664,7 @@ async function toNextPage(): Promise<void> {
   }
 }
 
-function rerenderTrackSection(cars: Car[]): void {
-  const track: HTMLElement | null = sections.track;
-  // Очищаем содержимое секции с авто
-  while (track.firstChild) {
-    track.removeChild(track.firstChild);
-  }
-  // Создаем блок с информацией
-  const infoBox: HTMLElement = createHtmlElement("div", ["track__info"]);
-  const caption: HTMLElement = createHtmlElement(
-    "h2",
-    ["title-page"],
-    "GARAGE",
-  );
-  infoBox.append(caption);
-
-  const totalInfo: HTMLElement = createHtmlElement(
-    "h3",
-    ["all-cars"],
-    `Total number of cars: #${TOTAL_COUNT_CARS}`,
-  );
-  infoBox.append(totalInfo);
-  track.append(infoBox);
-  // Рендеринг новых авто
-  cars.forEach((car) => {
-    const id: number | undefined = car.id;
-    const carBox: HTMLElement = renderCarItem(id, car.name, car.color);
-    track.append(carBox);
-  });
-}
-
+// Функция-орбаботчик для пагинации кнопки "prev"
 async function toPreviousPage(): Promise<void> {
   const cars: Car[] = await getAllCars();
   let currentPage: number = 1;
@@ -712,4 +695,40 @@ async function toPreviousPage(): Promise<void> {
   }
 }
 
-export { createSettingSection, createGarageSection, craetePagination };
+//Перерендеринг страницы с авто при пагинации
+function rerenderTrackSection(cars: Car[]): void {
+  const track: HTMLElement | null = sections.track;
+  // Очищаем содержимое секции с авто
+  while (track.firstChild) {
+    track.removeChild(track.firstChild);
+  }
+  // Создаем блок с информацией
+  const infoBox: HTMLElement = createHtmlElement("div", ["track__info"]);
+  const caption: HTMLElement = createHtmlElement(
+    "h2",
+    ["title-page"],
+    "GARAGE",
+  );
+  infoBox.append(caption);
+
+  const totalInfo: HTMLElement = createHtmlElement(
+    "h3",
+    ["all-cars"],
+    `Total number of cars: #${TOTAL_COUNT_CARS}`,
+  );
+  infoBox.append(totalInfo);
+  track.append(infoBox);
+  // Рендеринг новых авто
+  cars.forEach((car) => {
+    const id: number | undefined = car.id;
+    const carBox: HTMLElement = renderCarItem(id, car.name, car.color);
+    track.append(carBox);
+  });
+}
+
+export {
+  createSettingSection,
+  createGarageSection,
+  craetePagination,
+  updateCountTrack,
+};

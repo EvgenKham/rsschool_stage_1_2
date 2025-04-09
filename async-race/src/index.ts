@@ -1,6 +1,7 @@
 import "./styles/css/main.css";
 import { renderStartPage } from "./router";
-import { createNewCar, updateSelectedCar } from "./componets/garage";
+import { buildNewCar, updateSelectedCar } from "./componets/garage";
+import { randomCars } from "./utils/randomCars";
 
 // Инициализация приложения
 renderStartPage();
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonCreate: HTMLButtonElement | null =
     document.querySelector(".btn_create");
   if (buttonCreate) {
-    buttonCreate.addEventListener("click", createNewCar);
+    buttonCreate.addEventListener("click", buildNewCar);
   }
 
   // Обновляем выбранное авто
@@ -18,5 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".btn_update");
   if (buttonUpdate) {
     buttonUpdate.addEventListener("click", updateSelectedCar);
+  }
+
+  // Генерация 100 случайных авто
+  const buttonRandom: HTMLElement | null =
+    document.querySelector(".btn_generate");
+  if (buttonRandom) {
+    buttonRandom.addEventListener("click", randomCars);
   }
 });
