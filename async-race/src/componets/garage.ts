@@ -1,6 +1,14 @@
 import createHtmlElement from "../utils/baseHtmlElement";
 import { paths } from "../utils/svgCarPaths";
-import { getAllCars, createCar, deleteCar, updateCar } from "../utils/api";
+import {
+  getAllCars,
+  createCar,
+  deleteCar,
+  updateCar,
+  startEngine,
+  stopEngine,
+  driveEngine,
+} from "../utils/api";
 import { sections } from "../router";
 import type { Car } from "../utils/api";
 import type { Paths } from "../utils/svgCarPaths";
@@ -224,6 +232,8 @@ function buildRunControl(): HTMLElement {
     ["btn", "btn_stop-engine", "btn__disable"],
     "STOP",
   );
+  buttonStart.addEventListener("click", startDriveCar);
+  buttonStop.addEventListener("click", stopDriveCar);
   runControl.append(buttonStart, buttonStop);
   return runControl;
 }
@@ -510,8 +520,6 @@ export async function updateSelectedCar(): Promise<void> {
   const buttonUpdate: HTMLElement | null =
     document.querySelector(".btn_update");
 
-  console.log(checkVisibleButtonPagination("cars", ".btn_next"));
-
   try {
     if (inputName && inputColor && buttonUpdate) {
       const newCar: Car = {
@@ -724,6 +732,32 @@ function rerenderTrackSection(cars: Car[]): void {
     const carBox: HTMLElement = renderCarItem(id, car.name, car.color);
     track.append(carBox);
   });
+}
+
+async function startDriveCar(event: Event): Promise<void> {
+  const target = event.currentTarget;
+
+  if (target instanceof HTMLElement) {
+    const carBox = target.closest(".car");
+
+    try {
+      if (carBox) {
+        // Находим ID авто
+        const carBoxId = Number(carBox.getAttribute("data-car-id"));
+        // Запускаем двигатель необходимой авто
+        const data = await startEngine(carBoxId);
+        const drive = await driveEngine(carBoxId);
+        const stop = await stopEngine(carBoxId);
+        console.log(data, drive, stop);
+      }
+    } catch (error) {
+      console.error("Don't move car:", error);
+    }
+  }
+}
+
+function stopDriveCar(): void {
+  stopEngine(1);
 }
 
 export {

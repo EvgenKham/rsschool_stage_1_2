@@ -18,6 +18,11 @@ export type WinnerTableDate = {
   time: string;
 };
 
+export type Engine = {
+  velocity: number;
+  distance: number;
+};
+
 // type Option = {
 //   method: string;
 //   headers: Object;
@@ -121,6 +126,59 @@ export async function getAllWinners(): Promise<Winner[]> {
 
     const winners: Winner[] = await response.json();
     return winners;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function startEngine(carId: number): Promise<Engine> {
+  const url: string = `http://localhost:3000/engine?id=${carId}&status=started`;
+
+  try {
+    const response = await fetch(url, { method: "PATCH" });
+
+    if (!response.ok) {
+      throw new Error("Car engine wasn't started");
+    }
+
+    const data: Engine = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function driveEngine(
+  carId: number,
+): Promise<{ success: boolean }> {
+  const url: string = `http://localhost:3000/engine?id=${carId}&status=drive`;
+
+  try {
+    const response = await fetch(url, { method: "PATCH" });
+
+    if (!response.ok) {
+      throw new Error("Car engine wasn't started");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function stopEngine(carId: number): Promise<Engine> {
+  const url: string = `http://localhost:3000/engine?id=${carId}&status=stopped`;
+
+  try {
+    const response = await fetch(url, { method: "PATCH" });
+
+    if (!response.ok) {
+      throw new Error("Car engine wasn't started");
+    }
+
+    const data: Engine = await response.json();
+    return data;
   } catch (error) {
     throw error;
   }
