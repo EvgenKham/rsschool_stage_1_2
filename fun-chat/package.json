@@ -13,7 +13,8 @@
     "lint:fix": "npx eslint --fix src/**/*.{js,ts,css,sass}",
     "format": "npx prettier --write .",
     "ci:format": "npx prettier --check .",
-    "prepare": "husky"
+    "lint-staged": "lint-staged",
+    "prepare": "cd .. && husky fun-chat/.husky"
   },
   "dependencies": {
     "tsc-init": "^2.1.0"
@@ -47,21 +48,8 @@
     "webpack-dev-server": "^5.2.0"
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.css": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.scss": [
-      "stylelint --fix",
-      "prettier --write"
+    "*.{js,ts,json,css,sass}": [
+      "eslint --fix"
     ]
   }
 }
