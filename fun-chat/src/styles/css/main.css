@@ -32,11 +32,16 @@
 
 .login-name {
   color: #44da2e;
+  display: flex;
+  align-items: center;
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 700px;
+  margin: auto auto;
 }
 
 .btn {
