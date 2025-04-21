@@ -1,11 +1,17 @@
 import createHtmlElement from "../utils/baseHtmlElement";
+import { sendLoginData } from "../utils/api";
 
-const NAME_PATTERN = "^[a-zA-Z\-]{3,10}$";
-const PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{7,}$";
+let form: HTMLFormElement;
+let inputName: HTMLInputElement;
+let inputPassword: HTMLInputElement;
+let errorName: HTMLElement;
+let errorPassword: HTMLElement;
+let button: HTMLButtonElement;
 
 export function renderLogin(): HTMLElement {
   const loginSection: HTMLElement = createHtmlElement("section", ["login"]);
-  const form: HTMLElement = createHtmlElement("form", ["login-form"]);
+  form = document.createElement("form");
+  form.classList.add("login-form");
   const title: HTMLElement = createHtmlElement(
     "h2",
     ["login-form__title"],
@@ -14,25 +20,29 @@ export function renderLogin(): HTMLElement {
   form.append(title);
 
   const labelName: HTMLElement = renderLabel("loginName", "Name");
-  const inputName: HTMLElement = renderInput("loginName", "text", NAME_PATTERN);
-  const errorName: HTMLElement = renderError("loginError");
+  inputName = renderInput("loginName", "text");
+  inputName.addEventListener("input", () => {
+    validateName();
+    checkButtonState();
+  });
+  errorName = renderError("loginError");
   form.append(labelName, inputName, errorName);
 
   const labelPassword: HTMLElement = renderLabel("loginPassword", "Password");
-  const inputPassword: HTMLElement = renderInput(
-    "loginPassword",
-    "password",
-    PASSWORD_PATTERN,
-  );
-  const errorPassword: HTMLElement = renderError("passwordError");
+  inputPassword = renderInput("loginPassword", "password");
+  inputPassword.addEventListener("input", () => {
+    validatePassword();
+    checkButtonState();
+  });
+  errorPassword = renderError("passwordError");
   form.append(labelPassword, inputPassword, errorPassword);
 
-  const button: HTMLElement = createHtmlElement(
-    "button",
-    ["btn", "btn_login", "btn_disable"],
-    "Login",
-  );
+  button = document.createElement("button");
+  button.classList.add("btn", "btn_login", "btn_disable");
+  button.textContent = "Login";
   form.append(button);
+  form.addEventListener("submit", submitFormData);
+  form.addEventListener("keydown", keydownFormData);
 
   loginSection.append(form);
 
@@ -49,17 +59,94 @@ function renderLabel(id: string, text: string): HTMLElement {
   return label;
 }
 
-function renderInput(id: string, type: string, pattern: string): HTMLElement {
-  const input: HTMLElement = createHtmlElement("input", ["login-form__input"]);
+function renderInput(id: string, type: string): HTMLInputElement {
+  const input: HTMLInputElement = document.createElement("input");
+  input.classList.add("login-form__input");
   input.setAttribute("id", id);
   input.setAttribute("type", type);
   input.setAttribute("required", "true");
-  input.setAttribute("pattern", pattern);
   return input;
 }
 
 function renderError(id: string): HTMLElement {
-  const error: HTMLElement = createHtmlElement("p", ["login-form__error"]);
+  const error: HTMLElement = createHtmlElement("pre", ["login-form__error"]);
   error.setAttribute("id", id);
   return error;
+}
+
+function submitFormData(event: Event): void {
+  event.preventDefault();
+
+  if (validateForm()) {
+    // Здесь вы можете отправить данные на сервер
+    const login = inputName.value;
+    const password = inputPassword.value;
+
+    console.log(login, password);
+    sendLoginData(login, password);
+  }
+}
+
+// Обработка нажатия клавиши Enter
+function keydownFormData(event: KeyboardEvent): void {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    form.dispatchEvent(new Event("submit"));
+  }
+}
+
+function validateName(): void {
+  errorName.textContent = "";
+  let errorMassage = "";
+
+  if (!inputName.value) {
+    errorMassage += "* Name cannot be empty.\n";
+  }
+  if (inputName.value.length < 3 || inputName.value.length > 10) {
+    errorMassage += "* Name must be 3-10 letters.";
+  }
+  errorName.textContent = errorMassage;
+}
+
+function validatePassword(): void {
+  errorPassword.textContent = "";
+  let errorMassage = "";
+
+  if (!inputPassword.value) {
+    errorMassage += "* Password cannot be empty.\n";
+  }
+  if (inputPassword.value.length < 7) {
+    errorMassage += "* Password must be at least 7 symbols\n";
+  }
+  if (!/[A-Z]/.test(inputPassword.value)) {
+    errorMassage += "* With at least one uppercase letter\n";
+  }
+  if (!/[a-z]/.test(inputPassword.value) || !/\d/.test(inputPassword.value)) {
+    errorMassage += "* One lowercase letter, and one digit.";
+  }
+  errorPassword.textContent = errorMassage;
+}
+
+// Функция для проверки валидности полей
+function validateForm(): boolean {
+  let isValid = true;
+
+  if (errorName.textContent || errorPassword.textContent) {
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+function checkButtonState(): void {
+  const isNameValid = !errorName.textContent && inputName.value.length > 0;
+  const isPasswordValid =
+    !errorPassword.textContent && inputPassword.value.length > 0;
+
+  if (isNameValid && isPasswordValid) {
+    button.classList.remove("btn_disable");
+  }
+  if (!(isNameValid && isPasswordValid)) {
+    button.classList.add("btn_disable");
+  }
 }

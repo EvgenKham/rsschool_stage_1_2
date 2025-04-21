@@ -13,8 +13,8 @@ const wrapper: HTMLElement = createHtmlElement("div", ["wrapper"]);
 wrapper.append(renderHeader());
 
 const main: HTMLElement = createHtmlElement("main", ["main"]);
-// main.append(renderLogin());
-main.append(renderChat());
+main.append(renderLogin());
+// main.append(renderChat());
 // main.append(renderAbout());
 wrapper.append(main);
 
