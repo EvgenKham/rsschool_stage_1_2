@@ -1,3 +1,4 @@
+import { logoutUser } from "../utils/api";
 import createHtmlElement from "../utils/baseHtmlElement";
 
 export function renderHeader(): HTMLElement {
@@ -13,7 +14,7 @@ export function renderHeader(): HTMLElement {
   const userName: HTMLElement = createHtmlElement(
     "div",
     ["header__name", "login-name"],
-    "*****",
+    "",
   );
 
   const navigation: HTMLElement = createHtmlElement("nav", [
@@ -31,6 +32,7 @@ export function renderHeader(): HTMLElement {
     ["btn", "btn_nav", "btn_disable", "btn_logout"],
     "Logout",
   );
+  buttonLogout.addEventListener("click", logoutUser);
 
   navigation.append(buttonAbout, buttonLogout);
   header.append(logoBox, userName, navigation);

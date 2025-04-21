@@ -1,81 +1,101 @@
-// Управляет навигацией между разными частями приложения,
-// обеспечивая бесшовный переход между "Garage" и "Winners"
-// API: History API
+import { renderChat } from "./componets/chat";
+import { renderFooter } from "./componets/footer";
+import { renderHeader } from "./componets/header";
+import { renderAbout } from "./componets/info";
+import { renderLogin } from "./componets/login";
 
-// export const sections: { [key: string]: HTMLElement } = {
-//   header: createHeader(),
-//   setting: createSettingSection(),
-//   track: createGarageSection(),
-//   paginationGarage: craetePagination("cars"),
-//   winners: createWinners(),
-//   paginationWinners: craetePagination("wins"),
-// };
+const historyStack: string[] = [];
 
-// export function renderStartPage(): void {
-//   const container: HTMLElement = document.createElement("div");
-//   container.classList.add("container");
-//   container.append(sections.header);
-//   container.append(sections.setting);
-//   container.append(sections.track);
-//   container.append(sections.paginationGarage);
+export const sections: { [key: string]: HTMLElement } = {
+  header: renderHeader(),
+  login: renderLogin(),
+  chat: renderChat(),
+  about: renderAbout(),
+  footer: renderFooter(),
+};
 
-//   const winnerTable: HTMLElement = sections.winners;
-//   winnerTable.style.display = "none";
-//   const winnerPagination: HTMLElement = sections.paginationWinners;
-//   winnerPagination.style.display = "none";
-//   container.append(winnerTable, winnerPagination);
-//   document.body.append(container);
-// }
+export function renderStartPage(): void {
+  const wrapper: HTMLElement = document.createElement("div");
+  wrapper.classList.add("wrapper");
+  const main: HTMLElement = document.createElement("main");
+  main.classList.add("main");
 
-// Функция для отображения Garage page
-// function showGaragePage(): void {
-//   sections.setting.style.display = "grid";
-//   sections.track.style.display = "flex";
-//   sections.paginationGarage.style.display = "flex";
-//   sections.winners.style.display = "none";
-//   sections.paginationWinners.style.display = "none";
-// }
+  wrapper.append(sections.header);
+  const chat: HTMLElement = sections.chat;
+  chat.style.display = "none";
+  const about: HTMLElement = sections.about;
+  about.style.display = "none";
+  main.append(sections.login, chat, about);
+  wrapper.append(main);
+  wrapper.append(sections.footer);
+  historyStack.push("login");
 
-// Функция для отображения Winners page
-// function showWinnersPage(): void {
-//   sections.setting.style.display = "none";
-//   sections.track.style.display = "none";
-//   sections.paginationGarage.style.display = "none";
-//   sections.winners.style.display = "block";
-//   sections.paginationWinners.style.display = "flex";
-// }
+  document.body.append(wrapper);
+}
+
+// Функция для отображения Login page
+function showLoginPage(): void {
+  sections.login.style.display = "flex";
+  sections.chat.style.display = "none";
+  sections.about.style.display = "none";
+}
+
+// Функция для отображения Chat page
+function showChatPage(): void {
+  sections.login.style.display = "none";
+  sections.chat.style.display = "flex";
+  sections.about.style.display = "none";
+}
+
+// Функция для отображения About page
+function showAboutPage(): void {
+  sections.login.style.display = "none";
+  sections.chat.style.display = "none";
+  sections.about.style.display = "flex";
+}
 
 // Обработчики событий навигации
-// document.addEventListener("DOMContentLoaded", function () {
-//   const buttonGarage: HTMLButtonElement | null =
-//     document.querySelector(".btn_garage");
-//   const buttonWinners: HTMLButtonElement | null =
-//     document.querySelector(".btn_winners");
+document.addEventListener("DOMContentLoaded", function () {
+  const buttonAbout: HTMLButtonElement | null =
+    document.querySelector(".btn_about");
+  // const buttonLogout: HTMLButtonElement | null =
+  //   document.querySelector(".btn_logout");
 
-//   buttonGarage?.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     navigateTo("garage");
-//     buttonGarage.classList.add("btn__disable");
-//     buttonWinners?.classList.remove("btn__disable");
-//   });
+  buttonAbout?.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (buttonAbout.textContent === "Back") {
+      buttonAbout.textContent = "About";
+      historyStack.pop();
+      const previousPage = historyStack.pop();
+      if (previousPage) {
+        navigateTo(previousPage);
+      }
+    } else if (buttonAbout.textContent === "About") {
+      buttonAbout.textContent = "Back";
+      navigateTo("about");
+    }
+  });
 
-//   buttonWinners?.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     navigateTo("winners");
-//     buttonGarage?.classList.remove("btn__disable");
-//     buttonWinners.classList.add("btn__disable");
-//   });
-// });
+  // buttonWinners?.addEventListener("click", (event) => {
+  //   event.preventDefault();
+  //   navigateTo("winners");
+  //   buttonGarage?.classList.remove("btn__disable");
+  //   buttonWinners.classList.add("btn__disable");
+  // });
+});
 
 // Функция для обработки навигации
-// function navigateTo(page: string): void {
-//   history.pushState({ page }, "", page);
-//   if (page === "garage") {
-//     showGaragePage();
-//   } else if (page === "winners") {
-//     showWinnersPage();
-//   }
-// }
+export function navigateTo(page: string): void {
+  historyStack.push(page);
+  history.pushState({ page }, "", page);
+  if (page === "login") {
+    showLoginPage();
+  } else if (page === "chat") {
+    showChatPage();
+  } else if (page === "about") {
+    showAboutPage();
+  }
+}
 
 // Обработка события "popstate" для навигации назад/вперед
 // window.addEventListener("popstate", (event) => {

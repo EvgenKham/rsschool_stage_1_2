@@ -23,7 +23,7 @@ export function renderLogin(): HTMLElement {
   inputName = renderInput("loginName", "text");
   inputName.addEventListener("input", () => {
     validateName();
-    checkButtonState();
+    checkButtonLoginState();
   });
   errorName = renderError("loginError");
   form.append(labelName, inputName, errorName);
@@ -32,7 +32,7 @@ export function renderLogin(): HTMLElement {
   inputPassword = renderInput("loginPassword", "password");
   inputPassword.addEventListener("input", () => {
     validatePassword();
-    checkButtonState();
+    checkButtonLoginState();
   });
   errorPassword = renderError("passwordError");
   form.append(labelPassword, inputPassword, errorPassword);
@@ -74,11 +74,11 @@ function renderError(id: string): HTMLElement {
   return error;
 }
 
+// Оправка данных на сервер по нажатии на кнопку
 function submitFormData(event: Event): void {
   event.preventDefault();
 
   if (validateForm()) {
-    // Здесь вы можете отправить данные на сервер
     const login = inputName.value;
     const password = inputPassword.value;
 
@@ -87,11 +87,17 @@ function submitFormData(event: Event): void {
   }
 }
 
-// Обработка нажатия клавиши Enter
+// Оправка данных на сервер по нажатии на клавишу Enter
 function keydownFormData(event: KeyboardEvent): void {
   if (event.key === "Enter") {
     event.preventDefault();
-    form.dispatchEvent(new Event("submit"));
+    if (validateForm()) {
+      const login = inputName.value;
+      const password = inputPassword.value;
+
+      console.log(login, password);
+      sendLoginData(login, password);
+    }
   }
 }
 
@@ -138,7 +144,7 @@ function validateForm(): boolean {
   return isValid;
 }
 
-function checkButtonState(): void {
+function checkButtonLoginState(): void {
   const isNameValid = !errorName.textContent && inputName.value.length > 0;
   const isPasswordValid =
     !errorPassword.textContent && inputPassword.value.length > 0;
@@ -149,4 +155,10 @@ function checkButtonState(): void {
   if (!(isNameValid && isPasswordValid)) {
     button.classList.add("btn_disable");
   }
+}
+
+export function resetForm(): void {
+  inputName.value = "";
+  inputPassword.value = "";
+  button.classList.add("btn_disable");
 }
