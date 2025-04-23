@@ -1,5 +1,5 @@
 import { resetForm } from "../componets/login";
-import { navigateTo } from "../router";
+import { authenticate, logout, navigateTo } from "./router";
 
 const socket = new WebSocket("ws://127.0.0.1:4000");
 let LOGIN = "";
@@ -54,7 +54,6 @@ socket.onmessage = function (event): void {
   // Обработка ответа от сервера
   if (response.type === "USER_LOGIN") {
     console.log("Login successful!");
-    navigateTo("chat");
     successAuth(response.payload.user.login);
   } else if (response.type === "ERROR") {
     displayError(response.payload.error);
@@ -62,7 +61,6 @@ socket.onmessage = function (event): void {
 
   if (response.type === "USER_LOGOUT") {
     console.log("Logout successful!");
-    navigateTo("login");
     successLogout();
   } else if (response.type === "ERROR") {
     displayError(response.payload.error);
@@ -80,6 +78,7 @@ function displayError(errorMessage: string): void {
 
 function successAuth(name: string): void {
   resetForm();
+  authenticate();
   const buttonLogout: HTMLElement | null =
     document.querySelector(".btn_logout");
 
@@ -96,6 +95,7 @@ function successAuth(name: string): void {
 }
 
 function successLogout(): void {
+  logout();
   const buttonLogout: HTMLElement | null =
     document.querySelector(".btn_logout");
 

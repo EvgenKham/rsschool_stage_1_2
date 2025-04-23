@@ -1,10 +1,11 @@
-import { renderChat } from "./componets/chat";
-import { renderFooter } from "./componets/footer";
-import { renderHeader } from "./componets/header";
-import { renderAbout } from "./componets/info";
-import { renderLogin } from "./componets/login";
+import { renderChat } from "../componets/chat";
+import { renderFooter } from "../componets/footer";
+import { renderHeader } from "../componets/header";
+import { renderAbout } from "../componets/info";
+import { renderLogin } from "../componets/login";
 
 const historyStack: string[] = [];
+let isAuthenticated: boolean = false;
 
 export const sections: { [key: string]: HTMLElement } = {
   header: renderHeader(),
@@ -29,6 +30,7 @@ export function renderStartPage(): void {
   wrapper.append(main);
   wrapper.append(sections.footer);
   historyStack.push("login");
+  history.pushState({ page: "login" }, "", "login");
 
   document.body.append(wrapper);
 }
@@ -58,8 +60,14 @@ function showAboutPage(): void {
 document.addEventListener("DOMContentLoaded", function () {
   const buttonAbout: HTMLButtonElement | null =
     document.querySelector(".btn_about");
-  // const buttonLogout: HTMLButtonElement | null =
-  //   document.querySelector(".btn_logout");
+
+  const storedAuthStatus = sessionStorage.getItem("isAuthenticated");
+  isAuthenticated = storedAuthStatus === "true";
+
+  const page = window.location.pathname.split("/").pop();
+  if (page) {
+    navigateTo(page);
+  }
 
   buttonAbout?.addEventListener("click", (event) => {
     event.preventDefault();
@@ -75,35 +83,64 @@ document.addEventListener("DOMContentLoaded", function () {
       navigateTo("about");
     }
   });
-
-  // buttonWinners?.addEventListener("click", (event) => {
-  //   event.preventDefault();
-  //   navigateTo("winners");
-  //   buttonGarage?.classList.remove("btn__disable");
-  //   buttonWinners.classList.add("btn__disable");
-  // });
 });
 
-// Функция для обработки навигации
 export function navigateTo(page: string): void {
-  historyStack.push(page);
-  history.pushState({ page }, "", page);
-  if (page === "login") {
-    showLoginPage();
-  } else if (page === "chat") {
+  if (page === "login" && isAuthenticated) {
     showChatPage();
-  } else if (page === "about") {
+    historyStack.push("chat");
+    history.pushState({ page: "chat" }, "", "chat");
+    const buttonLogout: HTMLElement | null =
+      document.querySelector(".btn_logout");
+    if (buttonLogout) {
+      buttonLogout.classList.remove("btn_disable");
+    }
+  }
+
+  if (page === "chat" && isAuthenticated) {
+    showChatPage();
+    historyStack.push("chat");
+    history.pushState({ page: "chat" }, "", "chat");
+  }
+
+  if (page === "login" && !isAuthenticated) {
+    showLoginPage();
+    historyStack.push("login");
+    history.pushState({ page: "login" }, "", "login");
+  }
+
+  if (page === "chat" && !isAuthenticated) {
+    showLoginPage();
+    historyStack.push("login");
+    history.pushState({ page: "login" }, "", "login");
+  }
+
+  if (page === "about") {
     showAboutPage();
+    historyStack.push(page);
+    history.pushState({ page }, "", page);
   }
 }
 
 // Обработка события "popstate" для навигации назад/вперед
-// window.addEventListener("popstate", (event) => {
-//   if (event.state) {
-//     if (event.state.page === "garage") {
-//       showGaragePage();
-//     } else if (event.state.page === "winners") {
-//       showWinnersPage();
-//     }
-//   }
-// });
+window.addEventListener("popstate", (event) => {
+  if (event.state) {
+    navigateTo(event.state.page);
+  } else {
+    navigateTo("login");
+  }
+});
+
+// Функция для аутентификации пользователя
+export function authenticate(): void {
+  isAuthenticated = true;
+  sessionStorage.setItem("isAuthenticated", "true");
+  navigateTo("chat");
+}
+
+// Функция для выхода пользователя
+export function logout(): void {
+  isAuthenticated = false;
+  sessionStorage.removeItem("isAuthenticated");
+  navigateTo("login");
+}
