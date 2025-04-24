@@ -1,10 +1,20 @@
 import createHtmlElement from "../utils/baseHtmlElement";
 type message = {
-  author: string;
-  time: string;
+  id: string;
+  from: string;
+  to: string;
   text: string;
-  stateEdit: string;
-  stateRead: string;
+  datetime: string;
+  status: {
+    isDelivered: boolean;
+    isReaded: boolean;
+    isEdited: boolean;
+  };
+};
+
+export type user = {
+  login: string;
+  isLogined: boolean;
 };
 
 export function renderChat(): HTMLElement {
@@ -35,9 +45,9 @@ function renderListPerson(): HTMLElement {
     "chat__list-person",
   ]);
 
-  const firstPerson: HTMLElement = renderItemPerson("online", "Anna", 3);
-  const seconderson: HTMLElement = renderItemPerson("offline", "Evgen", 0);
-  listPerson.append(firstPerson, seconderson);
+  // const firstPerson: HTMLElement = renderItemPerson("online", "Anna", 3);
+  // const seconderson: HTMLElement = renderItemPerson("offline", "Evgen", 0);
+  // listPerson.append(firstPerson, seconderson);
 
   return listPerson;
 }
@@ -45,7 +55,7 @@ function renderListPerson(): HTMLElement {
 function renderItemPerson(
   status: string,
   name: string,
-  unreadedMessages: number,
+  unreadedMessages: string,
 ): HTMLElement {
   const item: HTMLElement = createHtmlElement("li", ["item-person"]);
 
@@ -61,7 +71,7 @@ function renderItemPerson(
   const unreadedMessageItem: HTMLSpanElement = createHtmlElement(
     "span",
     ["item-person__unreaded"],
-    String(unreadedMessages),
+    unreadedMessages,
   );
 
   item.append(statusItem, nameItem, unreadedMessageItem);
@@ -98,18 +108,28 @@ function renderTextingBox(): HTMLElement {
   const messagesBox: HTMLElement = createHtmlElement("div", ["message-box"]);
   //TODO Chenge to real message from server
   const firstMessage: message = {
-    author: "Ivan",
-    time: "4:43 PM",
+    from: "Ivan",
+    datetime: "4:43 PM",
     text: "Hello",
-    stateEdit: "edited",
-    stateRead: "readed",
+    status: {
+      isDelivered: true,
+      isEdited: true,
+      isReaded: true,
+    },
+    id: "",
+    to: "Evgen",
   };
   const secondMessage: message = {
-    author: "Evgen",
-    time: "5:34 PM",
-    text: "How are you?",
-    stateEdit: "edited",
-    stateRead: "readed",
+    from: "Evgen",
+    datetime: "4:56 PM",
+    text: "Hello?hibin",
+    status: {
+      isDelivered: true,
+      isEdited: true,
+      isReaded: true,
+    },
+    id: "",
+    to: "Ivan",
   };
   messagesBox.append(renderMessageItem(false, firstMessage));
   messagesBox.append(renderMessageItem(true, secondMessage));
@@ -129,10 +149,10 @@ function renderMessageItem(owner: boolean, data: message): HTMLElement {
   const header: HTMLElement = createHtmlElement("div", ["message__header"]);
   const author: HTMLElement = document.createElement("span");
   author.classList.add("message__author");
-  author.textContent = data.author;
+  author.textContent = data.from;
   const time: HTMLElement = document.createElement("div");
   time.classList.add("message__time");
-  time.textContent = data.time;
+  time.textContent = data.datetime;
   header.append(author, time);
 
   const text: HTMLElement = document.createElement("pre");
@@ -142,10 +162,18 @@ function renderMessageItem(owner: boolean, data: message): HTMLElement {
   const footer: HTMLElement = createHtmlElement("div", ["message__footer"]);
   const edit: HTMLElement = document.createElement("span");
   edit.classList.add("message__state-edited");
-  edit.textContent = data.stateEdit;
+  if (data.status.isEdited) {
+    edit.textContent = "edited";
+  } else {
+    edit.textContent = "";
+  }
   const read: HTMLElement = document.createElement("span");
   read.classList.add("message__state");
-  read.textContent = data.stateRead;
+  if (data.status.isReaded) {
+    read.textContent = "readed";
+  } else {
+    read.textContent = "";
+  }
   footer.append(edit, read);
 
   const buttonBox: HTMLElement = createHtmlElement("div", ["message__buttons"]);
@@ -186,4 +214,52 @@ function renderFormText(): HTMLElement {
   button.append(image);
   form.append(textarea, button);
   return form;
+}
+
+export function showActiveUsers(users: user[]): void {
+  // console.log(users);
+}
+
+export function showInactiveUsers(users: user[]): void {
+  // console.log(users);
+}
+
+export function showListPersons(users: user[]): void {
+  // let count = 0;
+  // messages.forEach((message) => {
+  //   if (!message.status.isReaded) {
+  //     count++;
+  //   }
+  // });
+  const listPerson: HTMLElement | null =
+    document.querySelector(".chat__list-person");
+
+  if (listPerson) {
+    while (listPerson.firstElementChild) {
+      listPerson.firstElementChild.remove();
+    }
+  }
+
+  users.forEach((user) => {
+    let status = user.isLogined ? "online" : "offline";
+    const person: HTMLElement = renderItemPerson(status, user.login, "");
+    if (listPerson) listPerson.append(person);
+    changeActive(user.login, status);
+  });
+}
+
+export function changeActive(user: string, status: string): void {
+  const userElement = document.querySelector(
+    `.item-person[data-username="${user}"]`,
+  );
+  console.log(userElement);
+
+  if (userElement) {
+    const statusElement = userElement.querySelector(".item-person__status");
+
+    if (statusElement) {
+      statusElement.classList.remove("online", "offline");
+      statusElement.classList.add(status);
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import createHtmlElement from "../utils/baseHtmlElement";
-import { sendLoginData } from "../utils/api";
+import { loginUser } from "../utils/api";
 
 let form: HTMLFormElement;
 let inputName: HTMLInputElement;
@@ -83,7 +83,7 @@ function submitFormData(event: Event): void {
     const password = inputPassword.value;
 
     console.log(login, password);
-    sendLoginData(login, password);
+    loginUser(login, password);
   }
 }
 
@@ -96,7 +96,7 @@ function keydownFormData(event: KeyboardEvent): void {
       const password = inputPassword.value;
 
       console.log(login, password);
-      sendLoginData(login, password);
+      loginUser(login, password);
     }
   }
 }
