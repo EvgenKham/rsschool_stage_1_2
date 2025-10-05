@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const second = document.querySelector('#seconds');
 
   //Set the date of new year to UTC+0
-  const newYear = 'January 01 2025 00:00:00 GMT+00:00';
+  const newYear = 'January 01 2026 00:00:00 GMT+03:00';
 
   function getTime(end){
     let total = Date.parse(end) - Date.parse(new Date());
