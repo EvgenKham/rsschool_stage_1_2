@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/images/bet.png" />
+    <title>Decision Tool</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@3.0.1/modern-normalize.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/css/style.css" />
+  </head>
+  <body>
+    <div class="bg-game"></div>
+    <div class="wrapper">
+      <h1 class="header">Decision Making Tool</h1>
+      <ul class="options">
+        <li class="item">
+          <label class="item__identifier" for="option-1">#1</label>
+          <input
+            class="item__name"
+            id="option-1"
+            value=""
+            placeholder="Title"
+            name="title"
+          />
+          <input
+            class="item__weight"
+            type="number"
+            value=""
+            placeholder="Weight"
+            name="weight"
+          />
+          <button class="item__delete btn_delete" type="button">Delete</button>
+        </li>
+      </ul>
+      <button class="option-add btn">Add Options</button>
+      <button class="option-past btn">Past List</button>
+      <button class="option-clear btn">Clear List</button>
+      <button class="option-save btn">Save list to file</button>
+      <button class="option-load btn">Load list from file</button>
+      <button class="start btn">Start</button>
+    </div>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
