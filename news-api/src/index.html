@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>NewsPortal</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <h1 class="title">News Portal</h1>
+                <div class="open-sources btn">Open Source</div>
+            </header>
+            <main>
+                <div class="sources buttons"></div>
+                <div class="news"></div>
+            </main>
+            <footer class="footer">
+                <a class="footer__github" href="https://github.com/EvgenKham">
+                    <img class="footer__github_icon" alt="" />
+                </a>
+                <p class="footer__year">2025</p>
+                <a class="footer__school" href="https://rs.school/courses/javascript">
+                    <img class="footer__school_icon" alt="" />
+                </a>
+            </footer>
+        </div>
+
+        <template id="sourceItemTemp">
+            <div class="source__item">
+                <span class="source__item-name"></span>
+            </div>
+        </template>
+
+        <template id="newsItemTemp">
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author"></li>
+                        <li class="news__meta-date"></li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title"></h2>
+                    <h3 class="news__description-source"></h3>
+                    <p class="news__description-content"></p>
+                    <p class="news__read-more">
+                        <a href="#">Read More</a>
+                    </p>
+                </div>
+            </div>
+        </template>
+    </body>
+</html>
