@@ -1,0 +1,59 @@
+/* line 3, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results {
+  overflow: auto;
+  margin: 0 auto;
+  width: 80%; }
+
+/* line 8, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results table {
+  color: #fff172;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+  margin-bottom: 30px; }
+
+/* line 18, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results caption {
+  caption-side: top;
+  text-align: center;
+  margin: 30px 0;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: default; }
+
+/* line 26, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results thead {
+  background-color: #ffc720; }
+
+/* line 29, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results th {
+  border-bottom: 1px solid #8cc0ff;
+  color: #000000;
+  padding: 5px;
+  cursor: default; }
+
+/* line 35, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results td {
+  padding: 5px; }
+
+/* line 38, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.table__results tr:nth-child(even) td {
+  background-color: #e0f9ff;
+  color: #000000; }
+
+/* line 42, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.sortable {
+  cursor: pointer;
+  color: blue;
+  transition: 0.3s; }
+
+/* line 47, ../../../Projects_JS_Learning/The rolling scopes/stage_1/evgenkham-JSFE2024Q4/async-race/src/styles/sass/winnersView.sass */
+.sortable:hover {
+  text-decoration: underline;
+  color: #458627;
+  cursor: pointer; }
+
+/*# sourceMappingURL=winnersView.css.map */
