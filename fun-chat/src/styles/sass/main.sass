@@ -1,0 +1,109 @@
+@import url('login.sass')
+@import url('chat.sass')
+@import url('about.sass')
+// Also implement header and footer here
+
+$color-header: #D9D9E8
+$color-btn: #98C4C4
+$color-btn-hover: #BEDADA
+$color-btn-disable: #C7FFF2
+$color-form: #dae3f3
+$color-title: #333
+$color-label-text: #666
+$color-input-border: #ccc
+$color-input-border-focus: #927e24
+$color-about: #FFECA8
+$color-online: #44da2e
+$color-offline: #da312e
+
+.wrapper
+  display: flex
+  justify-content: space-between
+  flex-direction: column
+  align-items: center
+  min-height: 100lvh
+  background: rgba(65, 65, 105, 1) 90%
+
+.header
+  display: flex
+  justify-content: space-between
+  max-width: 100vw
+  padding: 30px 20px
+  width: 100%
+  &__logo
+    display: flex
+  &__name
+    color: $color-header
+    font-size: 30px
+    margin: 0
+  &__navigation
+    display: flex
+    gap: 15px
+
+.login-name
+  color: $color-online
+  display: flex
+  align-items: center
+
+.main
+  display: flex
+  flex-direction: column
+  // align-items: center
+  width: 100%
+  max-width: 700px
+  margin: auto auto
+
+.btn
+  background-color: $color-btn
+  color: #000000
+  border: none
+  border-radius: 5px
+  padding: 10px 15px
+  cursor: pointer
+  transition: background-color 0.3s ease
+  &:hover
+    background-color: $color-btn-hover
+  &_disable
+    opacity: 0.4
+    pointer-events: none
+    cursor: default
+  &_login
+    background-color: #D6B685
+    padding: 5px 15px
+    border: solid 1px
+    &:hover
+      background-color: #E4AA59
+
+.footer
+  display: flex
+  justify-content: space-around
+  align-items: center
+  width: 100%
+  min-height: 10vh
+  &__github
+    display: flex
+    align-items: center
+    color: black
+    text-decoration: none
+    font-size: 3rem
+    transform: scale(1)
+    transition: all 0.3s
+    &:hover
+      transform: scale(1.2)
+    &_icon
+      width: 48px
+      height: 48px
+      margin-right: 10px
+    &_text
+      font-size: 2rem
+  &__year
+    font-size: 24px
+    cursor: default
+    user-select: none
+  &__school_icon
+    width: 200px
+    height: 70px
+    transform: scale(1)
+    transition: all 0.3s
+    &:hover
+      transform: scale(1.2)

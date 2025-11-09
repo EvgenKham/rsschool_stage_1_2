@@ -1,0 +1,235 @@
+$color-header: #D9D9E8
+$color-btn: #98C4C4
+$color-btn-hover: #BEDADA
+$color-btn-disable: #C7FFF2
+$color-form: #dae3f3
+$color-title: #333
+$color-label-text: #666
+$color-input-border: #ccc
+$color-input-border-focus: #927e24
+$color-about: #FFECA8
+$color-online: #44da2e
+$color-offline: #da312e
+
+.chat
+  display: flex
+  background-color: $color-form
+  gap: 10px
+  border-radius: 10px
+  flex-basis: 400px
+  padding: 10px
+  align-items: stretch
+  &__sidebar
+    display: flex
+    flex-shrink: 0
+    flex-direction: column
+    padding: 10px
+    gap: 5px
+    margin: 0
+    height: 100%
+    max-height: 400px
+  &__search
+    position: relative
+    outline: none
+    border: transparent 1px solid
+    padding: 10px
+    width: 100%
+    max-width: calc(100% - 15px)
+    display: block
+    border-radius: 10px
+    margin-right: 10px
+    &:focus
+      box-shadow: 0px 5px 20px 5px rgba(34, 60, 80, 0.2)
+  &__list-person
+    display: flex
+    flex-shrink: 0
+    flex-direction: column
+    gap: 5px
+    margin: 0
+    padding: 0
+    padding-right: 10px
+    overflow-y: auto
+    overflow-x: hidden
+    height: 100%
+    max-height: 350px
+
+.item-person
+  display: flex
+  align-items: center
+  justify-content: space-around
+  gap: 15px
+  border: 1px $color-btn-hover solid
+  border-radius: 10px
+  padding: 10px
+  color: var(--color-body-dark)
+  cursor: pointer
+  min-width: 200px
+  transition: background-color 0.3s ease
+  &__status
+    display: inline-block
+    width: 10px
+    height: 10px
+    border: 1px solid
+    border-radius: 50%
+  &:hover
+    background-color: $color-btn-hover
+
+  .online
+    background-color: $color-online
+
+  .offline
+    background-color: $color-offline
+
+.dialog
+  flex-grow: 1
+  display: flex
+  flex-direction: column
+  background-color: #d5fffe
+  border-radius: 7px
+  gap: 10px
+  padding: 10px
+  height: 100%
+  overflow-y: auto
+  &__info
+    display: flex
+    justify-content: space-around
+    gap: 30px
+    border-bottom: 1px solid
+    font-size: 20px
+    cursor: default
+    user-select: none
+  &__message-wrapper
+    position: relative
+    display: flex
+    flex-direction: column
+    height: 400px
+    flex-grow: 1
+    max-height: 300px
+    justify-content: end
+
+.message-box
+  gap: 10px
+  display: flex
+  flex-direction: column
+  padding: 10px 3px
+  overflow: auto
+  max-height: 300px
+  margin-top: auto
+
+.message
+  position: relative
+  display: flex
+  flex-direction: column
+  width: 70%
+  background-color: #c5b7fe
+  padding: 5px
+  border-radius: 5px
+  color: var(--color-body-dark)
+  &_private
+    margin-left: auto
+    border-radius: 5px
+    background-color: #80d4fb
+  &__header
+    font-size: 0.8rem
+    display: flex
+    justify-content: space-between
+  &__author
+    font-weight: 600
+  &__text
+    font-size: 0.9rem
+    margin: 0
+    white-space: pre-wrap
+    word-wrap: break-word
+    background-color: $color-form
+    padding: 3px
+    border-radius: 3px
+  &__footer
+    font-size: 0.8rem
+    display: flex
+    justify-content: space-between
+  &__state
+    margin-left: auto
+    user-select: none
+    opacity: 0
+  &__buttons
+    display: none
+    gap: 5px
+  &__remove
+    width: 25px
+    height: 25px
+    font-size: 10px
+    padding: 0px
+    opacity: 0.3
+    border: none
+    background-color: transparent
+    &:hover
+      opacity: 1
+      cursor: pointer
+  &__edit
+    width: 25px
+    height: 25px
+    font-size: 10px
+    padding: 0px
+    opacity: 0.3
+    border: none
+    background-color: transparent
+    &:hover
+      opacity: 1
+      cursor: pointer
+
+.message_private .message__state
+  opacity: 1
+
+.message_private .message__buttons
+  position: absolute
+  right: calc(100%)
+  top: 0
+  display: flex
+  flex-direction: column
+
+.icon
+  width: 20px
+  height: 20px
+
+.text
+  display: flex
+  align-items: center
+  gap: 15px
+  background-color: #fbfbff
+  padding: 5px
+  border-radius: 10px
+  min-height: 50px
+  max-height: 120px
+  border-top: 1px solid
+  &__container
+    flex: 1
+    padding: 3px
+    height: 35px
+    border: 1px solid #fbfbff
+    border-radius: 10px
+    resize: none
+    outline: none
+    min-height: 30px
+    max-height: 100px
+    &:focus-visible
+      border: none
+  &__send
+    background-color: #fbfbff
+    border: none
+    display: flex
+    flex-grow: 0
+    max-height: 40px
+    padding: 7px
+    border-radius: 10px
+    justify-content: center
+    align-items: center
+    cursor: pointer
+    transition: 0.3s
+    user-select: none
+
+.person
+  padding: 10px 15px
+  &__status_online
+    color: $color-online
+  &__status_offline
+    color: $color-offline

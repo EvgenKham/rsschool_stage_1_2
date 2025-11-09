@@ -1,0 +1,45 @@
+$color-btn-hover: #BEDADA
+$color-title: #333
+$color-label-text: #666
+$color-input-border: #ccc
+$color-input-border-focus: #927e24
+
+.login
+  display: flex
+  justify-content: center
+  align-items: center
+  padding-bottom: 150px
+
+.login-form
+  display: flex
+  flex-direction: column
+  background-color: $color-btn-hover
+  border-radius: 15px
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
+  padding: 20px
+  min-width: 300px
+  &__title
+    text-align: center
+    margin: 0 0 20px 0
+    color: $color-title
+  &__label
+    display: block
+    margin-bottom: 5px
+    color: $color-label-text
+  &__input
+    width: 100%
+    padding: 5px
+    border: 1px solid $color-input-border
+    border-radius: 5px
+    margin-bottom: 10px
+    font-size: 16px
+    line-height: 0
+    transition: box-shadow 0.3s ease
+    &:focus
+      border-color: $color-input-border-focus
+      box-shadow: 0px 5px 20px 5px rgba(34, 60, 80, 0.2)
+      outline: none
+  &__error
+    color: red
+    font-size: 14px
+    margin: 0 0 20px 0

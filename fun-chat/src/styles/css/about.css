@@ -1,0 +1,11 @@
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #FFECA8;
+  border-radius: 15px;
+  margin: 0 20px 150px 20px;
+  padding: 20px; }
+  .about__text {
+    text-align: justify; }
