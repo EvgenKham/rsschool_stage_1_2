@@ -1,0 +1,884 @@
+html
+  scroll-behavior: smooth
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  margin: 0
+
+*
+  margin: 0
+  padding: 0
+
+p
+  margin: 0
+
+@font-face
+  font-family: "Allura"
+  src: url("../assets/fonts/Allura-Regular.ttf")
+  font-weight: regular
+  font-style: normal
+
+@font-face
+  font-family: "Montserrat"
+  src: url("../assets/fonts/Montserrat-Regular.ttf")
+  font-weight: regular
+  font-style: normal
+
+@font-face
+  font-family: "Montserrat"
+  src: url("../assets/fonts/Montserrat-SemiBold.ttf")
+  font-weight: 600
+  font-style: normal
+
+$primary: #ff4646
+$primary-10: rgba(255, 70, 70, 0.1)
+$dark: #181c29
+$overlay: rgba(24, 28, 41, 0.8)
+$static-white: rgba(255, 255, 255, 1)
+$static-white-20: rgba(255, 255, 255, 0.2)
+$static-white-40: rgba(255, 255, 255, 0.4)
+$tag-green: #06a44f
+$tag-purple: #4361ff
+$tag-pink: #ff43f7
+$content-background: #ecf3f8
+$text-upper: uppercase
+
+%header-1
+  font-family: Montserrat
+  font-size: 32px
+  font-weight: 600
+  line-height: 150%
+  letter-spacing: 0.18em
+  text-transform: $text-upper
+
+%header-2
+  font-family: Montserrat
+  font-size: 24px
+  font-weight: 600
+  line-height: 152%
+  letter-spacing: 0.16em
+  text-transform: $text-upper
+
+%header-3
+  font-family: Montserrat
+  font-size: 16px
+  font-weight: 600
+  line-height: 152%
+  letter-spacing: 0.08em
+  text-transform: $text-upper
+
+%header-4
+  font-family: Montserrat
+  font-size: 12px
+  font-weight: 600
+  line-height: 130%
+  letter-spacing: 0.05em
+  text-transform: $text-upper
+
+%paragraph
+  font-family: Montserrat
+  font-size: 16px
+  font-weight: 400
+  line-height: 148%
+
+%action-large
+  font-family: Montserrat
+  font-size: 24px
+  font-weight: 600
+  line-height: 152%
+  letter-spacing: 0.16em
+  text-transform: $text-upper
+
+%action-small
+  font-family: Montserrat
+  font-size: 12px
+  font-weight: 600
+  line-height: 130%
+  letter-spacing: 0.05em
+  text-transform: $text-upper
+
+%caption
+  font-family: Allura
+  font-size: 24px
+  font-weight: 400
+  line-height: 100%
+  letter-spacing: 0.05em
+
+%slider-text
+  font-family: Montserrat
+  font-size: 80px
+  font-weight: 600
+  text-transform: $text-upper
+
+%text-container
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  max-width: 426px
+  height: 72px
+  color: $static-white
+  margin-bottom: 20px
+
+.stop-scroll
+  overflow: hidden
+
+.wrapper
+  position: relative
+  max-width: 1440px
+  margin: 0 auto
+  overflow: hidden
+
+.header
+  display: flex
+  justify-content: center
+  padding: 0px 8px
+  max-width: 1440px
+  background: $static-white
+  &__container
+    display: flex
+    justify-content: space-between
+    width: 100%
+    max-width: 1276px
+    padding: 12px 0px
+  &__nav
+    display: flex
+
+.logo
+  display: flex
+  border-radius: 12px
+  padding: 8px 20px
+  min-width: 140px
+  height: 40px
+  text-decoration: none
+  &__image
+    margin-right: 8px
+  &__text
+    @extend %action-small
+    color: $dark
+    display: flex
+    align-items: center
+
+.nav-menu
+  display: flex
+  justify-content: center
+  align-items: center
+  &__item
+    display: flex
+    justify-content: center
+    border-radius: 12px
+    height: 40px
+    list-style: none
+    margin-right: 8px
+    transition: all 0.3s
+    &:last-child
+      margin-right: 0px
+  &__link
+    @extend %action-small
+    color: $dark
+    text-decoration: none
+    padding: 12px 20px
+    transition: all 0.3s
+
+.active-nav-link
+  background: $primary-10
+  .nav-menu__link
+    cursor: default
+    color: $primary
+
+.burger
+  display: none
+
+.hero
+  display: flex
+  justify-content: center
+  align-items: center
+  border-radius: 20px 20px 0 0
+  padding: 60px 8px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-ball.png'), url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  &__container
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding: 60px 0px
+    height: 404px
+    max-width: 430px
+  &__text
+    display: flex
+    flex-direction: column
+    justify-content: center
+    text-align: center
+    color: $static-white
+
+.caption
+  @extend %caption
+  cursor: default
+
+.header-1
+  @extend %header-1
+  cursor: default
+
+.button
+  display: flex
+  align-items: center
+  justify-content: center
+
+.btn
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  border-radius: 20px
+  padding: 20px 32px
+  width: 235px
+  height: 56px
+  background-color: $dark
+  @extend %action-small
+  text-align: center
+  white-space: nowrap
+  color: $static-white
+  text-decoration: none
+  transition: all 0.3s
+
+.about
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  &__container
+    display: flex
+    justify-content: space-between
+    border-radius: 20px
+    width: 100%
+    height: 528px
+    max-width: 1276px
+    background: $static-white
+  &__text-container
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding-left: 60px
+    padding-right: 60px
+    padding-top: 22px
+    max-width: 638px
+    height: 528px
+  &__text
+    max-width: 426px
+    margin-bottom: 20px
+    &:nth-child(1)
+      color: $primary
+  &__image-container
+    display: flex
+    justify-content: center
+    overflow: hidden
+    border-radius: 20px
+    max-width: 638px
+    height: 528px
+
+.about__image
+  align-self: center
+
+.header-2
+  @extend %header-2
+  cursor: default
+
+.paragraph
+  @extend %paragraph
+  cursor: default
+
+.slider
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  width: 100%
+  max-width: 1440px
+  background-image: url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  overflow: hidden
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    max-width: 1276px
+  &__text-container
+    @extend %text-container
+  &__row
+    display: flex
+    align-items: center
+    width: 100%
+    max-width: 1276px
+    height: 200px
+    margin-bottom: 20px
+    transform: translateX(0px)
+    transition: 0.3s ease-in-out
+  &__buttons
+    display: flex
+    justify-content: flex-end
+    width: 100%
+    max-width: 1276px
+    height: 56px
+
+.item-text
+  @extend %slider-text
+  color: $static-white
+  margin-right: 20px
+  cursor: default
+
+.item-image
+  border-radius: 20px
+  width: 200px
+  height: 200px
+  margin-right: 20px
+  &:last-child
+    margin-right: 0px
+
+.btn-arrow
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px solid $static-white
+  border-radius: 20px
+  width: 56px
+  height: 56px
+  transition: all 0.3s
+  stroke: $static-white
+  &:first-child
+    margin-right: 20px
+
+.btn-disable
+  border: 1px solid $static-white-40
+  stroke-opacity: 0.4
+  pointer-events: none
+
+.best-gifts
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-snow.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  &__container
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+  &__text-container
+    @extend %text-container
+  &__card-container
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    gap: 12px
+    width: 100%
+    max-width: 1276px
+
+.card
+  border-radius: 20px
+  width: 310px
+  height: 342px
+  background: $content-background
+  &__image
+    width: 310px
+    height: 227px
+  &__text
+    border-radius: 20px
+    padding: 20px
+    height: 112px
+    background: $static-white
+  &__category
+    margin-bottom: 8px
+  &__name
+    transition: all 0.3s
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden
+    max-height: 3.2em
+
+.work
+  color: $tag-purple
+.health
+  color: $tag-green
+.harmony
+  color: $tag-pink
+
+.popup__overlay
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  background-color: $overlay
+  transition: 0.3s all
+  visibility: hidden
+  opacity: 0
+
+.popup__active
+  visibility: visible
+  opacity: 1
+
+.popup
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  border-radius: 20px
+  height: 514px
+  max-width: 400px
+  background: $content-background
+  &__close
+    position: absolute
+    width: 40px
+    height: 40px
+    top: 12px
+    right: 12px
+    &:hover
+      cursor: pointer
+  &__img
+    object-fit: cover
+    max-width: 400px
+    height: 230px
+  &__text-conatainer
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    border-radius: 20px
+    padding: 20px
+    max-width: 400px
+    min-width: 364px
+    height: 284px
+    background: $static-white
+  &__description
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-content: space-between
+    max-width: 360px
+    &:nth-child(1)
+      height: 104px
+    &:nth-child(2)
+      height: 120px
+  &__superpower__text
+    margin-bottom: 8px
+
+.superpowers
+  &__text
+  &__container
+  &__row
+    display: flex
+    justify-content: space-between
+    max-width: 360px
+  &__name
+    flex-grow: 1
+    max-width: 184px
+    margin-right: 12px
+  &__amount
+    width: 40px
+    margin-right: 12px
+  &__snowflakes-container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 112px
+
+.snowflake
+  transition: all 0.3s
+  &_no-active
+    cursor: pointer
+    text-decoration: none
+    transition: all 0.3s
+    opacity: 0.1
+
+.header-4
+  @extend %header-4
+
+.header-3
+  @extend %header-3
+
+.christmas-is-coming
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 120px 8px
+  max-width: 1440px
+  border-radius: 0 0 20px 20px
+  background-image: url('../assets/images/bg-snow.png'), url('../assets/images/bg-forest.png')
+  background-position: center
+  background-size: cover
+  background-color: $primary
+  &__content
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    padding: 60px 0px
+    height: 428px
+    max-width: 426px
+  &__header
+    text-align: center
+    color: $static-white
+  &__caption
+    text-align: center
+    color: $static-white
+    margin-bottom: 8px
+
+.timer
+  &__section
+    display: flex
+    flex-direction: column
+  &__container
+    display: flex
+    justify-content: center
+    border-radius: 20px
+    padding: 8px 12px 12px 12px
+    width: 344px
+    height: 72px
+    background-color: $static-white-40
+  &__cell
+    position: relative
+    width: 80px
+    height: 52px
+    margin: 0
+    &:after
+      position: absolute
+      content: ""
+      height: 1px
+      width: 20px
+      top: 25px
+      right: -10px
+      background: $static-white-40
+      transform: rotate(90deg)
+    &:last-child:after
+      height: 0px
+
+.number
+  display: flex
+  justify-content: center
+  color: $static-white
+
+.string
+  display: flex
+  justify-content: center
+  color: $static-white
+
+.footer
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  max-width: 1440px
+  background: $static-white
+  &__container
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    max-width: 1276px
+
+.contacts
+  display: flex
+  justify-content: space-between
+  gap: 12px
+  width: 100%
+  max-width: 1276px
+  margin-bottom: 60px
+  &__item
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    border-radius: 20px
+    padding: 20px
+    width: 100%
+    height: 204px
+    background: $content-background
+    text-decoration: none
+    color: $dark
+  &__title
+    @extend %action-large
+    white-space: nowrap
+    transition: all 0.3s
+  &__subtitle
+    @extend %header-3
+    transition: all 0.3s
+
+.extra-info
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  width: 100%
+  height: 112px
+
+.socials
+  display: flex
+  justify-content: space-between
+  width: 196px
+  height: 40px
+  &__item
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 40px
+    height: 40px
+  &__link
+    transition: all 0.3s
+    stroke: $dark
+
+.school__link
+  cursor: pointer
+  text-decoration: none
+  transition: all 0.3s
+  color: $dark
+
+.gifts
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 60px 8px
+  border-radius: 20px
+  max-width: 1440px
+  background-image: url('../assets/images/bg-garland.png')
+  background-position: top
+  background-size: contain
+  background-repeat: no-repeat
+  background-color: $primary
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+    max-width: 1276px
+  &__title
+    max-width: 426px
+    margin-bottom: 20px
+    color: $static-white
+    text-align: center
+  &__tabs
+    display: flex
+    justify-content: space-between
+    max-width: 474px
+    margin-bottom: 20px
+  &__card-container
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    gap: 12px
+    width: 100%
+    max-width: 1276px
+
+.tab-item
+  border-radius: 12px
+  padding: 12px 20px
+  margin-right: 8px
+  transition: all 0.3s
+  @extend %action-small
+  color: $static-white
+  &:last-child
+    margin-right: 0px
+
+.active-tab
+  background: $static-white-20
+
+@media (max-width: 1060px)
+
+  .contacts
+    flex-direction: column
+    align-items: center
+    &__item
+      min-width: 360px
+
+@media (max-width: 768px)
+
+  .header
+    max-width: 768px
+    &__container
+      max-width: 752px
+
+  .burger
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    border-radius: 4px
+    width: 40px
+    height: 40px
+    opacity: 1
+    transition: 0.3s all
+    &__line
+      display: block
+      height: 2px
+      width: 22px
+      background: $dark
+      margin-bottom: 6px
+      transition: 0.3s all
+      &:last-child
+        margin-bottom: 0px
+
+  .burger_active
+    transition: 0.3s all
+    span:nth-child(1)
+      width: 20px
+      margin-bottom: -2px
+      transform: rotate(-45deg)
+    span:nth-child(2)
+      width: 20px
+      transform: rotate(45deg)
+
+  .header__nav
+    position: fixed
+    margin-top: 52px
+    margin-left: -8px
+    width: 100%
+    right: 0
+    transform: translateX(100%)
+    height: 100lvh
+    padding-bottom: 92px
+    z-index: 10
+    justify-content: center
+    align-items: center
+    background-color: $static-white
+    transition: 0.5s ease-in-out
+
+  .header__nav_active
+    transform: translateX(0)
+    transition: 0.5s ease-in-out
+
+  .nav-menu
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 246px
+    &__link
+      font-size: 24px
+      line-height: 152%
+      letter-spacing: 0.16em
+    &__item
+      margin: 0px
+      align-items: center
+
+  .about
+    max-width: 768px
+    &__container
+      max-width: 752px
+
+  .btn-to-up
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    bottom: 8px
+    right: 8px
+    border: 1px solid $primary
+    border-radius: 100px
+    width: 56px
+    height: 56px
+    background-color: $static-white
+    cursor: pointer
+
+  .btn-to-up
+    display: none
+
+@media (max-width: 600px)
+
+  .about
+    &__container
+      flex-direction: column
+      height: 880px
+    &__text-container
+      padding: 22px 20px 0 20px
+      height: 352px
+
+  .tab-item
+    padding: 12px 8px
+    margin-right: 0px
+
+@media (max-width: 420px)
+
+  .christmas-is-coming__content
+    height: 464px
+
+  .hero__container
+    height: 452px
+
+  .popup
+    max-width: 364px
+
+@media (hover: hover)
+
+  .nav-menu__item:hover
+    background: $primary-10
+    cursor: pointer
+
+  .nav-menu__link:hover
+    color: $primary
+
+  .btn:hover
+    background-color: $static-white
+    color: $dark
+
+  .btn-arrow:hover
+    cursor: pointer
+    background: $static-white
+    stroke: $primary
+
+  .card:hover
+    cursor: pointer
+    .card__name
+      transition: all 0.3s
+      color: $primary
+
+  .contacts__item:hover
+    .contacts__title
+      transition: all 0.3s
+      color: $primary
+    .contacts__subtitle
+      transition: all 0.3s
+      color: $primary
+
+  .socials__item:hover
+    cursor: pointer
+    .socials__link
+      transition: all 0.3s
+      stroke: $primary
+
+  .school__link:hover
+    color: $primary
+
+  .tab-item:hover
+    background: $static-white-20
+    cursor: pointer
+
+  .active-tab:hover
+    cursor: default
+
+  .popup
+    &__close:hover
+      cursor: pointer
+    &__text-conatainer
+      width: 324px
+
+  .burger
+    cursor: pointer
